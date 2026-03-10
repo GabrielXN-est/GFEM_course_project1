@@ -22,11 +22,19 @@ class Mesh
 
     // criar essas matrizes
     Matrix K_global;
+    Matrix K_global_pos;
     Vector F_global; 
 
     Vector U;
 
     Mesh () {}
+
+    void set_dofs(int dofs)
+    {
+        K_global = Matrix(dofs, dofs);
+        F_global = Vector(dofs);
+        U = Vector(dofs);
+    }
 
     void assemble()
     {
@@ -42,6 +50,8 @@ class Mesh
                 }
             }
         }
+
+        K_global_pos = K_global;
 
         int dof {};
         for (BC_displacement& bc: bc_ds)
@@ -92,7 +102,7 @@ class Mesh
 
     double energy_norm()
     {
-        return 1/2 * (U.T() * F_global).determinant();
+        return 1/2 * (U.T() * K_global_pos * U).determinant();
     }
 };
 

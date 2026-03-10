@@ -1,8 +1,10 @@
-#ifndef LIN_ALH_H
-#define LIN_ALH_H
+#ifndef LIN_ALG_H
+#define LIN_ALG_H
 
 #include <vector>
 #include <fstream>
+
+class Vector;
 
 // vetores e matrizes
 class Matrix
@@ -15,7 +17,7 @@ class Matrix
     {}
     Matrix (std::vector<std::vector<double>> M) : mat{M}
     {}
-
+    Matrix (Vector v); // estudar sintaxe
     Matrix () {}
 
     //operadores
@@ -58,6 +60,19 @@ class Matrix
         return result;
     }
 
+    Matrix operator*(double other) const 
+    {
+        Matrix result(this->mat.size(), this->mat[0].size());
+        for (std::size_t i {0}; i < mat.size(); i++)
+        {
+            for (std::size_t j {0}; j < mat[0].size(); j++)
+            {
+                result.mat[i][j] = this->mat[i][j] * other;
+            }
+        }
+        return result;
+    }
+    
     double determinant()
     {
         if (mat.size() == 1 && mat[0].size() == 1)
@@ -76,6 +91,13 @@ class Vector
     bool transposed {false};
 
     double& operator[] (std::size_t index)
+    {
+        if (index >= vec.size())
+            throw std::out_of_range("Vector index out of range");
+        return vec[index];
+    }
+
+    double get (std::size_t index) const
     {
         if (index >= vec.size())
             throw std::out_of_range("Vector index out of range");
@@ -120,9 +142,9 @@ class Vector
     }
 
     template <typename T1, typename T2>
-    friend Matrix operator* (T1& v1, T2& v2)
+    friend Matrix operator* (const T1& v1, const T2& v2)
     {
-        if constexpr (std::is_base_of_v<Vector, T2>)
+        if constexpr (std::is_base_of_v<Vector, T2>  && std::is_base_of_v<Vector, T1>)
         {
             // vetor linha por coluna
             if (v1.transposed && !v2.transposed)
@@ -132,7 +154,7 @@ class Vector
                 double result {0.0};
                 for (std::size_t i {0}; i < v1.size(); i++)
                 {
-                    result += v1[i] * v2[i];
+                    result += v1.get(i) * v2.get(i);
                 }
                 return {std::vector<std::vector<double>>{{{result}}}};
             }
@@ -148,7 +170,7 @@ class Vector
                 {
                     for (std::size_t j {0}; j < size; j++)
                     {
-                        result[i][j]= v1[i] * v2[j];
+                        result[i][j]= v1.get(i) * v2.get(j);
                     }
                 }
                 return result;
@@ -164,119 +186,14 @@ class Vector
             Matrix result(v1.size(), 1);
             for (std::size_t i {0}; i < v1.size(); i++)
             {
-                result[i] = v1[i] * v2;
+                result[i][0] = v1.get(i) * v2;
             }
             return result;
         }
-        else
+        else if constexpr (typeid(T2)==typeid(Matrix))
         {
-            throw std::invalid_argument("Unsupported type for multiplication");
-        }
-    }
-
-    template <typename T1, typename T2>
-    friend Matrix operator* (T1& v1, T2& v2)
-    {
-        if constexpr (std::is_base_of_v<Vector, T2>)
-        {
-            // vetor linha por coluna
-            if (v1.transposed && !v2.transposed)
-            {
-                if (v1.size() != v2.size())
-                    throw std::invalid_argument("Incompatible vector sizes for multiplication");
-                double result {0.0};
-                for (std::size_t i {0}; i < v1.size(); i++)
-                {
-                    result += v1[i] * v2[i];
-                }
-                return {std::vector<std::vector<double>>{{{result}}}};
-            }
-
-            // vetor coluna por linha
-            else if (!v1.transposed && v2.transposed)
-            {
-                std::size_t size {v1.size()};
-                if (size != v2.size())
-                    throw std::invalid_argument("Incompatible vector sizes for multiplication");
-                Matrix result(size, size);
-                for (std::size_t i {0}; i < size; i++)
-                {
-                    for (std::size_t j {0}; j < size; j++)
-                    {
-                        result[i][j]= v1[i] * v2[j];
-                    }
-                }
-                return result;
-            }
-            else
-            {
-                throw std::invalid_argument("Invalid vector orientations for multiplication");
-            }
-        }
-        else if constexpr (std::is_floating_point_v<T2>)
-        {
-            // multiplicação por escalar
-            Matrix result(v1.size(), 1);
-            for (std::size_t i {0}; i < v1.size(); i++)
-            {
-                result[i] = v1[i] * v2;
-            }
-            return result;
-        }
-        else
-        {
-            throw std::invalid_argument("Unsupported type for multiplication");
-        }
-    }
-
-    template <typename T1, typename T2>
-    friend Matrix operator* (T1& v1, T2&& v2)
-    {
-        if constexpr (std::is_base_of_v<Vector, T2>)
-        {
-            // vetor linha por coluna
-            if (v1.transposed && !v2.transposed)
-            {
-                if (v1.size() != v2.size())
-                    throw std::invalid_argument("Incompatible vector sizes for multiplication");
-                double result {0.0};
-                for (std::size_t i {0}; i < v1.size(); i++)
-                {
-                    result += v1[i] * v2[i];
-                }
-                return {std::vector<std::vector<double>>{{{result}}}};
-            }
-
-            // vetor coluna por linha
-            else if (!v1.transposed && v2.transposed)
-            {
-                std::size_t size {v1.size()};
-                if (size != v2.size())
-                    throw std::invalid_argument("Incompatible vector sizes for multiplication");
-                Matrix result(size, size);
-                for (std::size_t i {0}; i < size; i++)
-                {
-                    for (std::size_t j {0}; j < size; j++)
-                    {
-                        result[i][j]= v1[i] * v2[j];
-                    }
-                }
-                return result;
-            }
-            else
-            {
-                throw std::invalid_argument("Invalid vector orientations for multiplication");
-            }
-        }
-        else if constexpr (std::is_floating_point_v<T2>)
-        {
-            // multiplicação por escalar
-            Matrix result(v1.size(), 1);
-            for (std::size_t i {0}; i < v1.size(); i++)
-            {
-                result[i][0] = v1[i] * v2;
-            }
-            return result;
+            Matrix m1 {v1}
+            return m1.operator*(v2);
         }
         else
         {
@@ -294,7 +211,7 @@ class Vector
         return *this;
     }*/
 
-    Vector operator* (double n)
+    /*Vector operator* (double n) 
     {
         Vector result (size());
         for (std::size_t i {0}; i < size(); i++)
@@ -302,7 +219,7 @@ class Vector
             result[i] = vec[i] * n;
         }
         return result;
-    }
+    }*/
 };
 
 Matrix operator* (double n, Matrix&& m);

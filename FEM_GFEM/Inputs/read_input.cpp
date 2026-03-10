@@ -189,6 +189,9 @@ void read_input (const std::string& filename, Mesh& mesh)
                 }
             }
 
+            // extrair número de dofs
+            mesh.set_dofs(nnodes*ndim);
+
             // extrair ordem dos tipos dados
             std::vector<int> order {};
             for (std::string& arg : leg)

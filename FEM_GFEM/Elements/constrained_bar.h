@@ -88,6 +88,11 @@ class Constrained_bar
     {
         return (x-xi)*2/Li;
     }
+    // do mestre paro o físico
+    double mapping_inv(double x, double xi, double Li)
+    {
+        return (x+1)*Li/2 + xi;
+    }
 
     // integra tensões num intervalo da barra
     void integrate_B1_to_K(double Ei, double Li, double xi)
@@ -100,11 +105,11 @@ class Constrained_bar
         for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
         {
             // obter dNdx e dNdxt
-            dNdx(mapping(ip1.points[pt_id], xi, Li));
+            dNdx(ip1.points[pt_id]);
             dNdx.mont_vector();
 
             // montar matriz de rigidez local
-            K_local += (Li/2*ip1.weights[pt_id]*A*Ei)*(dNdx*dNdx.T());
+            K_local += (dNdx*dNdx.T())*(Li/2*ip1.weights[pt_id]*A*Ei);
         }
     }
 
@@ -119,11 +124,11 @@ class Constrained_bar
         for (std::size_t pt_id {0}; pt_id < ip2.points.size(); pt_id++)
         {
             // obter N
-            N(mapping(ip2.points[pt_id], Nod_list[0]->x, L));
+            N(ip2.points[pt_id]);
             N.mont_vector();
 
             // montar matriz de rigidez local
-            K_local += (L/2*ip2.weights[pt_id]*C)*(N*N.T());
+            K_local += (N*N.T())*(L/2*ip2.weights[pt_id]*C);
         }
     }
 
@@ -135,9 +140,10 @@ class Constrained_bar
 
         for (std::size_t i {0}; i < ip.points.size(); i++)
         {
-            N(mapping(ip.points[i], Nod_list[0]->x, L));
+            N(ip.points[i]);
             N.mont_vector();
-            F_local += Vector{N * (*bf_func)(mapping(ip.points[i], Nod_list[0]->x, L))};
+            
+            F_local += N * static_cast<double>((*bf_func)(mapping_inv(ip.points[i], Nod_list[0]->x, L))*ip.weights[i]*L/2.);
         }
     }
 

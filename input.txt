@@ -46,7 +46,7 @@ nelem; elemID Type propID nodes
 10 pBar4 1 28 29 30 31
 properties - nprop; propID type E A C bf_fun
 1
-1 MatpBar 1.0 1.0 0.0 10
+1 MatpBar 1.0 1.0 0.0 1
 constraints - nconstr;constrID nodeID dof value
 2
 1 1 1 0.
