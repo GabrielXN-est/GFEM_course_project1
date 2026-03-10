@@ -1,0 +1,16 @@
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/myExecutable.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Inputs/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Inputs/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Elements/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Elements/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lin_alg/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lin_alg/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Integration_points/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Integration_points/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/library.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/rebuild_cache.dir

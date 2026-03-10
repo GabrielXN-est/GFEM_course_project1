@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "FEM_GFEM/lin_alg",
+		"source" : "FEM_GFEM/lin_alg"
+	}
+}
