@@ -24,6 +24,7 @@ class Mesh
     Matrix K_global;
     Matrix K_global_pos;
     Vector F_global; 
+    Vector F_global_pos; 
 
     Vector U;
 
@@ -39,41 +40,13 @@ class Mesh
     // BC pelo método direto
     void assemble_direct();
 
-    void solve()
-    {
-        Matrix K {K_global};
-        Vector F {F_global};
-        // resolver sistema linear K_global * U = F_global
-        // método de eliminação de Gauss
-        int n {static_cast<int>(F_global.size())};
+    void solve() {U = Gauss_elimination(K_global, F_global);}
 
-        for (int i {0}; i < n; i++)
-        {
-            for (int j {0}; j < n; j++)
-            {
-                if (j != i)
-                {
-                    double factor {K_global[j][i]/K_global[i][i]};
-                    for (int k {i}; k < n; k++)
-                    {
-                        K[j][k] -= factor * K_global[i][k];
-                    }
-                    F[j] -= factor * F_global[i];
-                }
-            }
-        }
+    // função para completar U com as condições de contorno se usado o método direto
+    void complete_U ();
 
-        for (int i {0}; i < n; i++)
-        {
-            U[i] = F[i]/K[i][i];
-        }
-    }
+    double energy_norm();
 
-    double energy_norm()
-    {
-        Matrix temp1 {K_global_pos * U};
-        return 1./2. * (U.T() * (K_global_pos * U)).determinant();
-    }
 };
 
 #endif

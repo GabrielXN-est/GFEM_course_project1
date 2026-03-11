@@ -10,7 +10,7 @@ class shape_functions: public Vector
     int polinomial_order {};
 
     public:
-    double dist {2./static_cast<double>(polinomial_order)};
+    double dist {2./static_cast<double>(polinomial_order)}; // distância entre os nós no elemento mestre
     shape_functions(int po) : polinomial_order {po}, Vector{static_cast<std::size_t>(po+1)} {}
 
     void operator() (double e)

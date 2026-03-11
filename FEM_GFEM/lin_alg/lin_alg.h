@@ -20,6 +20,9 @@ class Matrix
     Matrix (Vector v); // estudar sintaxe
     Matrix () {}
 
+    //setters
+    void clear() {mat.clear();}
+
     //getters
     std::vector<double>& operator[] (std::size_t index);
 
@@ -51,7 +54,10 @@ class Vector
     Vector (){}
     Vector (Matrix m);
 
-    //getters
+    //Setter
+    void clear() {vec.clear();}
+
+    //Getters
     const std::size_t size() const;
 
     double& operator[] (std::size_t index);
@@ -63,6 +69,12 @@ class Vector
     Vector T() const;
 
     void operator+= (const Vector& other);
+
+    Vector operator+ (const Vector& other) const;
+
+    Vector operator- (const Vector& other) const {return operator+(-other);}
+
+    Vector operator- () const;
 
     Matrix operator* (const double& v2);
     Matrix operator* (const Matrix& v2);
@@ -107,6 +119,6 @@ class Vector
 
 Matrix operator* (double n, Matrix&& m);
 
-Vector Gauss_elimination(Matrix& K, Vector& F);
+Vector Gauss_elimination(Matrix K, Vector F);
 
 #endif

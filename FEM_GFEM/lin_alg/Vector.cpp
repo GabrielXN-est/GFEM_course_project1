@@ -73,6 +73,28 @@ void Vector::operator+= (const Vector& other)
     }
 }
 
+Vector Vector::operator+ (const Vector& other) const
+{
+    if (size() != other.size())
+        throw std::invalid_argument("Vectors must have the same size for addition");
+
+    Vector result(size());
+
+    for (std::size_t i {0}; i < size(); i++)
+    {
+        result.vec[i] = get(i) + other.get(i);
+    }
+    return std::move(result);
+}
+
+Vector Vector::operator- () const
+{
+    Vector result(size());
+    for (std::size_t i {0}; i < size(); i++)
+        {result[i] = -get(i);}
+    return std::move(result);
+}
+
 Matrix Vector::operator* (const double& v2)
 {
     // multiplicação por escalar

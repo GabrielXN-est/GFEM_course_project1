@@ -49,16 +49,18 @@ void Constrained_bar::integrate_B1_to_K(double Ei, double Li, double xi)
     // para o trecho AE dNdx dNdxt
     integration_points ip1 {Gauss_quad_points(2*shape_func_order-2)};
 
-    MDshape_functions_lag dNdx {shape_func_order};
+    MDshape_functions_lag dNdxi {shape_func_order};
+
+    double dxidx {2/Li}; // considerando mapeamento linear
 
     for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
     {
         // obter dNdx e dNdxt
-        dNdx(ip1.points[pt_id]);
-        dNdx.mont_vector();
+        dNdxi(ip1.points[pt_id]);
+        dNdxi.mont_vector();
 
         // montar matriz de rigidez local
-        K_local += (dNdx*dNdx.T())*(Li/2*ip1.weights[pt_id]*A*Ei);
+        K_local += (dNdxi*dNdxi.T())*(dxidx*dxidx*Li/2*ip1.weights[pt_id]*A*Ei);
     }
 }
 
@@ -89,6 +91,8 @@ void Constrained_bar::integrate_BF_to_F()
     {
         N(ip.points[i]);
         N.mont_vector();
+
+        double x {(*bf_func)(mapping_inv(ip.points[i], Nod_list[0]->x, L))};
 
         F_local += N * static_cast<double>((*bf_func)(mapping_inv(ip.points[i], Nod_list[0]->x, L))*ip.weights[i]*L/2.);
     }

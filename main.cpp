@@ -14,9 +14,10 @@ int main()
     Mesh mesh {};
     read_input("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input.txt", mesh);
 
-    mesh.assemble_penalty();
+    mesh.assemble_direct();
     mesh.solve();
 
+    mesh.complete_U();
     std::cout << "Energy norm: " << mesh.energy_norm() << std::endl;
     return 0;
     }

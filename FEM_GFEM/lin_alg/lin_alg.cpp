@@ -2,7 +2,7 @@
 
 // resolver sistema linear K * U = F
 // método de eliminação de Gauss
-Vector Gauss_elimination(Matrix& K, Vector& F)
+Vector Gauss_elimination(Matrix K, Vector F)
 {
     std::size_t n {F.size()};
     Vector U(n);
