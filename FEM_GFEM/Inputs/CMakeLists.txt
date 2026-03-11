@@ -2,8 +2,14 @@
 
 # Note: Everything after a # is a commentary!
 
-file(GLOB headers *.h) # creates a set headers with all the .h files
-file(GLOB sources *.cpp) # creates a set sources with all the .cpp files
+#file(GLOB headers *.h) # creates a set headers with all the .h files
+#file(GLOB sources *.cpp) # creates a set sources with all the .cpp files
 
 # Create a set with what is inside headers and sources send it to parent folder 
-set(input_files ${headers} ${sources} PARENT_SCOPE) 
+#set(input_files ${headers} ${sources} PARENT_SCOPE) 
+
+set(input_files
+	${CMAKE_CURRENT_SOURCE_DIR}/read_input.h
+	${CMAKE_CURRENT_SOURCE_DIR}/read_input.cpp
+	PARENT_SCOPE
+)

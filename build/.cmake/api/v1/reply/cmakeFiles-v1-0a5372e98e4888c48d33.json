@@ -143,6 +143,9 @@
 		},
 		{
 			"path" : "FEM_GFEM/lib/CMakeLists.txt"
+		},
+		{
+			"path" : "FEM_GFEM/Boundeary_conditions/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

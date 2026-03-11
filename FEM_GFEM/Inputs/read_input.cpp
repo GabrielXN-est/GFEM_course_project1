@@ -7,7 +7,7 @@
 #include "Bondeary_conditions.h"
 #include "body_func.h"
 
-body_functions* get_body_function(int id)
+body_functions* get_body_function(int id, double alpha = 0., double xb = 0.)
 {
     switch (id)
     {
@@ -17,6 +17,8 @@ body_functions* get_body_function(int id)
             return new body_function1();
         case 3:
             return new body_function3();
+        case 10:
+            return new body_function10(alpha, xb);
         default:
             throw std::invalid_argument("Invalid body function ID");
     }
@@ -374,8 +376,8 @@ void read_input (const std::string& filename, Mesh& mesh)
                 pr_vec.emplace_back();
 
                 int bf_func_id {};
-                double alpha {};
-                double xb {};
+                double alpha {0.};
+                double xb {0.};
 
                 //obtendo parametros da linha
                 for (std::size_t i {0}; i < line.size(); i++)
@@ -415,10 +417,7 @@ void read_input (const std::string& filename, Mesh& mesh)
                         }
                     }
                 }
-                if (bf_func_id == 10)
-                    pr_vec[j].bf_func = new body_function10(alpha, xb);
-                else
-                    pr_vec[j].bf_func = get_body_function(bf_func_id);
+                pr_vec[j].bf_func = get_body_function(bf_func_id, alpha, xb);
             }
         }
 

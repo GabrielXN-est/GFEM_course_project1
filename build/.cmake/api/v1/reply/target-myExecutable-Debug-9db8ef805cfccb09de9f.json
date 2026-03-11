@@ -26,13 +26,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 19,
+				"line" : 20,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
@@ -73,6 +73,10 @@
 				{
 					"backtrace" : 3,
 					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
 				}
 			],
 			"language" : "CXX",

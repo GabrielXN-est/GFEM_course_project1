@@ -5,7 +5,11 @@ class body_functions
 {
     public:
     int grau {};
+
     body_functions(int d) : grau{d} {}
+
+    virtual body_functions* clone() const = 0;
+
     virtual double operator()(double x) =0;
 };
 
@@ -13,6 +17,9 @@ class body_function0 : public body_functions
 {
     public:
     body_function0() : body_functions(0) {}
+
+    body_function0* clone() const override {return new body_function0();}
+    
     double operator()(double x){return 0.0;}
 };
 
@@ -20,6 +27,9 @@ class body_function1 : public body_functions
 {
     public:
     body_function1() : body_functions(1) {}
+
+    body_function1* clone() const override {return new body_function1();}
+    
     double operator()(double x){return x;}
 };
 
@@ -27,6 +37,9 @@ class body_function3 : public body_functions
 {
     public:
     body_function3() : body_functions(3) {}
+
+    body_function3* clone() const override {return new body_function3();}
+
     double operator()(double x)
     {return x*x*x-6.*x*x-x+12;}
 };
@@ -39,6 +52,8 @@ class body_function10 : public body_functions
 
     body_function10(double a, double b) : alpha{a}, xb{b}, body_functions(10){}
 
+    body_function10* clone() const override {return new body_function10(alpha, xb);}
+
     double operator()(double x)
     {
         return 2*alpha/(1+alpha*alpha*(x-xb)*(x-xb)) +
@@ -46,4 +61,5 @@ class body_function10 : public body_functions
         ((1+alpha*alpha*(x-xb)*(x-xb))*(1+alpha*alpha*(x-xb)*(x-xb)));
     }
 };
+
 #endif

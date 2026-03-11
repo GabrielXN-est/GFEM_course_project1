@@ -6,7 +6,7 @@
 #file(GLOB sources *.cpp) # creates a set sources with all the .cpp files
 
 # Create a set with what is inside headers and sources send it to parent folder 
-#set(element_files ${headers} ${sources} PARENT_SCOPE) 
+#set(BC ${headers} ${sources} PARENT_SCOPE) 
 
 set(element_files
 	${CMAKE_CURRENT_SOURCE_DIR}/constrained_bar.h

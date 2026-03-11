@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,16 +40,5 @@ endif()
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Inputs/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Elements/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lin_alg/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Integration_points/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions/cmake_install.cmake")
-
 endif()
 

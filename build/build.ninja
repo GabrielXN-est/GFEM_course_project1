@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_myExecutable: phony || cmake_object_orde
 build CMakeFiles/myExecutable.dir/main.cpp.o: CXX_COMPILER__myExecutable_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/main.cpp || cmake_object_order_depends_target_myExecutable
   DEP_FILE = CMakeFiles/myExecutable.dir/main.cpp.o.d
   FLAGS = -g
-  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
   OBJECT_DIR = CMakeFiles/myExecutable.dir
   OBJECT_FILE_DIR = CMakeFiles/myExecutable.dir
 
@@ -251,24 +251,52 @@ build FEM_GFEM/Integration_points/rebuild_cache: phony FEM_GFEM/Integration_poin
 
 build cmake_object_order_depends_target_library: phony || FEM_GFEM/lib/CMakeFiles/library.dir
 
+build FEM_GFEM/lib/CMakeFiles/library.dir/__/mesh.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/mesh.cpp || cmake_object_order_depends_target_library
+  DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/mesh.cpp.o.d
+  FLAGS = -g
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
+  OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
+  OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__
+
+build FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements/constrained_bar.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Elements/constrained_bar.cpp || cmake_object_order_depends_target_library
+  DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements/constrained_bar.cpp.o.d
+  FLAGS = -g
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
+  OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
+  OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements
+
 build FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/lin_alg.cpp || cmake_object_order_depends_target_library
   DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o.d
   FLAGS = -g
-  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
+  OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
+  OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg
+
+build FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/Matrix.cpp || cmake_object_order_depends_target_library
+  DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o.d
+  FLAGS = -g
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
+  OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
+  OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg
+
+build FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/Vector.cpp || cmake_object_order_depends_target_library
+  DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o.d
+  FLAGS = -g
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
   OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg
 
 build FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Inputs/read_input.cpp || cmake_object_order_depends_target_library
   DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o.d
   FLAGS = -g
-  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
   OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs
 
 build FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o: CXX_COMPILER__library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Integration_points/integration_points.cpp || cmake_object_order_depends_target_library
   DEP_FILE = FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o.d
   FLAGS = -g
-  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
   OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points
 
@@ -280,7 +308,7 @@ build FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_poin
 #############################################
 # Link the static library FEM_GFEM/lib/liblibrary.a
 
-build FEM_GFEM/lib/liblibrary.a: CXX_STATIC_LIBRARY_LINKER__library_Debug FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o
+build FEM_GFEM/lib/liblibrary.a: CXX_STATIC_LIBRARY_LINKER__library_Debug FEM_GFEM/lib/CMakeFiles/library.dir/__/mesh.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements/constrained_bar.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/library.dir
   POST_BUILD = :
@@ -312,6 +340,34 @@ build FEM_GFEM/lib/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build FEM_GFEM/lib/rebuild_cache: phony FEM_GFEM/lib/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build FEM_GFEM/Boundeary_conditions/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions" && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build FEM_GFEM/Boundeary_conditions/edit_cache: phony FEM_GFEM/Boundeary_conditions/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build FEM_GFEM/Boundeary_conditions/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions" && /usr/bin/cmake --regenerate-during-build -S"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1" -B"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build FEM_GFEM/Boundeary_conditions/rebuild_cache: phony FEM_GFEM/Boundeary_conditions/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
 
 build liblibrary.a: phony FEM_GFEM/lib/liblibrary.a
@@ -333,7 +389,14 @@ build all: phony myExecutable FEM_GFEM/all
 #############################################
 # Folder: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM
 
-build FEM_GFEM/all: phony FEM_GFEM/Inputs/all FEM_GFEM/Elements/all FEM_GFEM/lin_alg/all FEM_GFEM/Integration_points/all FEM_GFEM/lib/all
+build FEM_GFEM/all: phony FEM_GFEM/Inputs/all FEM_GFEM/Elements/all FEM_GFEM/lin_alg/all FEM_GFEM/Integration_points/all FEM_GFEM/lib/all FEM_GFEM/Boundeary_conditions/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions
+
+build FEM_GFEM/Boundeary_conditions/all: phony
 
 # =============================================================================
 
@@ -382,14 +445,14 @@ build FEM_GFEM/lin_alg/all: phony
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Elements/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Inputs/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Integration_points/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lib/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/CMakeLists.txt /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Boundeary_conditions/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Elements/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Inputs/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Integration_points/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lib/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/CMakeLists.txt /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Elements/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Inputs/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Integration_points/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lib/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/CMakeLists.txt /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake: phony
+build /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Boundeary_conditions/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Elements/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Inputs/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Integration_points/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lib/CMakeLists.txt /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/lin_alg/CMakeLists.txt /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake: phony
 
 
 #############################################

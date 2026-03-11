@@ -14,3 +14,5 @@
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/library.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/edit_cache.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions/CMakeFiles/rebuild_cache.dir

@@ -1,29 +1,31 @@
 #include "lin_alg.h"
- // estudar sintaxe
-Matrix::Matrix (Vector v) : mat {((!v.transposed)? 
-    std::vector<std::vector<double>>(v.size(), std::vector<double>(1, 0.))
-    : std::vector<std::vector<double>>(1, std::vector<double>(v.size(), 0.)))}
-{
-    if (!v.transposed)
-        for (std::size_t i {0}; i < v.size(); i++)
-        {
-            mat[i][0] = v.get(i);
-        }
-    else
-        for (std::size_t i {0}; i < v.size(); i++)
-        {
-            mat[0][i] = v.get(i);
-        }
-}
 
-Matrix operator* (double n, Matrix&& m)
+// resolver sistema linear K * U = F
+// método de eliminação de Gauss
+Vector Gauss_elimination(Matrix& K, Vector& F)
 {
-    for (std::vector<double>& row : m.mat)
+    std::size_t n {F.size()};
+    Vector U(n);
+
+    for (std::size_t i {0}; i < n; i++)
     {
-        for (double& val : row)
+        for (std::size_t j {0}; j < n; j++)
         {
-            val *= n;
+            if (j != i)
+            {
+                double factor {K[j][i]/K[i][i]};
+                for (std::size_t k {i}; k < n; k++)
+                {
+                    K[j][k] -= factor * K[i][k];
+                }
+                F[j] -= factor * F[i];
+            }
         }
     }
-    return std::move(m);
+
+    for (std::size_t i {0}; i < n; i++)
+    {
+        U[i] = F[i]/K[i][i];
+    }
+    return std::move(U);
 }

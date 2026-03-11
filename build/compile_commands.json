@@ -1,25 +1,49 @@
 [
 {
   "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
-  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -g -o CMakeFiles/myExecutable.dir/main.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/main.cpp\"",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o CMakeFiles/myExecutable.dir/main.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/main.cpp\"",
   "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/main.cpp",
   "output": "CMakeFiles/myExecutable.dir/main.cpp.o"
 },
 {
   "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
-  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/lin_alg.cpp\"",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/mesh.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/mesh.cpp\"",
+  "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/mesh.cpp",
+  "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/mesh.cpp.o"
+},
+{
+  "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements/constrained_bar.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements/constrained_bar.cpp\"",
+  "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements/constrained_bar.cpp",
+  "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/Elements/constrained_bar.cpp.o"
+},
+{
+  "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/lin_alg.cpp\"",
   "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/lin_alg.cpp",
   "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o"
 },
 {
   "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
-  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs/read_input.cpp\"",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/Matrix.cpp\"",
+  "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/Matrix.cpp",
+  "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o"
+},
+{
+  "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/Vector.cpp\"",
+  "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg/Vector.cpp",
+  "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o"
+},
+{
+  "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs/read_input.cpp\"",
   "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs/read_input.cpp",
   "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/Inputs/read_input.cpp.o"
 },
 {
   "directory": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
-  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points/integration_points.cpp\"",
+  "command": "/usr/bin/g++ -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points\" -I\"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions\" -g -o FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o -c \"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points/integration_points.cpp\"",
   "file": "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points/integration_points.cpp",
   "output": "FEM_GFEM/lib/CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o"
 }

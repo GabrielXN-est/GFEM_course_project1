@@ -12,6 +12,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Elements"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/lin_alg"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Integration_points"
+    "${PROJECT_SOURCE_DIR}/FEM_GFEM/Boundeary_conditions"
 )
 
 add_subdirectory(FEM_GFEM)
