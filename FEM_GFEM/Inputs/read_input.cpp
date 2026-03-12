@@ -3,7 +3,7 @@
 #include <fstream>
 #include "mesh.h"
 #include "read_input.h"
-#include "constrained_bar.h"
+#include "bars.h"
 #include "Bondeary_conditions.h"
 #include "body_func.h"
 
@@ -91,7 +91,7 @@ void read_input (const std::string& filename, Mesh& mesh)
     double x_coord;
 
     std::vector<Node>& node_vec{mesh.nodes};
-    std::vector<Constrained_bar>& el_vec{mesh.c_bars};
+    std::vector<Element*>& el_vec{mesh.c_bars};
     std::vector<BC_displacement>& bc_vec{mesh.bc_ds};
     std::vector<BC_load>& loads{mesh.bc_l};
 
@@ -191,9 +191,6 @@ void read_input (const std::string& filename, Mesh& mesh)
                 }
             }
 
-            // extrair número de dofs
-            mesh.set_dofs(nnodes*ndim);
-
             // extrair ordem dos tipos dados
             std::vector<int> order {};
             for (std::string& arg : leg)
@@ -268,6 +265,7 @@ void read_input (const std::string& filename, Mesh& mesh)
             std::string type {};
             int propID {};
             std::vector<int> nodes {};
+            int shape_func_order {};
 
             for (int k {0}; k < nelem; k++)
             {
@@ -299,10 +297,14 @@ void read_input (const std::string& filename, Mesh& mesh)
                                     temp.pop_back();
                                 }
                                 
-                                if (temp == "pBar")
+                                if (temp == "pBar" || temp == "lBar")
                                 {
                                     type = temp;
-                                    case_j = std::stoi(temp2);
+                                    shape_func_order = std::stoi(temp2)-1;
+                                    if (temp == "lBar")
+                                        case_j = shape_func_order+1;
+                                    else
+                                        case_j = 3;
                                     case_i++;
                                 }
                                 else
@@ -326,8 +328,12 @@ void read_input (const std::string& filename, Mesh& mesh)
                 }
 
                 // descrevendo elementos
-                if (type == "pBar")
-                    el_vec.emplace_back(id, nodes, propID);
+                if (type == "lBar")
+                    el_vec.push_back(new lagrangian_bar(id, nodes, propID, shape_func_order));
+                else if (type == "pBar")
+                    el_vec.push_back(new p_hier_bar(id, nodes, propID, shape_func_order));
+                else
+                    throw std::invalid_argument("Unexpected element type");
                 nodes.clear();
             }
         }
@@ -549,17 +555,22 @@ void read_input (const std::string& filename, Mesh& mesh)
     {
         loads[i].assign_node(get_node_by_id (lnid[i], node_vec));
     }
-    for (Constrained_bar& bar: el_vec)
+
+    int dof0 {0};
+    for (Element* el: el_vec)
     {
-        bar.get_nodes(node_vec);
+        el->get_nodes(node_vec);
+        el->assign_dofs(dof0);
         for (Properties& pr: pr_vec)
         {
-            if (pr.id == bar.prop_id)
+            if (pr.id == el->prop_id)
             {
-                bar.get_properties(pr);
+                el->get_properties(pr);
                 break;
             }
         }
-        bar.start_el();
+        el->start_el();
     }
+    // extrair número de dofs
+    mesh.set_dofs(dof0);
 }

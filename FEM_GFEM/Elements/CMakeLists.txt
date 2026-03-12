@@ -9,8 +9,11 @@
 #set(element_files ${headers} ${sources} PARENT_SCOPE) 
 
 set(element_files
-	${CMAKE_CURRENT_SOURCE_DIR}/constrained_bar.h
-	${CMAKE_CURRENT_SOURCE_DIR}/constrained_bar.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/bars.h
+	${CMAKE_CURRENT_SOURCE_DIR}/bars.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/node.h
+	${CMAKE_CURRENT_SOURCE_DIR}/element.h
+	${CMAKE_CURRENT_SOURCE_DIR}/element.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/bar.cpp
 	PARENT_SCOPE
 )

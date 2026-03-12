@@ -9,15 +9,15 @@ void Mesh::set_dofs(int dofs)
 // Asseblagem
 void Mesh::assemble_penalty()
 {
-    for (Constrained_bar& Cbar : c_bars)
+    for (Element* el : c_bars)
     {
-        for (std::size_t i {0}; i < Cbar.shape_func_order+1; i++)
+        for (std::size_t i {0}; i < el->shape_func_order+1; i++)
         {
-            F_global[Cbar.conectivity[i]] += Cbar.F_local[i];
+            F_global[el->conectivity[i]] += el->F_local[i];
 
-            for (std::size_t j {0}; j < Cbar.shape_func_order+1; j++)
+            for (std::size_t j {0}; j < el->shape_func_order+1; j++)
             {
-                K_global[Cbar.conectivity[i]][Cbar.conectivity[j]] += Cbar.K_local[i][j];
+                K_global[el->conectivity[i]][el->conectivity[j]] += el->K_local[i][j];
             }
         }
     }
@@ -43,15 +43,15 @@ void Mesh::assemble_penalty()
 
 void Mesh::assemble_direct()
 {
-    for (Constrained_bar& Cbar : c_bars)
+    for (Element* el : c_bars)
     {
-        for (std::size_t i {0}; i < Cbar.shape_func_order+1; i++)
+        for (std::size_t i {0}; i < el->shape_func_order+1; i++)
         {
-            F_global[Cbar.conectivity[i]] += Cbar.F_local[i];
+            F_global[el->conectivity[i]] += el->F_local[i];
 
-            for (std::size_t j {0}; j < Cbar.shape_func_order+1; j++)
+            for (std::size_t j {0}; j < el->shape_func_order+1; j++)
             {
-                K_global[Cbar.conectivity[i]][Cbar.conectivity[j]] += Cbar.K_local[i][j];
+                K_global[el->conectivity[i]][el->conectivity[j]] += el->K_local[i][j];
             }
         }
     }

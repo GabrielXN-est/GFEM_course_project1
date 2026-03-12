@@ -10,9 +10,9 @@ class Node
     public:
     int id;
     double x {};
-    std::vector<int> dofs;
+    std::vector<int> dofs {};
 
-    Node (int index, double x_coord) : id{index}, x {x_coord}, dofs{id-1}{}
+    Node (int index, double x_coord) : id{index}, x {x_coord}{}
     Node ();
     
 };

@@ -12,7 +12,7 @@ int main()
 {
     try {
     Mesh mesh {};
-    read_input("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input.txt", mesh);
+    read_input("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_phier copy 2.txt", mesh);
 
     mesh.assemble_direct();
     mesh.solve();
@@ -24,6 +24,11 @@ int main()
     catch (const std::exception& e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr << "Error: " << "undefined" << std::endl;
         return 1;
     }
 }

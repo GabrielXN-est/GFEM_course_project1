@@ -109,10 +109,34 @@ Matrix Matrix::operator*(double other) const
 
 double Matrix::determinant()
 {
-    if (mat.size() == 1 && mat[0].size() == 1)
+    if (mat.size() !=  mat[0].size())
+        throw std::logic_error("Matriz não quadrada");
+    
+    if (mat.size() == 1)
         return mat[0][0];
     else
-        throw std::logic_error("Not implemented for this matrix size");
+    {
+        double det {0};
+        Matrix submat(mat.size() - 1, mat[0].size() - 1);
+        for (std::size_t j {0}; j < mat[0].size(); j++)
+        {
+            if (mat[0][j] != 0)
+            {
+                for (std::size_t i {1}; i < mat.size(); i++)
+                {
+                        for (std::size_t k {0}; k < mat[0].size(); k++)
+                        {
+                            if (k < j)
+                                submat[i-1][k] = mat[i][k];
+                            else if (k > j)
+                                submat[i-1][k-1] = mat[i][k];
+                        }
+                }
+                det += (j % 2 == 0 ? 1 : -1) * mat[0][j] * submat.determinant();
+            }
+        }
+        return det;
+    }
 }
 
 Matrix operator* (double n, Matrix&& m)

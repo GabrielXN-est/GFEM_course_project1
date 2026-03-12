@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "node.h"
-#include "constrained_bar.h"
+#include "element.h"
 #include "Bondeary_conditions.h"
 #include <cmath>
 
@@ -15,7 +15,7 @@ class Mesh
     double Big_number {std::pow(10, 100)};
 
     std::vector<Node> nodes {};
-    std::vector<Constrained_bar> c_bars {};
+    std::vector<Element*> c_bars {};
     std::vector<BC_displacement> bc_ds {};
     std::vector<BC_load> bc_l {};
     std::string name {};
@@ -29,6 +29,12 @@ class Mesh
     Vector U;
 
     Mesh () {}
+
+    ~Mesh () 
+    {
+        for (Element* el : c_bars)
+            delete el;
+    }
 
     //Setters
     void set_dofs(int dofs);

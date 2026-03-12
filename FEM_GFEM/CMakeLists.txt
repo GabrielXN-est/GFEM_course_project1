@@ -12,12 +12,12 @@
 set(base_files
 	${CMAKE_CURRENT_SOURCE_DIR}/mesh.h
 	${CMAKE_CURRENT_SOURCE_DIR}/mesh.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/shape_functions.h
 )
 
 add_subdirectory(Inputs) 
 add_subdirectory(Elements)
 add_subdirectory(lin_alg)
 add_subdirectory(Integration_points)
-add_subdirectory(lib)
 add_subdirectory(Boundeary_conditions)
+add_subdirectory(shape_functions)
+add_subdirectory(lib)

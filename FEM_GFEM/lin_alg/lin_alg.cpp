@@ -1,4 +1,23 @@
 #include "lin_alg.h"
+#include <thread>
+#include <iostream>
+#include <cmath>
+
+void verify_if_singular(Matrix K)
+{
+    try
+    {
+        double det = K.determinant();
+        std::cout << "Determinant: " << det << std::endl;
+        if (det < std::pow(10, -12))
+            throw std::runtime_error("Matrix is singular, cannot solve system");
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+        std::exit(1);
+    }
+}
 
 // resolver sistema linear K * U = F
 // método de eliminação de Gauss
@@ -6,6 +25,8 @@ Vector Gauss_elimination(Matrix K, Vector F)
 {
     std::size_t n {F.size()};
     Vector U(n);
+
+    std::thread t (verify_if_singular, K);
 
     for (std::size_t i {0}; i < n; i++)
     {
@@ -22,6 +43,8 @@ Vector Gauss_elimination(Matrix K, Vector F)
             }
         }
     }
+
+    t.join();
 
     for (std::size_t i {0}; i < n; i++)
     {
