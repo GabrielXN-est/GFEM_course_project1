@@ -1418,3 +1418,257 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindBLAS.cmake:372 (check_function_exists)"
+      - "/usr/share/cmake-3.28/Modules/FindBLAS.cmake:416 (check_blas_libraries)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "third_party/external/matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for sgemm_"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-qY9BmZ"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-qY9BmZ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "BLAS_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-qY9BmZ'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_38463
+        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_38463.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-qY9BmZ/CheckFunctionExists.c'
+        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_38463.dir/CheckFunctionExists.c.o -o cmTC_38463   && :
+        FAILED: cmTC_38463 
+        : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_38463.dir/CheckFunctionExists.c.o -o cmTC_38463   && :
+        /usr/bin/ld: CMakeFiles/cmTC_38463.dir/CheckFunctionExists.c.o: na função "main":
+        CheckFunctionExists.c:(.text+0x14): undefined reference to `sgemm_'
+        collect2: error: ld returned 1 exit status
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/usr/share/cmake-3.28/Modules/FindBLAS.cmake:468 (find_package)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "third_party/external/matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-CVtm4S"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-CVtm4S"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-CVtm4S'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_a2fed
+        [1/2] /usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a2fed.dir/src.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-CVtm4S/src.c'
+        [2/2] : && /usr/bin/gcc   CMakeFiles/cmTC_a2fed.dir/src.c.o -o cmTC_a2fed   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindBLAS.cmake:372 (check_function_exists)"
+      - "/usr/share/cmake-3.28/Modules/FindBLAS.cmake:666 (check_blas_libraries)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "third_party/external/matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for sgemm_"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-R8Te5j"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-R8Te5j"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "BLAS_mkl_intel_lp64_deps_mkl_intel_thread_deps_mkl_core_deps_iomp5_deps_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-R8Te5j'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_0d034
+        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_0d034.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-R8Te5j/CheckFunctionExists.c'
+        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_0d034.dir/CheckFunctionExists.c.o -o cmTC_0d034  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:220 (check_function_exists)"
+      - "/usr/share/cmake-3.28/Modules/FindLAPACK.cmake:397 (check_lapack_libraries)"
+      - "third_party/external/matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for cheev_"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-XO1wsj"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-XO1wsj"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "LAPACK_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-XO1wsj'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_de254
+        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=cheev_ -o CMakeFiles/cmTC_de254.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-XO1wsj/CheckFunctionExists.c'
+        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=cheev_  CMakeFiles/cmTC_de254.dir/CheckFunctionExists.c.o -o cmTC_de254  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl  -lm  -ldl && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCompilerFlag.cmake:52 (cmake_check_compiler_flag)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:238 (check_compiler_flag)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:419 (_test_compiler_hidden_visibility)"
+      - "third_party/external/matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_HIDDEN_VISIBILITY"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-hJR4Tp"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-hJR4Tp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "COMPILER_HAS_HIDDEN_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-hJR4Tp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_f8c7b
+        [1/2] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -fvisibility=hidden -o CMakeFiles/cmTC_f8c7b.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-hJR4Tp/src.cxx'
+        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_f8c7b.dir/src.cxx.o -o cmTC_f8c7b   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCompilerFlag.cmake:52 (cmake_check_compiler_flag)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:239 (check_compiler_flag)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:419 (_test_compiler_hidden_visibility)"
+      - "third_party/external/matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-AgSbZt"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-AgSbZt"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-AgSbZt'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_bb192
+        [1/2] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fvisibility-inlines-hidden -o CMakeFiles/cmTC_bb192.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-AgSbZt/src.cxx'
+        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_bb192.dir/src.cxx.o -o cmTC_bb192   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSourceCompiles.cmake:77 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:206 (check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:263 (_check_cxx_compiler_attribute)"
+      - "/usr/share/cmake-3.28/Modules/GenerateExportHeader.cmake:420 (_test_compiler_has_deprecated)"
+      - "third_party/external/matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_DEPRECATED_ATTR"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "COMPILER_HAS_DEPRECATED_ATTR"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_bde84
+        [1/2] /usr/bin/g++ -DCOMPILER_HAS_DEPRECATED_ATTR   -o CMakeFiles/cmTC_bde84.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO/src.cxx'
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO/src.cxx: In function ‘int main()’:
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
+            2 |     int main() { return somefunc();}
+              |                         ~~~~~~~~^~
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-OAJUTO/src.cxx:1:37: note: declared here
+            1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
+              |                                     ^~~~~~~~
+        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_bde84.dir/src.cxx.o -o cmTC_bde84   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "third_party/external/matplotplusplus/source/matplot/CMakeLists.txt:141 (check_symbol_exists)"
+    checks:
+      - "Looking for __fbufsize"
+    directories:
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-mrsIp0"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-mrsIp0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+    buildResult:
+      variable: "HAVE_FBUFSIZE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-mrsIp0'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_4f609
+        [1/2] /usr/bin/gcc    -o CMakeFiles/cmTC_4f609.dir/CheckSymbolExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-mrsIp0/CheckSymbolExists.c'
+        [2/2] : && /usr/bin/gcc   CMakeFiles/cmTC_4f609.dir/CheckSymbolExists.c.o -o cmTC_4f609   && :
+        
+      exitCode: 0
+...

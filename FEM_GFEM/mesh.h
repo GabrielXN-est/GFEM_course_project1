@@ -51,7 +51,7 @@ class Mesh
     // função para completar U com as condições de contorno se usado o método direto
     void complete_U ();
 
-    double energy_norm();
+    double strain_energy();
 
 };
 

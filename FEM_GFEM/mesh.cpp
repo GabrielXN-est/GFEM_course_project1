@@ -127,7 +127,7 @@ void Mesh::complete_U()
     U = U_temp;
 }
 
-double Mesh::energy_norm()
+double Mesh::strain_energy()
 {
     Matrix temp1 {K_global_pos * U};
     return 1./2. * (U.T() * (K_global_pos * U)).determinant();

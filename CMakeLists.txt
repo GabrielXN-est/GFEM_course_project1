@@ -19,7 +19,9 @@ include_directories(
 
 add_subdirectory(FEM_GFEM)
 add_subdirectory(generate_mesh)
+add_subdirectory(third_party/external/matplotplusplus)
 
 add_executable(myExecutable main.cpp) # creates an executable called myExecutable using the file main.cpp
 target_link_libraries(myExecutable FEM_GFEM_library)
 target_link_libraries(myExecutable mesh_library)
+target_link_libraries(myExecutable matplot)

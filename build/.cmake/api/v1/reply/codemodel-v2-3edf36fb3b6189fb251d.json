@@ -1,0 +1,307 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						9,
+						10
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "FEM_GFEM",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					],
+					"jsonFile" : "directory-FEM_GFEM-Debug-8d7bd63f389b424dd699.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM"
+				},
+				{
+					"build" : "FEM_GFEM/Inputs",
+					"jsonFile" : "directory-FEM_GFEM.Inputs-Debug-363467152c14197157cc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/Inputs"
+				},
+				{
+					"build" : "FEM_GFEM/Elements",
+					"jsonFile" : "directory-FEM_GFEM.Elements-Debug-77a7e4602becc89f247a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/Elements"
+				},
+				{
+					"build" : "FEM_GFEM/lin_alg",
+					"jsonFile" : "directory-FEM_GFEM.lin_alg-Debug-eac39b443c211c4f0739.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/lin_alg"
+				},
+				{
+					"build" : "FEM_GFEM/Integration_points",
+					"jsonFile" : "directory-FEM_GFEM.Integration_points-Debug-6708c0beac121cf1f1d4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/Integration_points"
+				},
+				{
+					"build" : "FEM_GFEM/Boundeary_conditions",
+					"jsonFile" : "directory-FEM_GFEM.Boundeary_conditions-Debug-a9dd01502c1c65c282fc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/Boundeary_conditions"
+				},
+				{
+					"build" : "FEM_GFEM/shape_functions",
+					"jsonFile" : "directory-FEM_GFEM.shape_functions-Debug-f7221c45d1f083edc66d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/shape_functions"
+				},
+				{
+					"build" : "FEM_GFEM/lib",
+					"jsonFile" : "directory-FEM_GFEM.lib-Debug-903b11b49751354e4356.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "FEM_GFEM/lib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "generate_mesh",
+					"jsonFile" : "directory-generate_mesh-Debug-1786fab0aaebe2fb5117.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "generate_mesh",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "third_party/external/matplotplusplus",
+					"childIndexes" : 
+					[
+						11
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.external.matplotplusplus-Debug-221c847fd7537c30fa9c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/external/matplotplusplus"
+				},
+				{
+					"build" : "third_party/external/matplotplusplus/source",
+					"childIndexes" : 
+					[
+						12,
+						13
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.external.matplotplusplus.source-Debug-a1c24b83cbb7fb28feec.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 10,
+					"projectIndex" : 1,
+					"source" : "third_party/external/matplotplusplus/source"
+				},
+				{
+					"build" : "third_party/external/matplotplusplus/source/3rd_party",
+					"jsonFile" : "directory-third_party.external.matplotplusplus.source.3rd_party-Debug-4b19309bab1d16746ae8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 1,
+					"source" : "third_party/external/matplotplusplus/source/3rd_party",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "third_party/external/matplotplusplus/source/matplot",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.external.matplotplusplus.source.matplot-Debug-488e123edc9a0a50a8c4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 1,
+					"source" : "third_party/external/matplotplusplus/source/matplot",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9
+					],
+					"name" : "Project1",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						10,
+						11,
+						12,
+						13
+					],
+					"name" : "Matplot++",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 8,
+					"id" : "FEM_GFEM_library::@e9d6fab2e8836727cfe5",
+					"jsonFile" : "target-FEM_GFEM_library-Debug-de9218588b786f47c045.json",
+					"name" : "FEM_GFEM_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "matplot::@2f8ac9fc0257ba2301eb",
+					"jsonFile" : "target-matplot-Debug-2016bfd42fae72839c21.json",
+					"name" : "matplot",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "mesh_library::@2e14710b29ccf4e893d0",
+					"jsonFile" : "target-mesh_library-Debug-a9790a09a7d4bf45b61c.json",
+					"name" : "mesh_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "myExecutable::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-myExecutable-Debug-07d51d482f7dd78ab004.json",
+					"name" : "myExecutable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "nodesoup::@f7142a74f06a27c93421",
+					"jsonFile" : "target-nodesoup-Debug-f717ec80689f59e8fbd1.json",
+					"name" : "nodesoup",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build",
+		"source" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
