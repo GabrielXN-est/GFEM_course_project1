@@ -307,8 +307,6 @@ void read_input (const std::string& filename, Mesh& mesh)
                                         case_j = 3;
                                     case_i++;
                                 }
-                                else
-                                    throw std::invalid_argument("Unexpected element type");
                             }
                             else if (order[case_i] == 2)
                             {
@@ -333,7 +331,7 @@ void read_input (const std::string& filename, Mesh& mesh)
                 else if (type == "pBar")
                     el_vec.push_back(new p_hier_bar(id, nodes, propID, shape_func_order));
                 else
-                    throw std::invalid_argument("Unexpected element type");
+                    throw std::invalid_argument("Unexpected element type (" + type + ")");
                 nodes.clear();
             }
         }
@@ -399,10 +397,10 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 pr_vec[j].id = std::stoi(temp);
                             else if (order[case_i] == 1)
                             {
-                                if (temp == "MatpBar")
+                                if (temp == "MatpBar" || temp == "MatlBar")
                                     type = temp;
                                 else
-                                    throw std::invalid_argument("Unexpected element type");
+                                    throw std::invalid_argument("Unexpected element type (" + temp + ")");
                             }
                             else if (order[case_i] == 2)
                                 pr_vec[j].E.push_back(std::stod(temp));

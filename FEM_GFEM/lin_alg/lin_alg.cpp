@@ -7,9 +7,7 @@ void verify_if_singular(Matrix K)
 {
     try
     {
-        double det = K.determinant();
-        std::cout << "Determinant: " << det << std::endl;
-        if (det < std::pow(10, -12))
+        if (K.determinant() < std::pow(10, -12))
             throw std::runtime_error("Matrix is singular, cannot solve system");
     }
     catch (const std::exception& e)

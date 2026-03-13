@@ -5,14 +5,21 @@
 #include <type_traits>
 #include <fstream>
 
+#include "create_input.h"
 #include "mesh.h"
 #include "read_input.h"
 
 int main()
 {
     try {
+    std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_generated.txt"};
+
+    generate_input(filename, 2, 2, "lBar", 1, std::vector<double> {1}, std::vector<double> {}, 1, 0,
+    std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<double> {}, std::vector<int> {},
+    10, 0.5, 0.2);
+
     Mesh mesh {};
-    read_input("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_phier copy 2.txt", mesh);
+    read_input(filename, mesh);
 
     mesh.assemble_direct();
     mesh.solve();

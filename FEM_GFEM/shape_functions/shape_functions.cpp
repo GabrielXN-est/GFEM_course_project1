@@ -32,14 +32,14 @@ double MDshape_functions_lag::get_val (int index)
     return Ni;
 }
 
-double Mshape_functions_p_hier::get_val (int index)
+double Mshape_functions_p_hier::get_val (int index) // index 0-based no vetor
 {
     if (index == 0)
         return (1.-eval)/2.;
     else if (index == polinomial_order)
         return (1.+eval)/2.;
     else
-        return std::sqrt((2.* static_cast<double>(index+1) -3)/2.)*(legendre_polynomy_integral(eval, index-1)-legendre_polynomy_integral(-1, index-1));
+        return std::sqrt((2.* static_cast<double>(index+2) -3)/2.)*(legendre_polynomy_integral(eval, index)-legendre_polynomy_integral(-1, index));
 }
 
 double MDshape_functions_p_hier::get_val (int index)
@@ -49,7 +49,7 @@ double MDshape_functions_p_hier::get_val (int index)
     else if (index == polinomial_order)
         return 1./2.;
     else
-        return std::sqrt((2.* static_cast<double>(index+1) -3)/2.)*(legendre_polynomy(eval, index-1));
+        return std::sqrt((2.* static_cast<double>(index+2) -3)/2.)*(legendre_polynomy(eval, index));
 }
 
 double legendre_polynomy(double eval, int i)

@@ -15,6 +15,9 @@
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions/CMakeFiles/rebuild_cache.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/shape_functions/CMakeFiles/edit_cache.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/shape_functions/CMakeFiles/rebuild_cache.dir
-/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/library.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/edit_cache.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/mesh_library.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/rebuild_cache.dir

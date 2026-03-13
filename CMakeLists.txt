@@ -14,9 +14,12 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Integration_points"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Boundeary_conditions"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/shape_functions"
+    "${PROJECT_SOURCE_DIR}/generate_mesh"
 )
 
 add_subdirectory(FEM_GFEM)
+add_subdirectory(generate_mesh)
 
 add_executable(myExecutable main.cpp) # creates an executable called myExecutable using the file main.cpp
-target_link_libraries(myExecutable library)
+target_link_libraries(myExecutable FEM_GFEM_library)
+target_link_libraries(myExecutable mesh_library)

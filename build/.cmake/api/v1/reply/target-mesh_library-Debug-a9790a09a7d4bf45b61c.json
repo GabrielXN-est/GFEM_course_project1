@@ -1,0 +1,135 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "generate_mesh/libmesh_library.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"generate_mesh/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 9,
+				"parent" : 2
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/shape_functions"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"id" : "mesh_library::@2e14710b29ccf4e893d0",
+	"name" : "mesh_library",
+	"nameOnDisk" : "libmesh_library.a",
+	"paths" : 
+	{
+		"build" : "generate_mesh",
+		"source" : "generate_mesh"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "generate_mesh/create_input.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "generate_mesh/create_input.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
