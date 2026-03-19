@@ -6,6 +6,8 @@
 #include "bars.h"
 #include "Bondeary_conditions.h"
 #include "body_func.h"
+#include "Enrichment.h"
+#include "node.h"
 
 body_functions* get_body_function(int id, double alpha = 0., double xb = 0.)
 {
@@ -51,8 +53,6 @@ int get_number_of (std::string& line)
     throw std::invalid_argument("No number found in line");
 }
 
-#include "node.h"
-
 Node* get_node_by_id (int id, std::vector<Node>& nodevec)
 {
     for (Node& no: nodevec)
@@ -61,6 +61,13 @@ Node* get_node_by_id (int id, std::vector<Node>& nodevec)
             return &no;
     }
     throw std::invalid_argument("Node not found");
+}
+
+template <typename T>
+void pointer_vector_clear(std::vector<T*>& vec)
+{
+    for (T* obj : vec)
+        delete obj;
 }
 
 // input de dados
@@ -94,6 +101,8 @@ void read_input (const std::string& filename, Mesh& mesh)
     std::vector<Element*>& el_vec{mesh.c_bars};
     std::vector<BC_displacement>& bc_vec{mesh.bc_ds};
     std::vector<BC_load>& loads{mesh.bc_l};
+
+    std::vector<Enrichment*> temp_enr_vec{};
 
     std::vector<Properties> pr_vec{};
 
@@ -201,10 +210,13 @@ void read_input (const std::string& filename, Mesh& mesh)
                     order.push_back(1);
                 else if (arg == "y-coord")
                     order.push_back(2);
+                else if (arg == "enrID")
+                    order.push_back(3);
                 else
                     throw std::invalid_argument("Unexpected legend argument for nodes section");
             }
 
+            std::vector<int> enr_ids {};
             // criando nós
             for (int j {0}; j < nnodes; j++)
             {
@@ -226,12 +238,15 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 id = std::stoi(temp);
                             else if (order[case_i] == 1)
                                 x_coord = std::stod(temp);
+                            else if (order[case_i] == 3)
+                                enr_ids.push_back(std::stoi(temp));
                             temp = "";
                             case_i++;
                         }
                     }
                 }
-                node_vec.emplace_back(id, x_coord);
+                node_vec.emplace_back(id, x_coord, enr_ids);
+                enr_ids.clear();
             }
         }
             
@@ -333,6 +348,76 @@ void read_input (const std::string& filename, Mesh& mesh)
                 else
                     throw std::invalid_argument("Unexpected element type (" + type + ")");
                 nodes.clear();
+            }
+        }
+
+        else if (type == "nenrichments")
+        {
+            // extrair número de elementos
+            std::getline(in_file, line);
+
+            int nenr {get_number_of(line)};
+
+            // extrair ordem dos tipos dados
+            std::vector<int> order {};
+            for (std::string& arg : leg)
+            {
+                if (arg == "enrID")
+                    order.push_back(0);
+                else if (arg == "Type")
+                    order.push_back(1);
+                else if (arg == "xGamma")
+                    order.push_back(2);
+                else
+                    throw std::invalid_argument("Unexpected legend argument for elements section");
+            }
+
+            // criar padrões de enriquecimento
+            int id {};
+            std::string type {};
+            double xGamma {};
+
+            for (int k {0}; k < nenr; k++)
+            {
+                std::getline(in_file, line);
+
+                temp = "";
+                case_i = 0;
+
+                //obtendo parametros da linha
+                for (std::size_t i {0}; i < line.size(); i++)
+                {
+                    if (!(line[i] == ' ' || line[i] == '\t'))
+                        temp += line[i];
+                    if (line[i] == ' ' || line[i] == '\t' || i == line.size()-1)
+                    {
+                        if (temp != "")
+                        {
+                            if (order[case_i] == 0)
+                            {
+                                id = std::stoi(temp);
+                                case_i++;
+                            }
+                            else if (order[case_i] == 1)
+                            {
+                                type = temp;
+                                case_i++;
+                            }
+                            else if (order[case_i] == 2)
+                            {
+                                xGamma = std::stod(temp);
+                                case_i++;
+                            }
+                            temp = "";
+                        }
+                    }
+                }
+
+                // descrevendo elementos
+                if (type == "ESuk")
+                    temp_enr_vec.push_back(new Sukumar_enrichment_1D(id, xGamma));
+                else
+                    throw std::invalid_argument("Unexpected enrichment type (" + type + ")");
             }
         }
 
@@ -554,21 +639,29 @@ void read_input (const std::string& filename, Mesh& mesh)
         loads[i].assign_node(get_node_by_id (lnid[i], node_vec));
     }
 
-    int dof0 {0};
-    for (Element* el: el_vec)
+    sort_Enr_by_id(temp_enr_vec);
+    // atribuir os enriquecimentos aos nós
+    for (Node no: node_vec)
     {
-        el->get_nodes(node_vec);
-        el->assign_dofs(dof0);
-        for (Properties& pr: pr_vec)
+        for (int enr_id: no.enr_ids)
         {
-            if (pr.id == el->prop_id)
+            for (Enrichment* enr: temp_enr_vec)
             {
-                el->get_properties(pr);
-                break;
+                if (enr->id == enr_id)
+                {
+                    enr->assign_to_node(no);
+                    break;
+                }
             }
         }
-        el->start_el();
     }
+
+    int dof0 {0};
+    for (Element* el: el_vec)
+        {el->start_el(node_vec, dof0, pr_vec);}
+        
     // extrair número de dofs
     mesh.set_dofs(dof0);
+
+    pointer_vector_clear(temp_enr_vec);
 }

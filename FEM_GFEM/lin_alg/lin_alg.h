@@ -120,5 +120,4 @@ class Vector
 Matrix operator* (double n, Matrix&& m);
 
 Vector Gauss_elimination(Matrix K, Vector F);
-
 #endif

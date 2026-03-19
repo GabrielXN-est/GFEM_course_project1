@@ -29,17 +29,19 @@ void Bar::get_properties(Properties& prop)
 void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
 {
     // para o trecho AE dNdx dNdxt
-    integration_points ip1 {Gauss_quad_points(2*shape_func_order-2)};
+    integration_points ip1 {Gauss_quad_points(2*(shape_func_order+E_shape_func_order)-2)};
 
     shape_functions* dNdxi {get_D_shape_func()};
 
-    double dxidx {2/Li}; // considerando mapeamento linear
+    double dxidx {2/Li}; // considerando mapeamento linear para a célula de integração
+    double x_real {};
 
     for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
     {
         // obter dNdx e dNdxt
-        dNdxi->operator()(ip1.points[pt_id]);
-        dNdxi->mont_vector();
+            // avaliando o ponto de integração no sistema de coordenadas mestres
+            // ao traduzir ele do sistema de cordenadas mestra da célula de integração para o físico e depois para o mestre do elemento
+        dNdxi->operator()(mapping(mapping_inv(ip1.points[pt_id], xi, Li), Nod_list[0]->x, L));
         
         // montar matriz de rigidez local
         K_local += ((*dNdxi)*(*dNdxi).T())*(dxidx*dxidx*Li/2*ip1.weights[pt_id]*A*Ei);
@@ -49,7 +51,7 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
 void Bar::integrate_B2_to_K()
 {
     // para o trecho C N Nt
-    integration_points ip2 {Gauss_quad_points(2*shape_func_order)};
+    integration_points ip2 {Gauss_quad_points(2*(shape_func_order+E_shape_func_order))};
 
     shape_functions* N {get_shape_func()};
 
@@ -66,7 +68,7 @@ void Bar::integrate_B2_to_K()
 
 void Bar::integrate_BF_to_F()
 {
-    integration_points ip {Gauss_quad_points(shape_func_order+bf_func->grau)};
+    integration_points ip {Gauss_quad_points(shape_func_order+E_shape_func_order+bf_func->grau)};
     shape_functions* N {get_shape_func()};
 
     for (std::size_t i {0}; i < ip.points.size(); i++)
@@ -88,29 +90,43 @@ void Bar::get_K()
         integrate_B1_to_K(E[0], L, Nod_list[0]->x);
     else
     {
-        double temp {Nod_list[0]->x};
+        double xi {Nod_list[0]->x};
         for (std::size_t i {0}; i < E.size(); i++)
         {
-            integrate_B1_to_K(E[i], Exlim[i]-temp, Nod_list[0]->x);
-            temp = Exlim[i];
+            integrate_B1_to_K(E[i], Exlim[i]-xi, xi);
+            xi = Exlim[i];
             break;
         }
     }
 }
 
-void Bar::start_el()
+void Bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)
 {
-    get_conectivity();
-    get_K();
-    integrate_BF_to_F();
+    get_nodes(node_vec);
+    assign_dofs(dof0);
+    for (Properties& pr: pr_vec)
+    {
+        if (pr.id == prop_id)
+        {
+            get_properties(pr);
+            break;
+        }
+    }
+
+    // calcular matrizes locais
+        get_conectivity();
+        get_K();
+        integrate_BF_to_F();
 }
 
-int Bar::get_n_dofs ()
+void Bar::get_conectivity()  // dofs ordenados seguindo a ordem dos nós
 {
-    int n_dofs = 0;
-    for (const Node* node : Nod_list)
+    conectivity = std::vector<int>(Ndof);
+
+    std::size_t dof {0}; 
+    for (std::size_t i {0}; i < Nod_list.size(); i++)
     {
-        n_dofs += node->dofs.size();
+        for (std::size_t j {0};j< Nod_list[i]->dofs.size();j++)
+            {conectivity[dof++] = Nod_list[i]->dofs[j];}
     }
-    return n_dofs;
 }

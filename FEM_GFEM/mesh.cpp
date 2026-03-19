@@ -84,6 +84,10 @@ void Mesh::assemble_direct()
         if (!(std::find(dof.begin(), dof.end(), static_cast<int>(i)) != dof.end()))
         {
             F_global[lin] = F_global_pos[i];
+            for (BC_displacement  bc_dof : bc_ds)
+            {
+                F_global[lin] -= K_global_pos[lin][bc_dof.dof] * bc_dof.value;
+            }
             for (std::size_t j {0}; j < K_global_pos.mat[i].size(); j++)
             {
                 if (!(std::find(dof.begin(), dof.end(), static_cast<int>(j)) != dof.end()))
