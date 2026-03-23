@@ -39,6 +39,8 @@ class Mesh
     //Setters
     void set_dofs(int dofs);
 
+    void assign_nodes_biggest_vicinal_element_size();
+
     // Asseblagem
     // BC pelo método da penalidade
     void assemble_penalty();

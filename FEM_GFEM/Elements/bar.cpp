@@ -7,7 +7,7 @@ void Bar::get_properties(Properties& prop)
     C = prop.C;
 
     double xi {Nod_list[0]->x};
-    L = Nod_list[N_list.size()-1]->x - xi;
+    L = el_size = Nod_list[N_list.size()-1]->x - xi;
     
     if (prop.E.size() == 1)
         E = prop.E;
@@ -31,20 +31,46 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
     // para o trecho AE dNdx dNdxt
     integration_points ip1 {Gauss_quad_points(2*(shape_func_order+E_shape_func_order)-2)};
 
-    shape_functions* dNdxi {get_D_shape_func()};
+    shape_functions* dNdxiPoU {get_D_shape_func()};
+    shape_functions* N_PoU {get_shape_func()};
 
     double dxidx {2/Li}; // considerando mapeamento linear para a célula de integração
     double x_real {};
 
     for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
     {
+        x_real = mapping_inv(ip1.points[pt_id], xi, Li);
         // obter dNdx e dNdxt
             // avaliando o ponto de integração no sistema de coordenadas mestres
             // ao traduzir ele do sistema de cordenadas mestra da célula de integração para o físico e depois para o mestre do elemento
-        dNdxi->operator()(mapping(mapping_inv(ip1.points[pt_id], xi, Li), Nod_list[0]->x, L));
-        
+        dNdxiPoU->operator()(mapping(x_real, Nod_list[0]->x, L));
+        dNdxiPoU->mont_vector();
+        N_PoU->operator()(mapping(x_real, Nod_list[0]->x, L));
+        N_PoU->mont_vector();
+
+        Vector dNdxi (Ndof);
+        for (std::size_t i {0}; i < dNdxiPoU->size(); i++) // considerando PoU lagrangiana
+        {
+            dNdxi[i] = dNdxiPoU->operator[](i);
+            for (Enrichment* e : Nod_list[i]->enr)
+            {
+                dNdxi[i] = e->D(x_real)*N_PoU->operator[](i) + e->operator()(x_real)*dNdxiPoU->operator[](i);
+            }
+        }
         // montar matriz de rigidez local
-        K_local += ((*dNdxi)*(*dNdxi).T())*(dxidx*dxidx*Li/2*ip1.weights[pt_id]*A*Ei);
+        K_local += (dNdxi*dNdxi.T())*(dxidx*dxidx*Li/2*ip1.weights[pt_id]*A*Ei);
+    }
+}
+
+void Bar::Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof)
+{
+    for (std::size_t i {0}; i < N_PoU->size(); i++) // considerando PoU lagrangiana
+    {
+        N[i] = N_PoU->operator[](i);
+        for (Enrichment* e : Nod_list[i]->enr)
+        {
+            N[i] = N_PoU->operator[](i)*e->operator()(x_real);
+        }
     }
 }
 
@@ -53,32 +79,42 @@ void Bar::integrate_B2_to_K()
     // para o trecho C N Nt
     integration_points ip2 {Gauss_quad_points(2*(shape_func_order+E_shape_func_order))};
 
-    shape_functions* N {get_shape_func()};
+    shape_functions* N_PoU {get_shape_func()};
+    Vector N (Ndof);
+
+    double x_real {};
 
     for (std::size_t pt_id {0}; pt_id < ip2.points.size(); pt_id++)
     {
+        x_real = mapping_inv(ip2.points[pt_id], Nod_list[0]->x, L);
+        
         // obter N
-        N->operator()(ip2.points[pt_id]);
-        N->mont_vector();
+        N_PoU->operator()(ip2.points[pt_id]);
+        N_PoU->mont_vector();
+        Mont_N(N, N_PoU, Nod_list, x_real, Ndof);
 
         // montar matriz de rigidez local
-        K_local += ((*N)*(*N).T())*(L/2*ip2.weights[pt_id]*C);
+        K_local += (N*N.T())*(L/2*ip2.weights[pt_id]*C);
     }
 }
 
 void Bar::integrate_BF_to_F()
 {
     integration_points ip {Gauss_quad_points(shape_func_order+E_shape_func_order+bf_func->grau)};
-    shape_functions* N {get_shape_func()};
+    shape_functions* N_PoU {get_shape_func()};
+    Vector N (Ndof);
+
+    double x_real {};
 
     for (std::size_t i {0}; i < ip.points.size(); i++)
     {
-        N->operator()(ip.points[i]);
-        N->mont_vector();
+        x_real = mapping_inv(ip.points[i], Nod_list[0]->x, L);
 
-        double x {(*bf_func)(mapping_inv(ip.points[i], Nod_list[0]->x, L))};
+        N_PoU->operator()(ip.points[i]);
+        N_PoU->mont_vector();
+        Mont_N(N, N_PoU, Nod_list, x_real, Ndof);
 
-        F_local += (*N) * static_cast<double>((*bf_func)(mapping_inv(ip.points[i], Nod_list[0]->x, L))*ip.weights[i]*L/2.);
+        F_local += N * static_cast<double>((*bf_func)(x_real)*ip.weights[i]*L/2.);
     }
 }
 

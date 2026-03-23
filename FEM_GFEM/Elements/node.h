@@ -14,9 +14,11 @@ class Node
     std::vector<int> dofs {};
     std::vector<int> enr_ids {};
     std::vector<Enrichment*> enr {};
+    std::vector<Element*> vicinal_elements {};
 
     int p_enriched {0}; // flag para indicar se o nó é enriquecido por polinômios até determinado grau
     int polinomial_order_of_enrichment {0}; // indica o grau do polinômio de enriquecimento do nó
+    double biggest_vicinal_element_size {}; // para enriquecimentos polinomiais, indica o tamanho do maior elemento vicinal ao nó
 
     Node (int index, double x_coord, std::vector<int> enrichment_ids) : id{index}, x {x_coord}, enr_ids{enrichment_ids}{}
     Node ();
@@ -46,4 +48,11 @@ inline void sortNodesByX(std::vector<Node*>& nodes)
               });
 }
 
+inline void sortNodesByX(std::vector<Node>& nodes)
+{
+    std::sort(nodes.begin(), nodes.end(), 
+              [](const Node& a, const Node& b) {
+                  return a.x < b.x;
+              });
+}
 #endif

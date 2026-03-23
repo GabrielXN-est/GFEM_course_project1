@@ -11,12 +11,40 @@
 
 #include <matplot/matplot.h>
 
+// Não chamar FEM p-hieraquico como PoU do GFEM, pois não é PoU e não foram implementado // Pode chama-lo se não se foi implementado nenhuma função de enriquecimento
+
+// dof order in the nodes (PoU dofs -> node aplyed enrichments ->
+    // -> pGFEM generated polinomial enrichments -> pGFEM generated non-polinomial enrichments)
 void plot_error(std::vector<int>& nelem_L, std::vector<double>& error)
 {
     matplot::loglog(nelem_L, error);
     matplot::xlabel("Number of elements");
     matplot::ylabel("Relative error in energy norm");
     matplot::show();
+}
+
+double convergence_rate(std::vector<int>& nelem_L, std::vector<double>& error, double L)
+{
+    std::vector<double> log_h {}, log_error {};
+    for (std::size_t i {0}; i < nelem_L.size(); i++)
+    {
+        log_h.push_back(std::log(L/nelem_L[i]));
+        log_error.push_back(std::log(error[i]));
+    }
+    double x_ {0}, y_ {0}, Sxy {0}, Sx2 {0};
+    for (std::size_t i {0}; i < log_h.size(); i++)
+    {   x_ += log_h[i]; 
+        y_ += log_error[i];}
+
+    x_ /= log_h.size();
+    y_ /= log_error.size();
+    
+    for (std::size_t i {0}; i < log_h.size(); i++)
+    {   Sxy += (log_h[i]-x_)*(log_error[i]-y_);
+        Sx2 += (log_h[i]-x_)*(log_h[i]-x_);}
+
+    return (Sxy/Sx2);
+
 }
 
 int main()

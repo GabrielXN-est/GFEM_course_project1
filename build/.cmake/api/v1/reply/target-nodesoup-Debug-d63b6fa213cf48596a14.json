@@ -106,6 +106,10 @@
 					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh"
 				},
 				{
+					"backtrace" : 4,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Post_processing"
+				},
+				{
 					"backtrace" : 5,
 					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/source/3rd_party/nodesoup/include"
 				}

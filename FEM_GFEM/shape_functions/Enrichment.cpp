@@ -1,8 +1,81 @@
 #include "Enrichment.h"
 #include "mesh.h"
 
-void Sukumar_enrichment_1D::assign_to_node(Node& node)
-{node.enr.push_back(new Sukumar_enrichment_1D(id, xGamma));}
+void Enrichment::assign_to_node(Node& node)
+{node.enr.push_back(create_copy(node));}
 
-void polinomial_enrichment_1D::assign_to_node(Node& node)
-{node.enr.push_back(new polinomial_enrichment_1D(id, grau));}
+Enrichment* Sukumar_enrichment_1D::create_copy(Node& node)
+{return (new Sukumar_enrichment_1D(id, xGamma));}
+
+Enrichment* polinomial_enrichment_1D::create_copy(Node& node)
+{return (new polinomial_enrichment_1D(id, grau, shifted, scaled, &node));}
+
+Enrichment* Moes_enrichment_1D::create_copy(Node& node)
+{return (new Moes_enrichment_1D(id, xGamma, &node));}
+
+Enrichment* Pair_enrichment_1D::create_copy(Node& node)
+{return (new Pair_enrichment_1D(enr1->create_copy(node), enr2->create_copy(node)));}
+
+
+double Sukumar_derivate(double x, double xGamma)
+{
+    if (x < xGamma)
+        return -1.;
+    else if (x >= xGamma)
+        return 1.;
+}
+
+double Sukumar_enrichment_1D::D(double x) {return Sukumar_derivate(x, xGamma);}
+
+double Moes_enrichment_1D::operator()(double x)
+{
+    double dist (x-xGamma);
+    double result {0};
+    for (Element* el : node_ptr->vicinal_elements)
+    {
+        if (el->Nod_list[0]->x < xGamma && el->Nod_list[0]->x + el->el_size > xGamma)
+        {
+            shape_functions* sf {el->get_shape_func()};
+            sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            sf->mont_vector();
+            for (double val : sf->vec)
+                {result += val*dist;}
+            result = -abs(result);
+            for (double val : sf->vec)
+                {result += val*abs(dist);}
+            return result;
+        }
+    }
+}
+
+double Moes_enrichment_1D::D(double x)
+{
+    double dist (x-xGamma);
+    double result {0};
+    double temp {0}, temp2 {0};
+    for (Element* el : node_ptr->vicinal_elements)
+    {
+        if (el->Nod_list[0]->x < xGamma && el->Nod_list[0]->x + el->el_size > xGamma)
+        {
+            shape_functions* sf {el->get_shape_func()};
+            shape_functions* Dsf {el->get_D_shape_func()};
+
+            sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            sf->mont_vector();
+            Dsf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            Dsf->mont_vector();
+
+            for (std::size_t i {0}; i < sf->size(); i++)
+                {result += Dsf->vec[i]*abs(dist) + sf->vec[i]*Sukumar_derivate(x, xGamma);}
+
+            for (double val : sf->vec)
+                {temp += val*dist;}
+            temp = -Sukumar_derivate(temp, 0);
+            for (std::size_t i {0}; i < sf->size(); i++)
+                {result += temp * (1 * sf->vec[i] + (dist * (Dsf->vec[i])));}
+            return result;
+        }
+    }
+}
+
+

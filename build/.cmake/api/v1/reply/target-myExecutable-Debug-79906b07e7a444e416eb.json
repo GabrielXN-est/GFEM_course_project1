@@ -30,12 +30,6 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 24,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
 				"line" : 25,
 				"parent" : 0
 			},
@@ -49,6 +43,12 @@
 				"command" : 1,
 				"file" : 0,
 				"line" : 27,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 28,
 				"parent" : 0
 			},
 			{
@@ -136,6 +136,10 @@
 				{
 					"backtrace" : 10,
 					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Post_processing"
 				},
 				{
 					"backtrace" : 4,

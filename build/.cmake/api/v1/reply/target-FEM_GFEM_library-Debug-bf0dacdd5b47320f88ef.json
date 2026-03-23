@@ -83,6 +83,10 @@
 				{
 					"backtrace" : 3,
 					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Post_processing"
 				}
 			],
 			"language" : "CXX",

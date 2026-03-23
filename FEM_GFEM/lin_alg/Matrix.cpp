@@ -37,6 +37,21 @@ void Matrix::operator+= (const Matrix& other)
     }
 }
 
+Matrix Matrix::operator+ (const Matrix& other) const
+{
+    if (mat.size() != other.mat.size() || mat[0].size() != other.mat[0].size())
+        throw std::invalid_argument("Matrices must have the same dimensions for addition");
+    
+    Matrix result(mat.size(), mat[0].size());
+    
+    for (std::size_t i {0}; i < mat.size(); i++)
+    {
+        for (std::size_t j {0}; j < mat[0].size(); j++)
+            {result.mat[i][j] = mat[i][j] + other.mat[i][j];}
+    }
+    return result;
+}
+
 Matrix Matrix::operator*(const Matrix& other) const 
 {
     size_t rows = this->mat.size();

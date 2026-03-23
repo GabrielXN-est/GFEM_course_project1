@@ -89,3 +89,24 @@ void p_GFEM_bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Pr
         get_K();
         integrate_BF_to_F();
 }
+
+// p_GFEM_bar_weak_disc
+void p_GFEM_bar_weak_disc::set_enrichments_desc()
+{
+    set_enrichments();
+    for (Node* node : Nod_list)
+    {
+        node-> p_enriched = 0;
+        if (node->p_enriched < Enrich)
+        {
+            for (int grau; grau < Enrich; grau++)
+            {
+                node->enr.push_back(new Pair_enrichment_1D(
+                    new polinomial_enrichment_1D(-1, grau+1),
+                    enrichment->create_copy(*node)
+                    ));
+            }
+            node-> p_enriched = Enrich;
+        }
+    }
+}

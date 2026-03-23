@@ -151,6 +151,9 @@
 			"path" : "FEM_GFEM/lib/CMakeLists.txt"
 		},
 		{
+			"path" : "FEM_GFEM/Post_processing/CMakeLists.txt"
+		},
+		{
 			"path" : "generate_mesh/CMakeLists.txt"
 		},
 		{

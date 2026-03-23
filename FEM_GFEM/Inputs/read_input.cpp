@@ -269,6 +269,8 @@ void read_input (const std::string& filename, Mesh& mesh)
                     order.push_back(2);
                 else if (arg == "nodes")
                     order.push_back(3);
+                else if (arg == "x-Gamma")
+                    order.push_back(4);
                 else
                     throw std::invalid_argument("Unexpected legend argument for elements section");
             }
@@ -281,6 +283,8 @@ void read_input (const std::string& filename, Mesh& mesh)
             int propID {};
             std::vector<int> nodes {};
             int shape_func_order {};
+            int Eshape_func_order {};
+            double xgamma {};
 
             for (int k {0}; k < nelem; k++)
             {
@@ -306,20 +310,34 @@ void read_input (const std::string& filename, Mesh& mesh)
                             else if (order[case_i] == 1)
                             {
                                 std::string temp2 {};
+                                std::string temp3 {};
                                 while (is_num(temp.back()))
                                 {
                                     temp2 += temp.back();
                                     temp.pop_back();
                                 }
-                                
-                                if (temp == "pBar" || temp == "lBar")
+
+                                if (temp.back() == '_')
+                                {   
+                                    temp.pop_back();
+                                    while (is_num(temp.back()))
+                                    {
+                                        temp3 += temp.back();
+                                        temp.pop_back();
+                                    }
+                                }
+                                if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                 {
                                     type = temp;
                                     shape_func_order = std::stoi(temp2)-1;
-                                    if (temp == "lBar")
+                                    if (temp == "lBar"  || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                         case_j = shape_func_order+1;
                                     else
                                         case_j = 3;
+
+                                    if (temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
+                                        Eshape_func_order = std::stoi(temp3);
+
                                     case_i++;
                                 }
                             }
@@ -332,8 +350,13 @@ void read_input (const std::string& filename, Mesh& mesh)
                             {                                
                                 nodes.push_back(std::stoi(temp));
                                 case_j--;
-                                if (case_j == 0)
+                                if (case_j <= 0)
                                     case_i++;
+                            }
+                            else if (order[case_i] == 4)
+                            {                                
+                                xgamma = std::stod(temp);
+                                case_i++;
                             }
                             temp = "";
                         }
@@ -345,6 +368,12 @@ void read_input (const std::string& filename, Mesh& mesh)
                     el_vec.push_back(new lagrangian_bar(id, nodes, propID, shape_func_order));
                 else if (type == "pBar")
                     el_vec.push_back(new p_hier_bar(id, nodes, propID, shape_func_order));
+                else if (type == "pGFEMBar")
+                    el_vec.push_back(new p_GFEM_bar(id, nodes, propID, shape_func_order, Eshape_func_order));
+                else if (type == "pGFEMBar_WD_S")
+                    el_vec.push_back(new p_GFEM_bar_weak_disc(id, nodes, propID, shape_func_order, Eshape_func_order, new Sukumar_enrichment_1D(0, xgamma)));
+                else if (type == "pGFEMBar_WD_M")
+                    el_vec.push_back(new p_GFEM_bar_weak_disc(id, nodes, propID, shape_func_order, Eshape_func_order, new Moes_enrichment_1D(0, xgamma)));
                 else
                     throw std::invalid_argument("Unexpected element type (" + type + ")");
                 nodes.clear();

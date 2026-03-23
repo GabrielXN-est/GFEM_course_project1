@@ -1,9 +1,0 @@
-1) Implementar p-GFEM
-1.1) Corrigir método direto para funções com mais de um enriquecimento para o mesmo nó de limite da barra
-1.2) Implementar método para corrigir a dependencia linear
-2) implmentar plotador da resposta exata
-3) implementar extração da taxa de convegência
-4) Implementar função de enrigquecimento para descontinuidades
-4.1) Seukumar
-4.2) Outra de otima taxa de convegência (Moes?)
-5) implementar fatopração LU

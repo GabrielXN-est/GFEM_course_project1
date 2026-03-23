@@ -2,23 +2,29 @@
 #include <string>
 #include <vector>
 
+// to apply a bc to more than one dof per node, repete the node in the _bcs and _bcs_pos
 void generate_input(std::string filename, int nel, int porder, std::string eltype,
     double L, std::vector<double> E, std::vector<double> Exlim, double A, double C,
-    std::vector<double> d_bcs, std::vector<int> d_bcs_pos, std::vector<double> f_bcs, std::vector<int> f_bcs_pos,
-    int bf_func_id, double alpha=0.0, double xb=0.0, double xi = 0.0)
+    std::vector<double> d_bcs, std::vector<int> d_bcs_pos, std::vector<int> d_bcs_dofs, // dirichilet boundary conditions
+    std::vector<double> f_bcs, std::vector<int> f_bcs_pos, std::vector<int> f_bcs_dofs, // Neumann Boundary conditions
+    int bf_func_id, double alpha=0.0, double xb=0.0, double xi = 0.0, 
+    double xgamma = 0.0, int porder_Enrichment = 1)
 {
+    // open file
     std::ofstream file(filename);
     if (!file.is_open())
     {
         throw std::runtime_error("Could not open file");
     }
+
+    // print header
     file << filename << "\n";
 
-    //get n de nós
+    //get n de nodes
     int nnodes {};
     int n_per_el {};
 
-    if (eltype == "lBar")
+    if (eltype == "lBar" || eltype == "pGFEMBar" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
     {
         nnodes = nel*porder + 1;
         n_per_el = porder+1;
@@ -40,15 +46,23 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     }
 
     // elements description
-    file << "nelem; elemID Type propID nodes\n";
+    if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+        file << "nelem; elemID Type propID nodes x-Gamma\n";
+    else
+        file << "nelem; elemID Type propID nodes\n";
     file << nel << "\n";
     for (int i {0}; i < nel; i++)
     {
-        file << i+1 << " " << eltype << porder+1 << " " << 1 << " ";
+        file << i+1 << " " << eltype << porder+1;
+        if (eltype == "pGFEMBar" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+            {file << "_" << porder_Enrichment;}
+        file << " " << 1 << " ";
+
         for (int j {0}; j < n_per_el; j++)
-        {
-            file << i*(n_per_el-1) + j + 1 << " ";
-        }
+            {file << i*(n_per_el-1) + j + 1 << " ";}
+            
+        if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+            {file << xgamma;}
         file << "\n";
     }
 
@@ -86,7 +100,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
             {file << 1 << " ";}
         else
             {file << nnodes << " ";}
-        file << 1 << " " << d_bcs[i] << "\n";
+        file << d_bcs_dofs[i] << " " <<d_bcs[i] << "\n";
     }
 
     // loads description
@@ -99,6 +113,6 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
             {file << 1 << " ";}
         else
             {file << nnodes << " ";}
-        file << 1 << " " << f_bcs[i] << "\n";
+        file << f_bcs_dofs[i] << " "<< f_bcs[i] << "\n";
     }
 }

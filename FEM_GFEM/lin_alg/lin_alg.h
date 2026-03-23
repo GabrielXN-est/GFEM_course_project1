@@ -29,6 +29,8 @@ class Matrix
     //operadores
     void operator+= (const Matrix& other);
 
+    Matrix operator+ (const Matrix& other) const;
+
     Matrix operator*(const Matrix& other) const;
 
     Matrix operator*(const Vector& other) const;
@@ -117,7 +119,35 @@ class Vector
     }
 };
 
+
+class LU_factorization
+{
+    public:
+    Matrix LU;
+
+    LU_factorization(const Matrix& A)
+    {
+        std::size_t n {A.mat.size()};
+        LU = A;
+
+        for (std::size_t j {0}; j < n; j++)
+        {
+            for (std::size_t i {j+1}; i < n; i++)
+            {
+                double factor {LU[i][j]/LU[j][j]};
+                LU[i][j] = factor; // preenchendo L
+                for (std::size_t k {i}; k < n; k++)
+                    {LU[i][k] -= factor * LU[j][k];}
+            }
+        }
+    }
+
+    void solve (Vector& F, Vector& U);
+};
+
 Matrix operator* (double n, Matrix&& m);
 
 Vector Gauss_elimination(Matrix K, Vector F);
+
+Matrix I (std::size_t size);
 #endif

@@ -11,11 +11,11 @@ void Mesh::assemble_penalty()
 {
     for (Element* el : c_bars)
     {
-        for (std::size_t i {0}; i < el->shape_func_order+1; i++)
+        for (std::size_t i {0}; i < el->Ndof; i++)
         {
             F_global[el->conectivity[i]] += el->F_local[i];
 
-            for (std::size_t j {0}; j < el->shape_func_order+1; j++)
+            for (std::size_t j {0}; j < el->Ndof; j++)
             {
                 K_global[el->conectivity[i]][el->conectivity[j]] += el->K_local[i][j];
             }
@@ -45,11 +45,11 @@ void Mesh::assemble_direct()
 {
     for (Element* el : c_bars)
     {
-        for (std::size_t i {0}; i < el->shape_func_order+1; i++)
+        for (std::size_t i {0}; i < el->Ndof; i++)
         {
             F_global[el->conectivity[i]] += el->F_local[i];
 
-            for (std::size_t j {0}; j < el->shape_func_order+1; j++)
+            for (std::size_t j {0}; j < el->Ndof; j++)
             {
                 K_global[el->conectivity[i]][el->conectivity[j]] += el->K_local[i][j];
             }
@@ -135,4 +135,18 @@ double Mesh::strain_energy()
 {
     Matrix temp1 {K_global_pos * U};
     return 1./2. * (U.T() * (K_global_pos * U)).determinant();
+}
+
+double max (double a, double b)
+{
+    return (a > b) ? a : b;
+}  
+
+void Mesh::assign_nodes_biggest_vicinal_element_size()
+{
+    for (Node& node : nodes)
+    {
+        for (Element* el : node.vicinal_elements)
+            {node.biggest_vicinal_element_size = max(node.biggest_vicinal_element_size, el->el_size);}
+    }
 }

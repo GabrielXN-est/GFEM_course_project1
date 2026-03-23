@@ -9,16 +9,8 @@
 #set(base_files ${headers} ${sources} PARENT_SCOPE) 
 
 # Base FEM sources used by the library
-set(base_files
-	${CMAKE_CURRENT_SOURCE_DIR}/mesh.h
-	${CMAKE_CURRENT_SOURCE_DIR}/mesh.cpp
+set(post_process
+	${CMAKE_CURRENT_SOURCE_DIR}/plot_solution.h
+	${CMAKE_CURRENT_SOURCE_DIR}/plot_solution.cpp
+	PARENT_SCOPE
 )
-
-add_subdirectory(Inputs) 
-add_subdirectory(Elements)
-add_subdirectory(lin_alg)
-add_subdirectory(Integration_points)
-add_subdirectory(Boundeary_conditions)
-add_subdirectory(shape_functions)
-add_subdirectory(lib)
-add_subdirectory(Post_processing)

@@ -54,6 +54,12 @@
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/install.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/install/local.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/CMakeFiles/install/strip.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/edit_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/rebuild_cache.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/list_install_components.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/install.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/install/local.dir
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/CMakeFiles/install/strip.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/mesh_library.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/edit_cache.dir
 /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/generate_mesh/CMakeFiles/rebuild_cache.dir

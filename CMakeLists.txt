@@ -15,6 +15,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Boundeary_conditions"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/shape_functions"
     "${PROJECT_SOURCE_DIR}/generate_mesh"
+    "${PROJECT_SOURCE_DIR}/FEM_GFEM/Post_processing"
 )
 
 add_subdirectory(FEM_GFEM)

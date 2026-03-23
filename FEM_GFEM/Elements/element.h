@@ -15,7 +15,7 @@ class Element
     int id;
     int prop_id;
     int Ndof {}; // número de dofs
-
+    double el_size {};
     Matrix K_local;
     Vector F_local;
 
@@ -33,21 +33,23 @@ class Element
     // inicializa nós
     void get_nodes(std::vector<Node>& nodevec);
 
-    // inicliaza os graus de liberdade dos nós do elemento
-    virtual void assign_dofs(int& dof0)=0;
-
-    //funções abstratas
-    // cria matriz de conectividade 
-    virtual void get_conectivity()=0;
-
-    // inicializa as propriedades
-    virtual void get_properties(Properties& prop)=0;
-
-    // calcula a matriz de rigidez local da barra
-    virtual void get_K()=0;
-
     // inicliaza o elemento para assenblagem
     virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)=0;
+        // seters
+            virtual void get_conectivity()=0;
+            virtual void get_properties(Properties& prop)=0;
+        // getters
+            virtual void get_K()=0;
+        // Mapeamento
+            virtual double mapping(double x, double xi, double Li)=0;
+            virtual double mapping_inv(double x, double xi, double Li)=0;
+        //shape functions
+            virtual shape_functions* get_shape_func()=0;
+            virtual shape_functions* get_D_shape_func()=0;
+            virtual void Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof) = 0;
+        // inicliaza os graus de liberdade dos nós do elemento
+            virtual void assign_dofs(int& dof0)=0;
+            
 };
 
 class Bar: public Element
@@ -78,6 +80,9 @@ class Bar: public Element
     // integra tensões num intervalo da barra
     void integrate_B1_to_K(double Ei, double Li, double xi);
 
+    // Cria o vetor das funções de forma do GFEM
+    void Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof);
+    
     // integra termo da mola distribuída
     void integrate_B2_to_K();
 
@@ -96,11 +101,6 @@ class Bar: public Element
 
     // inicliaza o elemento para assenblagem
     virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec);
-
-    // funções abstratas
-        //shape functions
-            virtual shape_functions* get_shape_func()=0;
-            virtual shape_functions* get_D_shape_func()=0;
 };
 
 #endif
