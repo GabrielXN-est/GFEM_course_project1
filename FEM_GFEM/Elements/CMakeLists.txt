@@ -12,6 +12,7 @@ set(element_files
 	${CMAKE_CURRENT_SOURCE_DIR}/bars.h
 	${CMAKE_CURRENT_SOURCE_DIR}/bars.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/node.h
+	${CMAKE_CURRENT_SOURCE_DIR}/node.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/element.h
 	${CMAKE_CURRENT_SOURCE_DIR}/element.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/bar.cpp

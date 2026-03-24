@@ -1,17 +1,14 @@
 #ifndef CONSTRAINED_BAR_H
 #define CONSTRAINED_BAR_H
 
-#include "lin_alg.h"
-#include "node.h"
-#include "Integration_points/integration_points.h"
-#include "shape_functions.h"
-#include "Inputs/read_input.h"
 #include "element.h"
 
 class lagrangian_bar : public Bar
 {
     public:
-    lagrangian_bar (int index, std::vector<int> nodeL, int prop, int sh_o) : Bar {index, nodeL, prop, sh_o+1, sh_o} {}   
+    
+    lagrangian_bar (int index, std::vector<int> nodeL, int prop, int sh_o, int hiper_dofs) : Bar {index, nodeL, prop, sh_o+1, sh_o, hiper_dofs} {} 
+    lagrangian_bar (int index, std::vector<int> nodeL, int prop, int sh_o) : Bar {index, nodeL, prop, sh_o+1, sh_o} {}    
     
     // getters
     shape_functions* get_shape_func();
@@ -38,8 +35,14 @@ class p_GFEM_bar : public lagrangian_bar
     int Enrich {};
     
     p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o) : 
-     lagrangian_bar {index, nodeL, prop, (PoU_sh_o+1)*(E_sh_o+1)}, 
-     Enrich {E_sh_o} {}
+     lagrangian_bar {index, nodeL, prop, PoU_sh_o, E_sh_o + PoU_sh_o + 2}, 
+     Enrich {E_sh_o}
+     {E_shape_func_order = Enrich;};
+
+    p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, int hiper_dofs) : 
+     lagrangian_bar {index, nodeL, prop, PoU_sh_o, hiper_dofs}, 
+     Enrich {E_sh_o}
+     {E_shape_func_order = Enrich;};
     
     // definie enriquecimentos nos nós
     void set_enrichments();
@@ -53,13 +56,13 @@ class p_GFEM_bar_weak_disc : public p_GFEM_bar
     Enrichment* enrichment {};
     
     p_GFEM_bar_weak_disc (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, Enrichment* enr) : 
-     p_GFEM_bar (index, nodeL, prop, PoU_sh_o, E_sh_o), enrichment {enr} {}
+     p_GFEM_bar (index, nodeL, prop, PoU_sh_o, E_sh_o, 2*E_sh_o + PoU_sh_o + 2), enrichment {enr} 
+     {E_shape_func_order = 2*Enrich+enr->grau;}
+
     ~p_GFEM_bar_weak_disc() {delete enrichment;}
 
     // definie enriquecimentos nos nós
     void set_enrichments_desc();
-
-    virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec) override;
 };
 
 #endif

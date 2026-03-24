@@ -47,22 +47,28 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
 
     // elements description
     if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
-        file << "nelem; elemID Type propID nodes x-Gamma\n";
+        file << "nelem; elemID Type propID x-Gamma nodes\n";
     else
         file << "nelem; elemID Type propID nodes\n";
     file << nel << "\n";
     for (int i {0}; i < nel; i++)
     {
-        file << i+1 << " " << eltype << porder+1;
+        //ID, tipo e ordem polinomial
+        if ((eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M") && 
+            (i*n_per_el*L / (nnodes-1) + xi < xgamma && (i+1)*n_per_el*L / (nnodes-1) + xi > xgamma ))
+            {file << i+1 << " " << "pGFEMBar" << porder+1;}
+        else
+            {file << i+1 << " " << eltype << porder+1;}
         if (eltype == "pGFEMBar" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
             {file << "_" << porder_Enrichment;}
+        //propriedades
         file << " " << 1 << " ";
-
-        for (int j {0}; j < n_per_el; j++)
-            {file << i*(n_per_el-1) + j + 1 << " ";}
-            
+        //xGamma
         if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
             {file << xgamma;}
+        //Nodes
+        for (int j {0}; j < n_per_el; j++)
+            {file << i*(n_per_el-1) + j + 1 << " ";}
         file << "\n";
     }
 
@@ -79,7 +85,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
 
     file << 1 << "\n";
 
-    file << 1 << " Mat" << eltype << " ";
+    file << 1 << " Mat" << "Bar" << " ";
     for (double Ei: E)
         {file << Ei << " ";}
     for (double Exlimi: Exlim)

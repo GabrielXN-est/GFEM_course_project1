@@ -107,8 +107,7 @@ void solve_dependent_system(Matrix& K_, Vector& F_, double tol = std::pow(10, -1
         n_iter++;
         if (n_iter > 1000)
             throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ")");
-    }
-    while (stop_condition(U, e, K)> tol)
+    } while (stop_condition(U, e, K)> tol);
 }
 
 void LU_factorization::solve (Vector& F, Vector& U)

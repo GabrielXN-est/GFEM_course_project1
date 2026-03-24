@@ -7,6 +7,7 @@
 #include "shape_functions.h"
 #include "read_input.h"
 #include "body_func.h"
+#include "Enrichment.h"
 
 class Element
 {
@@ -66,8 +67,8 @@ class Bar: public Element
 
     body_functions* bf_func;
 
-    Bar (int index, std::vector<int> nodeL, int prop, int dofs, int sh_o) : shape_func_order {sh_o}, Element (index, nodeL, prop, dofs){}    
-
+    Bar (int index, std::vector<int> nodeL, int prop, int dofs, int sh_o, int hiper_dofs) : shape_func_order {sh_o}, Element (index, nodeL, prop, hiper_dofs){}    
+    Bar (int index, std::vector<int> nodeL, int prop, int dofs, int sh_o) : shape_func_order {sh_o}, Element (index, nodeL, prop, dofs){}  
     ~Bar() {delete bf_func;}
 
     // inicializa as propriedades da barra
@@ -91,7 +92,7 @@ class Bar: public Element
 
     // funções de mapeamento
     // do físico paro o mestre
-    double mapping(double x, double xi, double Li){return (x-xi)*2/Li;}
+    double mapping(double x, double xi, double Li){return (x-xi)*2/Li-1;}
 
     // do mestre paro o físico
     double mapping_inv(double x, double xi, double Li){return (x+1)*Li/2 + xi;}

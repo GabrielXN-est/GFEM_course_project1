@@ -3,7 +3,9 @@
 
 #include <vector>
 #include <algorithm>
-#include "Enrichment.h"
+
+class Element;
+class Enrichment;
 
 // agrupamento de dofs
 class Node
@@ -23,36 +25,14 @@ class Node
     Node (int index, double x_coord, std::vector<int> enrichment_ids) : id{index}, x {x_coord}, enr_ids{enrichment_ids}{}
     Node ();
     
-    ~Node ()
-    {
-        for (Enrichment* e : enr)
-            delete e;
-    }
+    ~Node ();
 
-    void get_polinomial_order_of_enrichment()
-    {
-        for (Enrichment* e : enr)
-        {
-            if (e -> grau > polinomial_order_of_enrichment)
-                polinomial_order_of_enrichment = e -> grau;
-        }
-    }
+    void get_polinomial_order_of_enrichment();
 };
 
 // Função para ordenar um vetor de nodes pela posição x
-inline void sortNodesByX(std::vector<Node*>& nodes)
-{
-    std::sort(nodes.begin(), nodes.end(), 
-              [](const Node* a, const Node* b) {
-                  return a->x < b->x;
-              });
-}
+void sortNodesByX(std::vector<Node*>& nodes);
 
-inline void sortNodesByX(std::vector<Node>& nodes)
-{
-    std::sort(nodes.begin(), nodes.end(), 
-              [](const Node& a, const Node& b) {
-                  return a.x < b.x;
-              });
-}
+inline void sortNodesByX(std::vector<Node>& nodes);
+
 #endif

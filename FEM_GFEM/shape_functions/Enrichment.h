@@ -2,6 +2,7 @@
 #define ENRICHMENT_H
 
 #include "node.h"
+#include <cmath>
 
 class Enrichment
 {
@@ -13,7 +14,7 @@ class Enrichment
     virtual void assign_to_node(Node& node);
 
     //funções abstratas
-        virtual Enrichment* create_copy(Node& node) =0 ;
+        virtual Enrichment* create_copy(Node& node) =0;
         // Avaliadores da função
         virtual double operator()(double x) = 0;
         virtual double D(double x) = 0;
@@ -54,14 +55,14 @@ class Moes_enrichment_1D : public Enrichment
 class polinomial_enrichment_1D : public Enrichment
 {
     public:
-    double grau {};
+    int grau {};
     bool shifted {};
     bool scaled {}; // se scaled = true, executar nos nós a função Mesh::assign_nodes_biggest_vicinal_element_size();
     Node* node_ptr {nullptr};
 
-    polinomial_enrichment_1D(int index, double g, bool sh = true, bool sc = false) :
+    polinomial_enrichment_1D(int index, int g, bool sh = true, bool sc = false) :
         Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc} {};
-    polinomial_enrichment_1D(int index, double g, bool sh, bool sc, Node* node) :
+    polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node) :
         Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc}, node_ptr {node}{};
 
     Enrichment* create_copy(Node& node);
@@ -120,4 +121,4 @@ inline void sort_Enr_by_id(std::vector<Enrichment*>& nodes)
                   return a->id < b->id;
               });
 }
-#endif // ENRICHMENT_H
+#endif

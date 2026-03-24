@@ -48,28 +48,31 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
         N_PoU->operator()(mapping(x_real, Nod_list[0]->x, L));
         N_PoU->mont_vector();
 
-        Vector dNdxi (Ndof);
-        for (std::size_t i {0}; i < dNdxiPoU->size(); i++) // considerando PoU lagrangiana
+        // Consertar K
+        int j {0};
+        Vector dNdx (Ndof);
+        for (std::size_t i {0}; i < Nod_list.size(); i++)
         {
-            dNdxi[i] = dNdxiPoU->operator[](i);
+            dNdx[j++] = dNdxiPoU->operator[](i) * dxidx;
             for (Enrichment* e : Nod_list[i]->enr)
             {
-                dNdxi[i] = e->D(x_real)*N_PoU->operator[](i) + e->operator()(x_real)*dNdxiPoU->operator[](i);
+                dNdx[j++] = e->D(x_real)*N_PoU->operator[](i) + e->operator()(x_real)*dNdxiPoU->operator[](i)*dxidx;
             }
         }
         // montar matriz de rigidez local
-        K_local += (dNdxi*dNdxi.T())*(dxidx*dxidx*Li/2*ip1.weights[pt_id]*A*Ei);
+        K_local += (dNdx*dNdx.T())*(Li/2*ip1.weights[pt_id]*A*Ei);
     }
 }
 
 void Bar::Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof)
 {
-    for (std::size_t i {0}; i < N_PoU->size(); i++) // considerando PoU lagrangiana
+    int j {0};
+    for (std::size_t i {0}; i < Nod_list.size(); i++)
     {
-        N[i] = N_PoU->operator[](i);
+        N[j++] = N_PoU->operator[](i);
         for (Enrichment* e : Nod_list[i]->enr)
         {
-            N[i] = N_PoU->operator[](i)*e->operator()(x_real);
+            N[j++] = N_PoU->operator[](i)*e->operator()(x_real);
         }
     }
 }

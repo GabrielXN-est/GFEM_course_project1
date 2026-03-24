@@ -12,5 +12,7 @@
 set(shape_functions
 	${CMAKE_CURRENT_SOURCE_DIR}/shape_functions.h
 	${CMAKE_CURRENT_SOURCE_DIR}/shape_functions.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Enrichment.h
+	${CMAKE_CURRENT_SOURCE_DIR}/Enrichment.cpp
 	PARENT_SCOPE
 )

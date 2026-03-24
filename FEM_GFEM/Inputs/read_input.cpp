@@ -315,6 +315,7 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 {
                                     temp2 += temp.back();
                                     temp.pop_back();
+                                    shape_func_order = std::stoi(temp2)-1;
                                 }
 
                                 if (temp.back() == '_')
@@ -324,19 +325,17 @@ void read_input (const std::string& filename, Mesh& mesh)
                                     {
                                         temp3 += temp.back();
                                         temp.pop_back();
+                                        shape_func_order = std::stoi(temp3)-1;
+                                        Eshape_func_order = std::stoi(temp2);
                                     }
                                 }
                                 if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                 {
                                     type = temp;
-                                    shape_func_order = std::stoi(temp2)-1;
                                     if (temp == "lBar"  || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                         case_j = shape_func_order+1;
                                     else
                                         case_j = 3;
-
-                                    if (temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
-                                        Eshape_func_order = std::stoi(temp3);
 
                                     case_i++;
                                 }
@@ -511,10 +510,10 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 pr_vec[j].id = std::stoi(temp);
                             else if (order[case_i] == 1)
                             {
-                                if (temp == "MatpBar" || temp == "MatlBar")
+                                if (temp == "MatBar")
                                     type = temp;
                                 else
-                                    throw std::invalid_argument("Unexpected element type (" + temp + ")");
+                                    throw std::invalid_argument("Unexpected property type (" + temp + ")");
                             }
                             else if (order[case_i] == 2)
                                 pr_vec[j].E.push_back(std::stod(temp));
@@ -670,7 +669,7 @@ void read_input (const std::string& filename, Mesh& mesh)
 
     sort_Enr_by_id(temp_enr_vec);
     // atribuir os enriquecimentos aos nós
-    for (Node no: node_vec)
+    for (Node& no: node_vec)
     {
         for (int enr_id: no.enr_ids)
         {

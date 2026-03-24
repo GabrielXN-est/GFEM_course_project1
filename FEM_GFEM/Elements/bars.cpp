@@ -56,13 +56,14 @@ void p_hier_bar::assign_dofs(int& dof0)
 // p_GFEM_bar
 void p_GFEM_bar::set_enrichments()
 {
+    
     for (Node* node : Nod_list)
     {
         if (node->p_enriched < Enrich)
         {
-            for (int grau; grau < Enrich; grau++)
+            for (int grau {0}; grau < Enrich; grau++)
             {
-                node->enr.push_back(new polinomial_enrichment_1D(-1, grau+1));;
+                node->enr.push_back(new polinomial_enrichment_1D(-1, grau+1, true, false, node));;
             }
             node-> p_enriched = Enrich;
         }
@@ -72,8 +73,8 @@ void p_GFEM_bar::set_enrichments()
 void p_GFEM_bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)
 {
     get_nodes(node_vec);
-    assign_dofs(dof0);
     set_enrichments();
+    assign_dofs(dof0);
 
     for (Properties& pr: pr_vec)
     {

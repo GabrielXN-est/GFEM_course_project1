@@ -7,8 +7,10 @@ void Element::get_nodes(std::vector<Node>& nodevec)
     for (Node& i: nodevec)
     {
         if (std::count(N_list.begin(), N_list.end(), i.id))
-            Nod_list[j]->vicinal_elements.push_back(this);
+        {
+            i.vicinal_elements.push_back(this);
             Nod_list[j++] = &i;
+        }
     }
     sortNodesByX(Nod_list);
 }
