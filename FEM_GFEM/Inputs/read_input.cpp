@@ -329,10 +329,10 @@ void read_input (const std::string& filename, Mesh& mesh)
                                         Eshape_func_order = std::stoi(temp2);
                                     }
                                 }
-                                if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
+                                if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_sc" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                 {
                                     type = temp;
-                                    if (temp == "lBar"  || temp == "pGFEMBar" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
+                                    if (temp == "lBar"  || temp == "pGFEMBar" || temp == "pGFEMBar_sc"  || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
                                         case_j = shape_func_order+1;
                                     else
                                         case_j = 3;
@@ -369,6 +369,8 @@ void read_input (const std::string& filename, Mesh& mesh)
                     el_vec.push_back(new p_hier_bar(id, nodes, propID, shape_func_order));
                 else if (type == "pGFEMBar")
                     el_vec.push_back(new p_GFEM_bar(id, nodes, propID, shape_func_order, Eshape_func_order));
+                else if (type == "pGFEMBar_sc")
+                    el_vec.push_back(new p_GFEM_bar(id, nodes, propID, shape_func_order, Eshape_func_order, true, true));
                 else if (type == "pGFEMBar_WD_S")
                     el_vec.push_back(new p_GFEM_bar_weak_disc(id, nodes, propID, shape_func_order, Eshape_func_order, new Sukumar_enrichment_1D(0, xgamma)));
                 else if (type == "pGFEMBar_WD_M")
@@ -666,7 +668,7 @@ void read_input (const std::string& filename, Mesh& mesh)
     {
         loads[i].assign_node(get_node_by_id (lnid[i], node_vec));
     }
-
+    
     sort_Enr_by_id(temp_enr_vec);
     // atribuir os enriquecimentos aos nós
     for (Node& no: node_vec)

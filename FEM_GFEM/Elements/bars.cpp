@@ -22,9 +22,11 @@ void lagrangian_bar::assign_dofs(int& dof0)
     {
         // PoU dofs
         if (node->dofs.size() == 0)
+        {
             node->dofs.push_back(dof0++);
-        // Enrichment dofs
-        assign_enrichment_dofs(node, dof0);
+            // Enrichment dofs
+            assign_enrichment_dofs(node, dof0);
+        }
     }
 }
 
@@ -63,7 +65,7 @@ void p_GFEM_bar::set_enrichments()
         {
             for (int grau {0}; grau < Enrich; grau++)
             {
-                node->enr.push_back(new polinomial_enrichment_1D(-1, grau+1, true, false, node));;
+                node->enr.push_back(new polinomial_enrichment_1D(-1, grau+1, shifted, scaled, node));;
             }
             node-> p_enriched = Enrich;
         }
@@ -103,7 +105,7 @@ void p_GFEM_bar_weak_disc::set_enrichments_desc()
             for (int grau; grau < Enrich; grau++)
             {
                 node->enr.push_back(new Pair_enrichment_1D(
-                    new polinomial_enrichment_1D(-1, grau+1),
+                    new polinomial_enrichment_1D(-1, grau+1, shifted, scaled, node),
                     enrichment->create_copy(*node)
                     ));
             }

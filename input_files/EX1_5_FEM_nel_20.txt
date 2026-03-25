@@ -1,0 +1,75 @@
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_5_FEM_nel_20.txt
+nodes - nnodes ndim; nodeID x-coord
+41 1
+1 0
+2 0.025
+3 0.05
+4 0.075
+5 0.1
+6 0.125
+7 0.15
+8 0.175
+9 0.2
+10 0.225
+11 0.25
+12 0.275
+13 0.3
+14 0.325
+15 0.35
+16 0.375
+17 0.4
+18 0.425
+19 0.45
+20 0.475
+21 0.5
+22 0.525
+23 0.55
+24 0.575
+25 0.6
+26 0.625
+27 0.65
+28 0.675
+29 0.7
+30 0.725
+31 0.75
+32 0.775
+33 0.8
+34 0.825
+35 0.85
+36 0.875
+37 0.9
+38 0.925
+39 0.95
+40 0.975
+41 1
+nelem; elemID Type propID nodes
+20
+1 lBar3 1 1 2 3 
+2 lBar3 1 3 4 5 
+3 lBar3 1 5 6 7 
+4 lBar3 1 7 8 9 
+5 lBar3 1 9 10 11 
+6 lBar3 1 11 12 13 
+7 lBar3 1 13 14 15 
+8 lBar3 1 15 16 17 
+9 lBar3 1 17 18 19 
+10 lBar3 1 19 20 21 
+11 lBar3 1 21 22 23 
+12 lBar3 1 23 24 25 
+13 lBar3 1 25 26 27 
+14 lBar3 1 27 28 29 
+15 lBar3 1 29 30 31 
+16 lBar3 1 31 32 33 
+17 lBar3 1 33 34 35 
+18 lBar3 1 35 36 37 
+19 lBar3 1 37 38 39 
+20 lBar3 1 39 40 41 
+properties - nprop; propID type E A C bf_fun alpha xb
+1
+1 MatBar 1 1 0 10 50 0.2
+constraints - nconstr;constrID nodeID dof value
+2
+1 1 1 0
+2 41 1 0
+loads - nload; loadID nodeID dof value
+0

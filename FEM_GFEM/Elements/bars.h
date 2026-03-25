@@ -33,15 +33,16 @@ class p_GFEM_bar : public lagrangian_bar
 {
     public:
     int Enrich {};
+    bool shifted {}, scaled {};
     
-    p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o) : 
-     lagrangian_bar {index, nodeL, prop, PoU_sh_o, E_sh_o + PoU_sh_o + 2}, 
-     Enrich {E_sh_o}
+    p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, bool shift= true, bool scal= false) : 
+     lagrangian_bar {index, nodeL, prop, PoU_sh_o, (E_sh_o + 1)*(PoU_sh_o + 1)}, 
+     Enrich {E_sh_o}, shifted {shift}, scaled {scal}
      {E_shape_func_order = Enrich;};
 
-    p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, int hiper_dofs) : 
+    p_GFEM_bar (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, int hiper_dofs, bool shift= true, bool scal= false) : 
      lagrangian_bar {index, nodeL, prop, PoU_sh_o, hiper_dofs}, 
-     Enrich {E_sh_o}
+     Enrich {E_sh_o}, shifted {shift}, scaled {scal}
      {E_shape_func_order = Enrich;};
     
     // definie enriquecimentos nos nós
@@ -55,8 +56,8 @@ class p_GFEM_bar_weak_disc : public p_GFEM_bar
     public:
     Enrichment* enrichment {};
     
-    p_GFEM_bar_weak_disc (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, Enrichment* enr) : 
-     p_GFEM_bar (index, nodeL, prop, PoU_sh_o, E_sh_o, 2*E_sh_o + PoU_sh_o + 2), enrichment {enr} 
+    p_GFEM_bar_weak_disc (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, Enrichment* enr, bool shift= true, bool scal= false) : 
+     p_GFEM_bar (index, nodeL, prop, PoU_sh_o, E_sh_o, 2*(E_sh_o + 1)*(PoU_sh_o + 1), shift, scal), enrichment {enr} 
      {E_shape_func_order = 2*Enrich+enr->grau;}
 
     ~p_GFEM_bar_weak_disc() {delete enrichment;}

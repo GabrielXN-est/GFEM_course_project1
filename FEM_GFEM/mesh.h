@@ -49,12 +49,12 @@ class Mesh
     void assemble_direct();
 
     void solve() {U = Gauss_elimination(K_global, F_global);}
+    void solve_dependent_system(double tol = std::pow(10, -12), int max_iter = 1000); // Babuska et al.
 
     // função para completar U com as condições de contorno se usado o método direto
     void complete_U ();
 
     double strain_energy();
-
 };
 
 #endif

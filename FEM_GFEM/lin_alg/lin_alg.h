@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <fstream>
+#include <string>
 
 class Vector;
 
@@ -65,6 +66,14 @@ class Vector
     double& operator[] (std::size_t index);
 
     double get (std::size_t index) const;
+
+    std::string to_string() const
+    {
+        std::string s {};
+        for (double v : vec)
+            {s += std::to_string(v) + " ";}
+        return s;
+    }
     
     //operadores
     // transpor o vetor
@@ -119,7 +128,6 @@ class Vector
     }
 };
 
-
 class LU_factorization
 {
     public:
@@ -150,4 +158,6 @@ Matrix operator* (double n, Matrix&& m);
 Vector Gauss_elimination(Matrix K, Vector F);
 
 Matrix I (std::size_t size);
+
+inline double max (double a, double b) {return (a > b) ? a : b;}  
 #endif

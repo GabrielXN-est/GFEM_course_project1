@@ -2,6 +2,7 @@
 #define ENRICHMENT_H
 
 #include "node.h"
+#include "lin_alg.h"
 #include <cmath>
 
 class Enrichment
@@ -62,8 +63,7 @@ class polinomial_enrichment_1D : public Enrichment
 
     polinomial_enrichment_1D(int index, int g, bool sh = true, bool sc = false) :
         Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc} {};
-    polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node) :
-        Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc}, node_ptr {node}{};
+    polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node);
 
     Enrichment* create_copy(Node& node);
 

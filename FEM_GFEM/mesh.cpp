@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include <iostream>
 
 void Mesh::set_dofs(int dofs)
 {
@@ -133,20 +134,51 @@ void Mesh::complete_U()
 
 double Mesh::strain_energy()
 {
-    Matrix temp1 {K_global_pos * U};
     return 1./2. * (U.T() * (K_global_pos * U)).determinant();
 }
 
-double max (double a, double b)
-{
-    return (a > b) ? a : b;
-}  
+double stop_condition(Vector&U, Vector&e, Matrix& K)
+    {return (e.T()*K*e).determinant()/(U.T()*K*U).determinant();}
 
-void Mesh::assign_nodes_biggest_vicinal_element_size()
+void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
 {
-    for (Node& node : nodes)
+    Matrix K (K_global.mat.size(), K_global[0].size());
+    Matrix T (K_global.mat.size(), K_global[0].size());
+
+    Vector F (F_global.size()), u (F_global.size()), e (F_global.size()), r (F_global.size());
+
+    for (std::size_t i {0}; i < K_global.mat.size(); i++)
     {
-        for (Element* el : node.vicinal_elements)
-            {node.biggest_vicinal_element_size = max(node.biggest_vicinal_element_size, el->el_size);}
+        for (std::size_t j {0}; j < K_global[0].size(); j++)
+        {
+            K[i][j] = K_global[i][j]/std::sqrt(K_global[i][i] * K_global[j][j]);
+            if (i == j)
+                T[i][j] = 1./std::sqrt(K_global[i][i]);
+            else
+                T[i][j] = 0.;
+        }
+        F[i] = F_global[i];
     }
+
+    F = T * F;
+ 
+    Matrix Ke {K + I(K.mat.size())};
+    LU_factorization Ke_LU(Ke);
+
+    Ke_LU.solve(F, u);
+
+    int n_iter {0};
+    do
+    {
+        u += e;
+        r = F - K*u;
+        Ke_LU.solve(r, e);
+        
+        n_iter++;
+
+        if (n_iter > max_iter)
+            throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ")");
+    } while (stop_condition(u, e, K)> tol);
+
+    U = T * u;
 }

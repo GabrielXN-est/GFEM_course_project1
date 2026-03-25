@@ -24,7 +24,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     int nnodes {};
     int n_per_el {};
 
-    if (eltype == "lBar" || eltype == "pGFEMBar" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+    if (eltype == "lBar" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc"|| eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
     {
         nnodes = nel*porder + 1;
         n_per_el = porder+1;
@@ -35,7 +35,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
         n_per_el = 3;
     }
     else
-        throw std::invalid_argument("Unexpected element type");
+        throw std::invalid_argument("Unexpected element type (" + eltype + ")");
 
     // nodes description
     file << "nodes - nnodes ndim; nodeID x-coord\n";
@@ -59,7 +59,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
             {file << i+1 << " " << "pGFEMBar" << porder+1;}
         else
             {file << i+1 << " " << eltype << porder+1;}
-        if (eltype == "pGFEMBar" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+        if (eltype == "pGFEMBar" || eltype == "pGFEMBar_sc" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
             {file << "_" << porder_Enrichment;}
         //propriedades
         file << " " << 1 << " ";

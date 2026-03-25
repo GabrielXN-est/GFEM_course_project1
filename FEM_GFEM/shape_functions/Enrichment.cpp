@@ -1,6 +1,7 @@
 #include "Enrichment.h"
 #include "mesh.h"
 
+// Construtores
 void Enrichment::assign_to_node(Node& node)
 {node.enr.push_back(create_copy(node));}
 
@@ -16,6 +17,16 @@ Enrichment* Moes_enrichment_1D::create_copy(Node& node)
 Enrichment* Pair_enrichment_1D::create_copy(Node& node)
 {return (new Pair_enrichment_1D(enr1->create_copy(node), enr2->create_copy(node)));}
 
+polinomial_enrichment_1D::polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node) :
+ Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc}, node_ptr {node}
+{
+    if (scaled)
+    {
+        for (Element* el: node_ptr->vicinal_elements)
+            {node_ptr->biggest_vicinal_element_size = 
+                max(node_ptr->biggest_vicinal_element_size, el->Nod_list[el->Nod_list.size()-1]->x - el->Nod_list[0]->x);}
+    }
+}
 
 double Sukumar_derivate(double x, double xGamma)
 {
