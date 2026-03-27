@@ -33,6 +33,6 @@ class Node
 // Função para ordenar um vetor de nodes pela posição x
 void sortNodesByX(std::vector<Node*>& nodes);
 
-inline void sortNodesByX(std::vector<Node>& nodes);
+void sortNodesByX(std::vector<Node>& nodes);
 
 #endif

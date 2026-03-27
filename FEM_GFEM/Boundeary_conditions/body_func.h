@@ -32,7 +32,6 @@ class body_function1 : public body_functions
     
     double operator()(double x){return x;}
 };
-
 class body_function3 : public body_functions
 {
     public:
@@ -62,4 +61,13 @@ class body_function10 : public body_functions
     }
 };
 
+class body_function12 : public body_functions
+{
+    public:
+    body_function12() : body_functions(3) {}
+
+    body_function12* clone() const override {return new body_function12();}
+    
+    double operator()(double x){return 25.*x - 15.*x*x/2 + 1./2.*x*x*x;}
+};
 #endif

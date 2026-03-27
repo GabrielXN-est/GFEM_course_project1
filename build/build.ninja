@@ -635,6 +635,76 @@ build FEM_GFEM/shape_functions/install/strip: phony FEM_GFEM/shape_functions/CMa
 # /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/CMakeLists.txt
 # =============================================================================
 
+
+#############################################
+# Utility command for edit_cache
+
+build FEM_GFEM/Post_processing/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build FEM_GFEM/Post_processing/edit_cache: phony FEM_GFEM/Post_processing/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build FEM_GFEM/Post_processing/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake --regenerate-during-build -S"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1" -B"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build FEM_GFEM/Post_processing/rebuild_cache: phony FEM_GFEM/Post_processing/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build FEM_GFEM/Post_processing/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build FEM_GFEM/Post_processing/CMakeFiles/install.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build FEM_GFEM/Post_processing/install: phony FEM_GFEM/Post_processing/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build FEM_GFEM/Post_processing/CMakeFiles/install/local.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build FEM_GFEM/Post_processing/install/local: phony FEM_GFEM/Post_processing/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build FEM_GFEM/Post_processing/CMakeFiles/install/strip.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
+  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build FEM_GFEM/Post_processing/install/strip: phony FEM_GFEM/Post_processing/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/CMakeLists.txt
+# =============================================================================
+
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target FEM_GFEM_library
 
@@ -728,6 +798,13 @@ build FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/Enrichment
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir
   OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions
 
+build FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Post_processing/plot_solution.cpp.o: CXX_COMPILER__FEM_GFEM_library_unscanned_Debug /home/labmec/Downloads/GFEM$ Course/Projects/Projeto$ 1/FEM_GFEM/Post_processing/plot_solution.cpp || cmake_object_order_depends_target_FEM_GFEM_library
+  DEP_FILE = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Post_processing/plot_solution.cpp.o.d
+  FLAGS = -g
+  INCLUDES = -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Inputs" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Elements" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Integration_points" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/shape_functions" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh" -I"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Post_processing"
+  OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir
+  OBJECT_FILE_DIR = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Post_processing
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target FEM_GFEM_library
@@ -736,7 +813,7 @@ build FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/Enrichment
 #############################################
 # Link the static library FEM_GFEM/lib/libFEM_GFEM_library.a
 
-build FEM_GFEM/lib/libFEM_GFEM_library.a: CXX_STATIC_LIBRARY_LINKER__FEM_GFEM_library_Debug FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/mesh.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/bars.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/node.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/element.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/bar.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/lin_alg.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/Matrix.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/Vector.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Inputs/read_input.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Integration_points/integration_points.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/shape_functions.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/Enrichment.cpp.o
+build FEM_GFEM/lib/libFEM_GFEM_library.a: CXX_STATIC_LIBRARY_LINKER__FEM_GFEM_library_Debug FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/mesh.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/bars.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/node.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/element.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Elements/bar.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/lin_alg.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/Matrix.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/lin_alg/Vector.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Inputs/read_input.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Integration_points/integration_points.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/shape_functions.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/shape_functions/Enrichment.cpp.o FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir/__/Post_processing/plot_solution.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = FEM_GFEM/lib/CMakeFiles/FEM_GFEM_library.dir
   POST_BUILD = :
@@ -808,76 +885,6 @@ build FEM_GFEM/lib/CMakeFiles/install/strip.util: CUSTOM_COMMAND FEM_GFEM/lib/al
   restat = 1
 
 build FEM_GFEM/lib/install/strip: phony FEM_GFEM/lib/CMakeFiles/install/strip.util
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/CMakeLists.txt
-# =============================================================================
-
-
-#############################################
-# Utility command for edit_cache
-
-build FEM_GFEM/Post_processing/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build FEM_GFEM/Post_processing/edit_cache: phony FEM_GFEM/Post_processing/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build FEM_GFEM/Post_processing/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake --regenerate-during-build -S"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1" -B"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build FEM_GFEM/Post_processing/rebuild_cache: phony FEM_GFEM/Post_processing/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build FEM_GFEM/Post_processing/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build FEM_GFEM/Post_processing/CMakeFiles/install.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
-  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build FEM_GFEM/Post_processing/install: phony FEM_GFEM/Post_processing/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build FEM_GFEM/Post_processing/CMakeFiles/install/local.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
-  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build FEM_GFEM/Post_processing/install/local: phony FEM_GFEM/Post_processing/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build FEM_GFEM/Post_processing/CMakeFiles/install/strip.util: CUSTOM_COMMAND FEM_GFEM/Post_processing/all
-  COMMAND = cd "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing" && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build FEM_GFEM/Post_processing/install/strip: phony FEM_GFEM/Post_processing/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -1681,7 +1688,7 @@ build all: phony myExecutable FEM_GFEM/all generate_mesh/all third_party/externa
 #############################################
 # Folder: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM
 
-build FEM_GFEM/all: phony FEM_GFEM/Inputs/all FEM_GFEM/Elements/all FEM_GFEM/lin_alg/all FEM_GFEM/Integration_points/all FEM_GFEM/Boundeary_conditions/all FEM_GFEM/shape_functions/all FEM_GFEM/lib/all FEM_GFEM/Post_processing/all
+build FEM_GFEM/all: phony FEM_GFEM/Inputs/all FEM_GFEM/Elements/all FEM_GFEM/lin_alg/all FEM_GFEM/Integration_points/all FEM_GFEM/Boundeary_conditions/all FEM_GFEM/shape_functions/all FEM_GFEM/Post_processing/all FEM_GFEM/lib/all
 
 # =============================================================================
 

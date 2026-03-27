@@ -1,15 +1,6 @@
 #include "plot_solution.h"
 
-void plot_series(std::vector<plotting_data>& data, const std::string& title)
-{
-    for (const plotting_data& datai : data)
-        {matplot::plot(datai.x_values, datai.u_values, datai.label);}
-    matplot::xlabel("x");
-    matplot::ylabel("u(x)");
-    matplot::legend();
-}
-
-plotting_data get_solution_plotable(Mesh& mesh, double precision = 0.01, std::string label = "")
+plotting_data get_solution_plotable(Mesh& mesh, double precision, std::string label)
 {
     sortNodesByX(mesh.nodes);
     
@@ -40,6 +31,7 @@ plotting_data get_solution_plotable(Mesh& mesh, double precision = 0.01, std::st
                 break;
             }
         }
+        u_values.push_back(u_x);
     }
 
     return {x_values, u_values, label};

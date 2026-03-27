@@ -21,6 +21,8 @@ body_functions* get_body_function(int id, double alpha = 0., double xb = 0.)
             return new body_function3();
         case 10:
             return new body_function10(alpha, xb);
+        case 12:
+            return new body_function12();
         default:
             throw std::invalid_argument("Invalid body function ID");
     }

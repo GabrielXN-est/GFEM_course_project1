@@ -50,8 +50,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Integration_points/cmake_install.cmake")
   include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Boundeary_conditions/cmake_install.cmake")
   include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/shape_functions/cmake_install.cmake")
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/cmake_install.cmake")
   include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/Post_processing/cmake_install.cmake")
+  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/FEM_GFEM/lib/cmake_install.cmake")
 
 endif()
 

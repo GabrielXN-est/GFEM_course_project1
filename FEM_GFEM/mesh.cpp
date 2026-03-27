@@ -87,7 +87,9 @@ void Mesh::assemble_direct()
             F_global[lin] = F_global_pos[i];
             for (BC_displacement  bc_dof : bc_ds)
             {
-                F_global[lin] -= K_global_pos[lin][bc_dof.dof] * bc_dof.value;
+                
+                double temp {K_global_pos[i][bc_dof.dof] * bc_dof.value};
+                F_global[lin] -= K_global_pos[i][bc_dof.dof] * bc_dof.value;
             }
             for (std::size_t j {0}; j < K_global_pos.mat[i].size(); j++)
             {

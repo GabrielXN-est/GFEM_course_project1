@@ -15,15 +15,21 @@ void Bar::get_properties(Properties& prop)
     {
         for (std::size_t i {0}; i < prop.E.size(); i++)
         {
-            if (prop.Exlim[i] > xi && prop.Exlim[i] <= xi + L)
+            if (i==0 && prop.Exlim[i] > xi)
+            {
+                E.push_back(prop.E[i]);
+                Exlim.push_back(prop.Exlim[i]);
+            }
+            else if (prop.Exlim[i-1] < xi && prop.Exlim[i] > xi ||
+                     prop.Exlim[i-1] >= xi && prop.Exlim[i] <= xi + L ||
+                     prop.Exlim[i-1] < xi + L && prop.Exlim[i] >= xi + L)
             {
                 E.push_back(prop.E[i]);
                 Exlim.push_back(prop.Exlim[i]);
             }
         }
     }
-    bf_func = prop.bf_func;
-    prop.bf_func = prop.bf_func->clone(); // para evitar que o destrutor de prop delete o ponteiro de bf_func, já que a barra vai usar esse ponteiro
+    bf_func = prop.bf_func->clone(); // para evitar que o destrutor de prop delete o ponteiro de bf_func, já que a barra vai usar esse ponteiro
 }
 
 void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
@@ -129,12 +135,18 @@ void Bar::get_K()
         integrate_B1_to_K(E[0], L, Nod_list[0]->x);
     else
     {
-        double xi {Nod_list[0]->x};
+        double xi {Nod_list[0]->x}, Li {0};
+        double xi_ = xi;
         for (std::size_t i {0}; i < E.size(); i++)
         {
-            integrate_B1_to_K(E[i], Exlim[i]-xi, xi);
-            xi = Exlim[i];
-            break;
+            if (Exlim[i] >= xi_)
+            {
+                Li = (Exlim[i] < xi_ + L) ? Exlim[i] - xi : L - xi;
+                integrate_B1_to_K(E[i], Li, xi);
+                xi = Exlim[i];
+            }
+            if (xi >= L + xi_)
+                break;
         }
     }
 }

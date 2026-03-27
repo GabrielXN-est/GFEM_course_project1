@@ -3,10 +3,11 @@
 #include <vector>
 
 // to apply a bc to more than one dof per node, repete the node in the _bcs and _bcs_pos
+// Exlim is the maximum x for which the respective E is valid
 void generate_input(std::string filename, int nel, int porder, std::string eltype,
-    double L, std::vector<double> E, std::vector<double> Exlim, double A, double C,
-    std::vector<double> d_bcs, std::vector<int> d_bcs_pos, std::vector<int> d_bcs_dofs, // dirichilet boundary conditions
-    std::vector<double> f_bcs, std::vector<int> f_bcs_pos, std::vector<int> f_bcs_dofs, // Neumann Boundary conditions
+    double L, const std::vector<double>& E, const std::vector<double>& Exlim, double A, double C,
+    const std::vector<double>& d_bcs, const std::vector<int>& d_bcs_pos, const std::vector<int>& d_bcs_dofs, // dirichilet boundary conditions
+    const std::vector<double>& f_bcs, const std::vector<int>& f_bcs_pos, const std::vector<int>& f_bcs_dofs, // Neumann Boundary conditions
     int bf_func_id, double alpha=0.0, double xb=0.0, double xi = 0.0, 
     double xgamma = 0.0, int porder_Enrichment = 1)
 {
