@@ -34,9 +34,13 @@ class Element
     // inicializa nós
     void get_nodes(std::vector<Node>& nodevec);
 
-    // inicliaza o elemento para assenblagem
-    virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)=0;
-        // seters
+    // inicializa matrizes e vetores locais
+    void Set_ndof();
+
+        // inicliaza o elemento para assenblagem
+        virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)=0;
+        virtual void start_local() = 0;
+        // setters
             virtual void get_conectivity()=0;
             virtual void get_properties(Properties& prop)=0;
         // getters
@@ -102,6 +106,7 @@ class Bar: public Element
 
     // inicliaza o elemento para assenblagem
     virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec);
+    void start_local();
 };
 
 #endif

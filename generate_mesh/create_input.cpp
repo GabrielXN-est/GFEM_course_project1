@@ -56,7 +56,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     {
         //ID, tipo e ordem polinomial
         if ((eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M") && 
-            (i*n_per_el*L / (nnodes-1) + xi < xgamma && (i+1)*n_per_el*L / (nnodes-1) + xi > xgamma ))
+            (!(i*(n_per_el-1)*L / (nnodes-1) + xi < xgamma && (i+1)*(n_per_el-1)*L / (nnodes-1) + xi > xgamma))) // Só vai colocar elementos enriquecidos na inteface
             {file << i+1 << " " << "pGFEMBar" << porder+1;}
         else
             {file << i+1 << " " << eltype << porder+1;}
@@ -66,7 +66,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
         file << " " << 1 << " ";
         //xGamma
         if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
-            {file << xgamma;}
+            {file << xgamma << " ";}
         //Nodes
         for (int j {0}; j < n_per_el; j++)
             {file << i*(n_per_el-1) + j + 1 << " ";}

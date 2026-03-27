@@ -163,11 +163,15 @@ void Bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Propertie
             break;
         }
     }
+}
 
+void Bar::start_local()
+{
     // calcular matrizes locais
-        get_conectivity();
-        get_K();
-        integrate_BF_to_F();
+    Set_ndof();
+    get_conectivity();
+    get_K();
+    integrate_BF_to_F();
 }
 
 void Bar::get_conectivity()  // dofs ordenados seguindo a ordem dos nós

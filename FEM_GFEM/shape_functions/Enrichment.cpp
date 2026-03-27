@@ -64,6 +64,7 @@ double Moes_enrichment_1D::D(double x)
     double dist (x-xGamma);
     double result {0};
     double temp {0}, temp2 {0};
+
     for (Element* el : node_ptr->vicinal_elements)
     {
         if (el->Nod_list[0]->x < xGamma && el->Nod_list[0]->x + el->el_size > xGamma)

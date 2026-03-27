@@ -19,6 +19,7 @@ class Node
     std::vector<Element*> vicinal_elements {};
 
     int p_enriched {0}; // flag para indicar se o nó é enriquecido por polinômios até determinado grau
+    int ep_enriched {-1}; // flag para indicar se o nó já é enriquecido outros enriquecimentos com polinomios
     int polinomial_order_of_enrichment {0}; // indica o grau do polinômio de enriquecimento do nó
     double biggest_vicinal_element_size {}; // para enriquecimentos polinomiais, indica o tamanho do maior elemento vicinal ao nó
 
@@ -32,7 +33,5 @@ class Node
 
 // Função para ordenar um vetor de nodes pela posição x
 void sortNodesByX(std::vector<Node*>& nodes);
-
-void sortNodesByX(std::vector<Node>& nodes);
 
 #endif
