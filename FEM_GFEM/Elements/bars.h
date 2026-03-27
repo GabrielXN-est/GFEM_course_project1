@@ -64,6 +64,8 @@ class p_GFEM_bar_weak_disc : public p_GFEM_bar
 
     // definie enriquecimentos nos nós
     void set_enrichments_desc();
+
+    virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec) override;
 };
 
 #endif

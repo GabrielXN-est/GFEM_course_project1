@@ -2,8 +2,11 @@
 
 // funções auxiliares
 void assign_enrichment_dofs(Node* node, int& dof0)
-{   for (size_t i {0}; i < node->enr.size(); i++)
-        {node->dofs.push_back(dof0++);}}
+{   
+    int lacking_dofs {node->enr.size() + 1 - node->dofs.size()};
+    for (int i {0}; i < lacking_dofs; i++)
+        {node->dofs.push_back(dof0++);}
+}
 
 // lagrangian_bar
 shape_functions* lagrangian_bar::get_shape_func()
@@ -22,11 +25,10 @@ void lagrangian_bar::assign_dofs(int& dof0)
     {
         // PoU dofs
         if (node->dofs.size() == 0)
-        {
             node->dofs.push_back(dof0++);
-            // Enrichment dofs
+        // Enrichment dofs
+        if (node->dofs.size() < node->enr.size() + 1)
             assign_enrichment_dofs(node, dof0);
-        }
     }
 }
 
@@ -86,11 +88,6 @@ void p_GFEM_bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Pr
             break;
         }
     }
-
-    // calcular matrizes locais
-        get_conectivity();
-        get_K();
-        integrate_BF_to_F();
 }
 
 // p_GFEM_bar_weak_disc
@@ -99,17 +96,35 @@ void p_GFEM_bar_weak_disc::set_enrichments_desc()
     set_enrichments();
     for (Node* node : Nod_list)
     {
-        node-> p_enriched = 0;
-        if (node->p_enriched < Enrich)
+        if (Enrich == 0 && node-> p_enriched >= 0)
+            enrichment->assign_to_node(*node);
+        else if (node->ep_enriched < Enrich)
         {
-            for (int grau; grau < Enrich; grau++)
+            enrichment->assign_to_node(*node);
+            for (int grau {0}; grau < Enrich; grau++)
             {
                 node->enr.push_back(new Pair_enrichment_1D(
                     new polinomial_enrichment_1D(-1, grau+1, shifted, scaled, node),
                     enrichment->create_copy(*node)
                     ));
             }
-            node-> p_enriched = Enrich;
+        }
+        node-> ep_enriched = Enrich;
+    }
+}
+
+void p_GFEM_bar_weak_disc::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)
+{
+    get_nodes(node_vec);
+    set_enrichments_desc();
+    assign_dofs(dof0);
+
+    for (Properties& pr: pr_vec)
+    {
+        if (pr.id == prop_id)
+        {
+            get_properties(pr);
+            break;
         }
     }
 }

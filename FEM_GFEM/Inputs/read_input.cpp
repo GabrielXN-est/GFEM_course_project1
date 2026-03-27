@@ -682,6 +682,8 @@ void read_input (const std::string& filename, Mesh& mesh)
     int dof0 {0};
     for (Element* el: el_vec)
         {el->start_el(node_vec, dof0, pr_vec);}
+    for (Element* el: el_vec)
+        {el->start_local();}
         
     // extrair número de dofs
     mesh.set_dofs(dof0);

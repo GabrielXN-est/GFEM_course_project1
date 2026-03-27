@@ -21,6 +21,9 @@ class Matrix
     Matrix (Vector v); // estudar sintaxe
     Matrix () {}
 
+    void inicialize(std::size_t lin, std::size_t col)
+    {mat = std::move(std::vector<std::vector<double>> (lin, std::vector<double>(col, 0.0)));}
+
     //setters
     void clear() {mat.clear();}
 
@@ -57,6 +60,8 @@ class Vector
     Vector (){}
     Vector (Matrix m);
 
+    void inicialize(std::size_t s){vec = std::move(std::vector<double> (s, 0.0));}
+    
     //Setter
     void clear() {vec.clear();}
 

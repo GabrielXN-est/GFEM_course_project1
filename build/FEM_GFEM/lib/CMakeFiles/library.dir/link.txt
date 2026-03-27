@@ -1,2 +1,0 @@
-/usr/bin/ar qc liblibrary.a CMakeFiles/library.dir/__/mesh.cpp.o CMakeFiles/library.dir/__/Elements/bars.cpp.o CMakeFiles/library.dir/__/Elements/element.cpp.o CMakeFiles/library.dir/__/Elements/bar.cpp.o CMakeFiles/library.dir/__/lin_alg/lin_alg.cpp.o CMakeFiles/library.dir/__/lin_alg/Matrix.cpp.o CMakeFiles/library.dir/__/lin_alg/Vector.cpp.o CMakeFiles/library.dir/__/Inputs/read_input.cpp.o CMakeFiles/library.dir/__/Integration_points/integration_points.cpp.o CMakeFiles/library.dir/__/shape_functions/shape_functions.cpp.o
-/usr/bin/ranlib liblibrary.a

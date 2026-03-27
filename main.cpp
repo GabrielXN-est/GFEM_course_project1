@@ -70,11 +70,16 @@ std::string title, int porder, std::string eltype)
     {
         std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/" + title + "_" + std::to_string(nelem) + ".txt"};
 
-        generate_input(filename, nelem, porder, eltype, L, E, E_xlim, A, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
-        std::vector<double> {{0.,1.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
-        std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
-        bf_func, 0, 0, 0, x_gamma); // bf_func_id, alpha, xb, xi, xgamma
-
+        if (eltype == "lBar")
+            generate_input(filename, nelem, porder, eltype, L, E, E_xlim, A, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
+            std::vector<double> {{0.,1.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
+            std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
+            bf_func, 0, 0, 0, x_gamma); // bf_func_id, alpha, xb, xi, xgamma
+        else
+            generate_input(filename, nelem, 1, eltype, L, E, E_xlim, A, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
+            std::vector<double> {{0.,1.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
+            std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
+            bf_func, 0, 0, 0, x_gamma, porder-1); // bf_func_id, alpha, xb, xi, xgamma
         Mesh mesh {};
         read_input(filename, mesh);
 
@@ -84,7 +89,7 @@ std::string title, int porder, std::string eltype)
         mesh.complete_U();
         error_reference.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
         dofs_reference.push_back(mesh.K_global_pos.mat.size());
-        std::cout << "Relative error in energy norm for " << title << " equals: " << error_reference.back() << std::endl;
+        std::cout << "Relative error in energy norm for " << title << " with " << nelem << " elements equals: " << error_reference.back() << std::endl;
         plot_series(get_solution_plotable(mesh, L/100), title + "_" + std::to_string(nelem), "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/plots/");
     }
 }
@@ -115,12 +120,75 @@ int main()
 
         std::cout << "________________h-version FEM linear________________" << std::endl;
 
-        std::vector<int> nelem_p_L{2,4, 6, 8, 10, 12, 14, 16, 18, 20};
+        std::vector<int> nelem_p_L{2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+        std::vector<int> nelem_o_L{3, 5, 7, 9, 11, 13, 15, 17, 19};
+        /*
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_FEM_lin_p_error, h_FEM_lin_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_FEM_pord_" + std::to_string(1), 1, "lBar");
 
-        simulation(nelem_p_L, h_FEM_lin_p_error, h_FEM_lin_p_dofs,
-        L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-        "EX2_1_FEM_pord_" + std::to_string(1), 1, "lBar");
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_FEM_lin_o_error, h_FEM_lin_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_FEM_pord_" + std::to_string(1), 1, "lBar");
  
+        std::cout << "________________h-version FEM quadratic________________" << std::endl;
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_FEM_quad_p_error, h_FEM_quad_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_FEM_pord_" + std::to_string(2), 2, "lBar");
+
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_FEM_quad_o_error, h_FEM_quad_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_FEM_pord_" + std::to_string(2), 2, "lBar");
+
+        std::cout << "________________h-version GFEM linear________________" << std::endl;
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_GFEM_lin_p_error, h_GFEM_lin_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_pord_" + std::to_string(1), 1, "pGFEMBar");
+
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_GFEM_lin_o_error, h_GFEM_lin_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_pord_" + std::to_string(1), 1, "pGFEMBar");
+
+        std::cout << "________________h-version GFEM quadratic________________" << std::endl;
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_GFEM_quad_p_error, h_GFEM_quad_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_pord_" + std::to_string(2), 2, "pGFEMBar");
+
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_GFEM_quad_o_error, h_GFEM_quad_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_pord_" + std::to_string(2), 2, "pGFEMBar");
+
+        std::cout << "________________h-version GFEM linear Sukumar________________" << std::endl;
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_GFEM_lin_p_error, h_GFEM_lin_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_S_pord_" + std::to_string(1), 1, "pGFEMBar_WD_S");
+*/
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_GFEM_lin_o_error, h_GFEM_lin_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_S_pord_" + std::to_string(1), 1, "pGFEMBar_WD_S");
+/*
+        std::cout << "________________h-version GFEM quadratic Sukumar________________" << std::endl;
+            std::cout << " \n -> Pairs" << std::endl;
+            simulation(nelem_p_L, h_GFEM_quad_p_error, h_GFEM_quad_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_S_pord_" + std::to_string(2), 2, "pGFEMBar_WD_S");
+ */
+            std::cout << " \n -> Odds" << std::endl;
+            simulation(nelem_o_L, h_GFEM_quad_o_error, h_GFEM_quad_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_1_GFEM_S_pord_" + std::to_string(2), 2, "pGFEMBar_WD_S");
+
+
         return 0;
     }
     catch (const std::exception& e)

@@ -2,10 +2,13 @@
 
 plotting_data get_solution_plotable(Mesh& mesh, double precision, std::string label)
 {
-    sortNodesByX(mesh.nodes);
-    
-    double x_min {mesh.nodes[0].x};
-    double x_max {mesh.nodes[mesh.nodes.size()-1].x};
+    double x_min {mesh.Big_number};
+    double x_max {-mesh.Big_number};
+    for (Node& node: mesh.nodes)
+        if (node.x < x_min)
+            x_min = node.x;
+        else if (node.x > x_max)
+            x_max = node.x;
 
     std::vector<double> x_values {}, u_values {};  
     
@@ -26,7 +29,7 @@ plotting_data get_solution_plotable(Mesh& mesh, double precision, std::string la
                 sf->mont_vector();
                 Vector N (el->Ndof);
                 el->Mont_N(N, sf, el->Nod_list, x, el->Ndof);
-                for (std::size_t i {0}; i < el->Nod_list.size(); i++)
+                for (std::size_t i {0}; i < N.vec.size(); i++)
                     u_x += N.vec[i]*mesh.U[el->conectivity[i]];
                 break;
             }

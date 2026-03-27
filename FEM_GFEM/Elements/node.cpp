@@ -22,11 +22,3 @@ void sortNodesByX(std::vector<Node*>& nodes)
                   return a->x < b->x;
               });
 }
-
-void sortNodesByX(std::vector<Node>& nodes)
-{
-    std::sort(nodes.begin(), nodes.end(), 
-              [](const Node& a, const Node& b) {
-                  return a.x < b.x;
-              });
-}
