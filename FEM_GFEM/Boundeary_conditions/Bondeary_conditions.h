@@ -8,13 +8,13 @@ class BC_displacement
 {
     public:
     int id {};
-    std::vector<Node*> no;
+    Node* no;
     int dof {};
     double value {};
 
     BC_displacement (){}
 
-    void assign_node (Node* node){no.push_back(node);}
+    void assign_node (Node* node){no = node;}
 
     void clear()
     {
@@ -27,13 +27,13 @@ class BC_load
 {
     public:
     int id {};
-    std::vector<Node*> no;
+    Node* no;
     int dof {};
     double value {};
 
     BC_load (){}
     
-    void assign_node (Node* node){no.push_back(node);}
+    void assign_node (Node* node){no = node;}
 
     void clear()
     {

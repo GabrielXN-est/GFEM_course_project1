@@ -85,7 +85,7 @@ std::string title, int porder, std::string eltype)
         error_reference.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
         dofs_reference.push_back(mesh.K_global_pos.mat.size());
         std::cout << "Relative error in energy norm for " << title << " equals: " << error_reference.back() << std::endl;
-        plot_series(get_solution_plotable(mesh, L/100), title + "_" + std::to_string(nelem) + ".txt", "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/plots/");
+        plot_series(get_solution_plotable(mesh, L/100), title + "_" + std::to_string(nelem), "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/plots/");
     }
 }
 
@@ -95,7 +95,7 @@ int main()
         // parameters for the problem
         double L {10};
         double x_gamma {L/2};
-        std::vector<double> E {10, 1};
+        std::vector<double> E {10000, 1000};
         std::vector<double> E_xlim {x_gamma, L};
         double A {1};
         int bf_func{12};
@@ -115,7 +115,7 @@ int main()
 
         std::cout << "________________h-version FEM linear________________" << std::endl;
 
-        std::vector<int> nelem_p_L{2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+        std::vector<int> nelem_p_L{2,4, 6, 8, 10, 12, 14, 16, 18, 20};
 
         simulation(nelem_p_L, h_FEM_lin_p_error, h_FEM_lin_p_dofs,
         L, x_gamma, E, A, bf_func, U_exact, // parametros fixos

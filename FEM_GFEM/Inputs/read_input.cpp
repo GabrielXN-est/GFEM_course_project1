@@ -662,15 +662,6 @@ void read_input (const std::string& filename, Mesh& mesh)
         type = "";
     }
 
-    for (std::size_t i {0}; i<bc_vec.size();i++)
-    {
-        bc_vec[i].assign_node(get_node_by_id (nid[i], node_vec));
-    }
-    for (std::size_t i {0}; i<loads.size();i++)
-    {
-        loads[i].assign_node(get_node_by_id (lnid[i], node_vec));
-    }
-    
     sort_Enr_by_id(temp_enr_vec);
     // atribuir os enriquecimentos aos nós
     for (Node& no: node_vec)
@@ -695,5 +686,16 @@ void read_input (const std::string& filename, Mesh& mesh)
     // extrair número de dofs
     mesh.set_dofs(dof0);
 
+    // limpar vetor de enriquecimentos temporário
     pointer_vector_clear(temp_enr_vec);
+
+    //condições de contorno nos nós
+    for (std::size_t i {0}; i<bc_vec.size();i++)
+    {
+        bc_vec[i].assign_node(get_node_by_id (nid[i], node_vec));
+    }
+    for (std::size_t i {0}; i<loads.size();i++)
+    {
+        loads[i].assign_node(get_node_by_id (lnid[i], node_vec));
+    }
 }

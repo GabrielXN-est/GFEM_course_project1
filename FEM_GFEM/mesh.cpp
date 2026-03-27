@@ -27,7 +27,7 @@ void Mesh::assemble_penalty()
     int dof {};
     for (BC_load & bc: bc_l)
     {
-        dof = bc.no[0]->dofs[static_cast<std::size_t>(bc.dof)];
+        dof = bc.no->dofs[static_cast<std::size_t>(bc.dof)];
         F_global[dof] = bc.value; 
     }
 
@@ -36,7 +36,7 @@ void Mesh::assemble_penalty()
 
     for (BC_displacement& bc: bc_ds)
     {
-        dof = bc.no[0]->dofs[static_cast<std::size_t>(bc.dof)];
+        dof = bc.no->dofs[static_cast<std::size_t>(bc.dof)];
         K_global[dof][dof] = Big_number;
         F_global[dof] = Big_number * bc.value; 
     }
@@ -61,14 +61,14 @@ void Mesh::assemble_direct()
     int idof {};
     for (BC_load & bc: bc_l)
     {
-        idof = bc.no[0]->dofs[static_cast<std::size_t>(bc.dof)];
+        idof = bc.no->dofs[static_cast<std::size_t>(bc.dof)];
         F_global[idof] = bc.value; 
     }
 
     std::vector<int> dof (bc_ds.size()); // dofs com bc de dirichilet
 
     for (std::size_t i {0}; i < bc_ds.size(); i++)
-    {dof[i] = bc_ds[i].no[0]->dofs[static_cast<std::size_t>(bc_ds[i].dof)];}
+    {dof[i] = bc_ds[i].no->dofs[static_cast<std::size_t>(bc_ds[i].dof)];}
 
     K_global_pos = K_global;
     F_global_pos = F_global;
@@ -89,7 +89,7 @@ void Mesh::assemble_direct()
             {
                 
                 double temp {K_global_pos[i][bc_dof.dof] * bc_dof.value};
-                F_global[lin] -= K_global_pos[i][bc_dof.dof] * bc_dof.value;
+                F_global[lin] -= K_global_pos[i][bc_dof.no->dofs[static_cast<std::size_t>(bc_dof.dof)]] * bc_dof.value;
             }
             for (std::size_t j {0}; j < K_global_pos.mat[i].size(); j++)
             {
@@ -111,7 +111,7 @@ void Mesh::complete_U()
 
     for (std::size_t i {0}; i < bc_ds.size(); i++)
     {
-        dof[i] = bc_ds[i].no[0]->dofs[static_cast<std::size_t>(bc_ds[i].dof)];
+        dof[i] = bc_ds[i].no->dofs[static_cast<std::size_t>(bc_ds[i].dof)];
         bcval[i] = bc_ds[i].value;
     }
 

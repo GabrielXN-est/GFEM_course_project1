@@ -22,7 +22,7 @@ nelem; elemID Type propID nodes
 8 lBar2 1 8 9 
 properties - nprop; propID type E E Exlim Exlim A C bf_fun
 1
-1 MatBar 10 1 5 10 1 0 12 
+1 MatBar 10000 1000 5 10 1 0 12 
 constraints - nconstr;constrID nodeID dof value
 2
 1 1 1 0
