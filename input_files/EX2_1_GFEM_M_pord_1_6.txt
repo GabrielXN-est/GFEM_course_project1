@@ -1,0 +1,27 @@
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX2_1_GFEM_M_pord_1_6.txt
+nodes - nnodes ndim; nodeID x-coord
+7 1
+1 0
+2 1.66667
+3 3.33333
+4 5
+5 6.66667
+6 8.33333
+7 10
+nelem; elemID Type propID x-Gamma nodes
+6
+1 pGFEMBar2_0 1 5 1 2 
+2 pGFEMBar2_0 1 5 2 3 
+3 pGFEMBar2_0 1 5 3 4 
+4 pGFEMBar2_0 1 5 4 5 
+5 pGFEMBar2_0 1 5 5 6 
+6 pGFEMBar2_0 1 5 6 7 
+properties - nprop; propID type E E Exlim Exlim A C bf_fun
+1
+1 MatBar 10000 1000 5 10 1 0 12 
+constraints - nconstr;constrID nodeID dof value
+2
+1 1 1 0
+2 7 1 1
+loads - nload; loadID nodeID dof value
+0

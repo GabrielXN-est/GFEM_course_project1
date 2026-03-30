@@ -1,0 +1,17 @@
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX2_1_FEM_pord_1_1.txt
+nodes - nnodes ndim; nodeID x-coord
+2 1
+1 0
+2 10
+nelem; elemID Type propID nodes
+1
+1 lBar2 1 1 2 
+properties - nprop; propID type E E Exlim Exlim A C bf_fun
+1
+1 MatBar 10000 1000 5 10 1 0 12 
+constraints - nconstr;constrID nodeID dof value
+2
+1 1 1 0
+2 2 1 1
+loads - nload; loadID nodeID dof value
+0

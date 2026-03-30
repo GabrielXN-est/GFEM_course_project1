@@ -40,7 +40,7 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
     shape_functions* dNdxiPoU {get_D_shape_func()};
     shape_functions* N_PoU {get_shape_func()};
 
-    double dxidx {2/Li}; // considerando mapeamento linear para a célula de integração
+    double dxidx {2/L}; // considerando mapeamento linear para a célula de integração
     double x_real {};
 
     for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
@@ -141,7 +141,7 @@ void Bar::get_K()
         {
             if (Exlim[i] >= xi_)
             {
-                Li = (Exlim[i] < xi_ + L) ? Exlim[i] - xi : L - xi;
+                Li = (Exlim[i] < xi_ + L) ? Exlim[i] - xi : L - xi + xi_;
                 integrate_B1_to_K(E[i], Li, xi);
                 xi = Exlim[i];
             }
@@ -169,9 +169,22 @@ void Bar::start_local()
 {
     // calcular matrizes locais
     Set_ndof();
+    assign_E_degree();
     get_conectivity();
     get_K();
     integrate_BF_to_F();
+}
+
+void Bar::assign_E_degree()
+{
+    for (Node* node : Nod_list)
+    {
+        for (Enrichment* e : node->enr)
+        {
+            if (e->grau > E_shape_func_order)
+                E_shape_func_order = e->grau;
+        }
+    }
 }
 
 void Bar::get_conectivity()  // dofs ordenados seguindo a ordem dos nós

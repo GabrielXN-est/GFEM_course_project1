@@ -40,20 +40,24 @@ double Sukumar_enrichment_1D::D(double x) {return Sukumar_derivate(x, xGamma);}
 
 double Moes_enrichment_1D::operator()(double x)
 {
-    double dist (x-xGamma);
     double result {0};
+    std::vector<double> dist {};
+
     for (Element* el : node_ptr->vicinal_elements)
     {
-        if (el->Nod_list[0]->x < xGamma && el->Nod_list[0]->x + el->el_size > xGamma)
+        if ((el->Nod_list[0]->x < x && el->Nod_list[0]->x + el->el_size > x) || el->Nod_list[0]->x == x || el->Nod_list[0]->x + el->el_size == x)
         {
             shape_functions* sf {el->get_shape_func()};
             sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
             sf->mont_vector();
-            for (double val : sf->vec)
-                {result += val*dist;}
-            result = -abs(result);
-            for (double val : sf->vec)
-                {result += val*abs(dist);}
+            dist.reserve(sf->size());
+            for (Node* node: el->Nod_list)
+                {dist.push_back(node->x-xGamma);}
+            for (std::size_t i {0}; i < sf->size(); i++)
+                {result += sf->vec[i]*dist[i];}
+            result = -std::abs(result);
+            for (std::size_t i {0}; i < sf->size(); i++)
+                {result +=sf->vec[i]*std::abs(dist[i]);}
             return result;
         }
     }
@@ -61,13 +65,13 @@ double Moes_enrichment_1D::operator()(double x)
 
 double Moes_enrichment_1D::D(double x)
 {
-    double dist (x-xGamma);
+    std::vector<double> dist {};
     double result {0};
-    double temp {0}, temp2 {0};
+    double temp {0}, dxidx {0};
 
     for (Element* el : node_ptr->vicinal_elements)
     {
-        if (el->Nod_list[0]->x < xGamma && el->Nod_list[0]->x + el->el_size > xGamma)
+        if ((el->Nod_list[0]->x < x && el->Nod_list[0]->x + el->el_size > x) || el->Nod_list[0]->x == x || el->Nod_list[0]->x + el->el_size == x)
         {
             shape_functions* sf {el->get_shape_func()};
             shape_functions* Dsf {el->get_D_shape_func()};
@@ -77,14 +81,27 @@ double Moes_enrichment_1D::D(double x)
             Dsf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
             Dsf->mont_vector();
 
-            for (std::size_t i {0}; i < sf->size(); i++)
-                {result += Dsf->vec[i]*abs(dist) + sf->vec[i]*Sukumar_derivate(x, xGamma);}
+            dxidx = 2/el->el_size;
 
-            for (double val : sf->vec)
-                {temp += val*dist;}
-            temp = -Sukumar_derivate(temp, 0);
+            dist.reserve(sf->size());
+            for (Node* node: el->Nod_list)
+                {dist.push_back(node->x-xGamma);}
+
             for (std::size_t i {0}; i < sf->size(); i++)
-                {result += temp * (1 * sf->vec[i] + (dist * (Dsf->vec[i])));}
+                {temp += sf->vec[i]*dist[i];}
+
+            if (temp >= 0)
+            {
+                for (std::size_t i {0}; i < sf->size(); i++)
+                    {   result += std::abs(dist[i])*Dsf->vec[i] *dxidx;
+                        result -= dist[i]*Dsf->vec[i]*dxidx;}
+            }
+            else
+            {
+                for (std::size_t i {0}; i < sf->size(); i++)
+                    {   result += std::abs(dist[i])*Dsf->vec[i] * dxidx;
+                        result += dist[i]*Dsf->vec[i]*dxidx;}
+            }
             return result;
         }
     }

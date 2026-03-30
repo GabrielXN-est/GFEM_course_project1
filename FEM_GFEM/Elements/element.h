@@ -61,7 +61,7 @@ class Bar: public Element
 {    
     public:
     int shape_func_order {}; // o grau da resposta do FEM puro
-    int E_shape_func_order {}; // o grau do maior enriquecimento polinomial
+    int E_shape_func_order {0}; // o grau do maior enriquecimento polinomial
 
     double A {};
     std::vector<double> E {};
@@ -77,6 +77,9 @@ class Bar: public Element
 
     // inicializa as propriedades da barra
     void get_properties(Properties& prop);
+
+    // determina o maior grau das funções de enriquecimento para determinação dos pontos de integração
+    void assign_E_degree();
 
     // cria matriz de conectividade da barra
     void get_conectivity();

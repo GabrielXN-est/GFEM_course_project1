@@ -55,8 +55,9 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     for (int i {0}; i < nel; i++)
     {
         //ID, tipo e ordem polinomial
-        if ((eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M") && 
-            (!(i*(n_per_el-1)*L / (nnodes-1) + xi < xgamma && (i+1)*(n_per_el-1)*L / (nnodes-1) + xi > xgamma))) // Só vai colocar elementos enriquecidos na inteface
+        if (((eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M") && 
+            (!(i*(n_per_el-1)*L / (nnodes-1) + xi < xgamma && (i+1)*(n_per_el-1)*L / (nnodes-1) + xi > xgamma))) 
+            || (eltype == "pGFEMBar_WD_S" && nel == 1)) // Só vai colocar elementos enriquecidos na inteface sem atrapalhar as condições de contorno
             {file << i+1 << " " << "pGFEMBar" << porder+1;}
         else
             {file << i+1 << " " << eltype << porder+1;}
@@ -100,14 +101,14 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     // constraints description
     file << "constraints - nconstr;constrID nodeID dof value\n";
     file << d_bcs.size() << "\n";
-    for (int i {0}; i < d_bcs.size(); i++)
+    for (int i {0}; i < d_bcs.size();)
     {        
         file << i+1 << " ";
         if (d_bcs_pos[i] ==0)
-            {file << 1 << " ";}
+                file << 1 << " ";
         else
             {file << nnodes << " ";}
-        file << d_bcs_dofs[i] << " " <<d_bcs[i] << "\n";
+        file << d_bcs_dofs[i] << " " <<d_bcs[i++] << "\n";
     }
 
     // loads description

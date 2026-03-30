@@ -1,0 +1,21 @@
+debug.txt
+nodes - nnodes ndim; nodeID x-coord
+4 1
+1 0
+2 4
+3 8
+4 12
+nelem; elemID Type propID x-Gamma nodes
+3
+1 pGFEMBar2_1 1 5 1 2 
+2 pGFEMBar_WD_M2_1 1 5 2 3 
+3 pGFEMBar2_1 1 5 3 4 
+properties - nprop; propID type E A C bf_fun
+1
+1 MatBar 1 1 0 12 
+constraints - nconstr;constrID nodeID dof value
+2
+1 1 1 0
+2 4 1 1
+loads - nload; loadID nodeID dof value
+0
