@@ -72,7 +72,6 @@ std::string title, int porder, std::string eltype)
             mesh.solve();
 
         mesh.complete_U();
-        double se {std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact)};
         error_reference.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
         dofs_reference.push_back(mesh.K_global_pos.mat.size());
         std::cout << "Relative error in energy norm for " << title << " with " << nelem << " elements equals: " << error_reference.back() << std::endl;
@@ -90,7 +89,7 @@ int main()
         std::vector<double> E_xlim {x_gamma, L};
         double A {1};
         int bf_func{12};
-        double U_exact {687125/7392};
+        double U_exact {687125./7392.};
 
         // solution vectors
         std::vector<double> h_FEM_lin_p_error {}, h_FEM_lin_o_error {}, h_FEM_quad_p_error {}, h_FEM_quad_o_error {};
@@ -198,24 +197,24 @@ int main()
 
         std::cout << "________________Taxas de Convergência________________" << std::endl;
             // taxas de convergência
-            int size = nelem_p_L.size();
+            int size {static_cast<int>(nelem_p_L.size())}, sizeO {static_cast<int>(nelem_o_L.size())};;
             std::cout << "Convergence rate for pair linear h-FEM in terms of h: " << (std::log(h_FEM_lin_p_error[size-1])-std::log(h_FEM_lin_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << "Convergence rate for odd linear h-FEM in terms of h: " << (std::log(h_FEM_lin_o_error[size-1])-std::log(h_FEM_lin_o_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd linear h-FEM in terms of h: " << (std::log(h_FEM_lin_o_error[sizeO-1])-std::log(h_FEM_lin_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "Convergence rate for pair quadratic h-FEM in terms of h: " << (std::log(h_FEM_quad_p_error[size-1])-std::log(h_FEM_quad_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << "Convergence rate for odd quadratic h-FEM in terms of h: " << (std::log(h_FEM_quad_o_error[size-1])-std::log(h_FEM_quad_o_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd quadratic h-FEM in terms of h: " << (std::log(h_FEM_quad_o_error[sizeO-1])-std::log(h_FEM_quad_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "Convergence rate for pair linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_p_error[size-1])-std::log(h_GFEM_lin_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << "Convergence rate for odd linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_o_error[size-1])-std::log(h_GFEM_lin_o_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_o_error[sizeO-1])-std::log(h_GFEM_lin_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n";
 
-            std::cout << std::endl <<"Convergence rate for pair quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_p_error[size-1])-std::log(h_GFEM_quad_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << std::endl <<"Convergence rate for odd quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_o_error[size-1])-std::log(h_GFEM_quad_o_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for pair quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_p_error[size-1])-std::log(h_GFEM_quad_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_o_error[sizeO-1])-std::log(h_GFEM_quad_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
             
-            std::cout << std::endl <<"Convergence rate for pair linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_p_error_suk[size-1])-std::log(h_GFEM_lin_p_error_suk[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << std::endl <<"Convergence rate for odd linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_o_error_suk[size-1])-std::log(h_GFEM_lin_o_error_suk[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for pair linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_p_error_suk[size-1])-std::log(h_GFEM_lin_p_error_suk[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_o_error_suk[sizeO-1])-std::log(h_GFEM_lin_o_error_suk[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
-            std::cout << std::endl <<"Convergence rate for pair quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_p_error_moes[size-1])-std::log(h_GFEM_quad_p_error_moes[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << std::endl <<"Convergence rate for odd quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_o_error_moes[size-1])-std::log(h_GFEM_quad_o_error_moes[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for pair quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_p_error_moes[size-1])-std::log(h_GFEM_quad_p_error_moes[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_o_error_moes[sizeO-1])-std::log(h_GFEM_quad_o_error_moes[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "\n";
             
