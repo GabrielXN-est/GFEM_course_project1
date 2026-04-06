@@ -32,7 +32,9 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<G>& y1, std:
     matplot::loglog(x1, y1,"-o")->display_name("pair number of elements");
     matplot::hold(matplot::on);
     matplot::loglog(x2, y2,"-o")->display_name("odd number of elements");
-    matplot::legend();
+    matplot::hold(matplot::off);
+    auto lgd = matplot::legend();
+    lgd->location(matplot::legend::general_alignment::bottomleft);
     matplot::xlabel(x_label);
     matplot::ylabel("Relative error in energy norm");
     matplot::title(title);
@@ -41,7 +43,7 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<G>& y1, std:
 
 void simulation(const std::vector<int>& n_elem_L, std::vector<double>& error_reference, std::vector<double>& dofs_reference,
 double L, double x_gamma,std::vector<double> E, double A, int bf_func, double U_exact, // parametros fixos
-std::string title, int porder, std::string eltype)
+std::string title, int porder, std::string eltype, double tol = std::pow(10, -30))
 {
     std::vector<double> E_xlim {x_gamma, L};
 
@@ -67,7 +69,25 @@ std::string title, int porder, std::string eltype)
 
         mesh.assemble_direct();
         if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc")
-            mesh.solve_dependent_system(std::pow(10, -30), 100000);
+        {
+            try
+            {
+                mesh.solve_dependent_system(tol, 1000000);
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << '\t' << e.what() << std::endl;
+                std::cout << "\t Aumentando a tolerancia para " << std::pow(10, -20) << std::endl;
+                try
+                {mesh.solve_dependent_system(std::pow(10, -20), 1000000);}
+                catch(const std::exception& e)
+                {
+                    std::cout << '\t' << e.what() << std::endl;
+                    std::cout << "\t Aumentando a tolerancia para " << std::pow(10, -12) << std::endl;
+                    mesh.solve_dependent_system(std::pow(10, -12), 1000000);
+                }
+            }
+        }
         else
             mesh.solve();
 
@@ -79,6 +99,8 @@ std::string title, int porder, std::string eltype)
     }
 }
 
+#define P_VERSION
+//#define H_VERSION
 int main()
 {
     try {
@@ -97,12 +119,22 @@ int main()
         std::vector<double> h_GFEM_lin_p_error_suk {}, h_GFEM_lin_o_error_suk {}, h_GFEM_quad_p_error_suk {}, h_GFEM_quad_o_error_suk {};
         std::vector<double> h_GFEM_lin_p_error_moes {}, h_GFEM_lin_o_error_moes {}, h_GFEM_quad_p_error_moes {}, h_GFEM_quad_o_error_moes {};
 
+        std::vector<double> p_FEM_p_error {}, p_FEM_o_error {};
+        std::vector<double> p_GFEM_p_error {}, p_GFEM_o_error {};
+        std::vector<double> p_GFEM_p_error_suk {}, p_GFEM_o_error_suk {};
+        std::vector<double> p_GFEM_p_error_moes {}, p_GFEM_o_error_moes {};
+
         // dofs vectors
         std::vector<double> h_FEM_lin_p_dofs {}, h_FEM_lin_o_dofs{}, h_FEM_quad_p_dofs {}, h_FEM_quad_o_dofs {};
         std::vector<double> h_GFEM_lin_p_dofs {}, h_GFEM_lin_o_dofs {}, h_GFEM_quad_p_dofs {}, h_GFEM_quad_o_dofs {};
         std::vector<double> h_GFEM_lin_p_dofs_suk {}, h_GFEM_lin_o_dofs_suk {}, h_GFEM_quad_p_dofs_suk {}, h_GFEM_quad_o_dofs_suk {};
         std::vector<double> h_GFEM_lin_p_dofs_moes {}, h_GFEM_lin_o_dofs_moes {}, h_GFEM_quad_p_dofs_moes {}, h_GFEM_quad_o_dofs_moes {};
 
+        std::vector<double> p_FEM_p_dofs {}, p_FEM_o_dofs{};
+        std::vector<double> p_GFEM_p_dofs {}, p_GFEM_o_dofs {};
+        std::vector<double> p_GFEM_p_dofs_suk {}, p_GFEM_o_dofs_suk {};
+        std::vector<double> p_GFEM_p_dofs_moes {}, p_GFEM_o_dofs_moes {};
+        #ifdef H_VERSION
         std::cout << "________________h-version FEM linear________________" << std::endl;
 
         std::vector<int> nelem_p_L{2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
@@ -195,7 +227,7 @@ int main()
             L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
             "EX2_1_GFEM_M_pord_" + std::to_string(2), 2, "pGFEMBar_WD_M");
 
-        std::cout << "________________Taxas de Convergência________________" << std::endl;
+        std::cout << "________________Taxas de Convergência (h-version)________________" << std::endl;
             // taxas de convergência
             int size {static_cast<int>(nelem_p_L.size())}, sizeO {static_cast<int>(nelem_o_L.size())};;
             std::cout << "Convergence rate for pair linear h-FEM in terms of h: " << (std::log(h_FEM_lin_p_error[size-1])-std::log(h_FEM_lin_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
@@ -205,7 +237,7 @@ int main()
             std::cout << "Convergence rate for odd quadratic h-FEM in terms of h: " << (std::log(h_FEM_quad_o_error[sizeO-1])-std::log(h_FEM_quad_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "Convergence rate for pair linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_p_error[size-1])-std::log(h_GFEM_lin_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
-            std::cout << "Convergence rate for odd linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_o_error[sizeO-1])-std::log(h_GFEM_lin_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n";
+            std::cout << "Convergence rate for odd linear h-GFEM in terms of h: " << (std::log(h_GFEM_lin_o_error[sizeO-1])-std::log(h_GFEM_lin_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "Convergence rate for pair quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_p_error[size-1])-std::log(h_GFEM_quad_p_error[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
             std::cout << "Convergence rate for odd quadratic h-GFEM in terms of h: " << (std::log(h_GFEM_quad_o_error[sizeO-1])-std::log(h_GFEM_quad_o_error[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
@@ -213,21 +245,102 @@ int main()
             std::cout << "Convergence rate for pair linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_p_error_suk[size-1])-std::log(h_GFEM_lin_p_error_suk[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
             std::cout << "Convergence rate for odd linear h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_lin_o_error_suk[sizeO-1])-std::log(h_GFEM_lin_o_error_suk[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
+            std::cout << "Convergence rate for pair quadratic h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_quad_p_error_suk[size-1])-std::log(h_GFEM_quad_p_error_suk[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd quadratic h-GFEM in terms of h with Sukumar: " << (std::log(h_GFEM_quad_o_error_suk[sizeO-1])-std::log(h_GFEM_quad_o_error_suk[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
+            
+            std::cout << "Convergence rate for pair linear h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_lin_p_error_moes[size-1])-std::log(h_GFEM_lin_p_error_moes[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
+            std::cout << "Convergence rate for odd linear h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_lin_o_error_moes[sizeO-1])-std::log(h_GFEM_lin_o_error_moes[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
+
             std::cout << "Convergence rate for pair quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_p_error_moes[size-1])-std::log(h_GFEM_quad_p_error_moes[size-2]))/(std::log(L/nelem_p_L[size-1])-std::log(L/nelem_p_L[size-2])) << "\n";
             std::cout << "Convergence rate for odd quadratic h-GFEM in terms of h with Moes: " << (std::log(h_GFEM_quad_o_error_moes[sizeO-1])-std::log(h_GFEM_quad_o_error_moes[sizeO-2]))/(std::log(L/nelem_o_L[sizeO-1])-std::log(L/nelem_o_L[sizeO-2])) << "\n\n";
 
             std::cout << "\n";
             
             //plotagens
-            plot_error(nelem_p_L, nelem_o_L, h_FEM_lin_p_error, h_FEM_lin_o_error, "Number of elements", "Ex2 - Standart linear FEM", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_FEM_quad_p_error, h_FEM_quad_o_error, "Number of elements", "Ex2 - Standart quadratic FEM", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_lin_p_error, h_GFEM_lin_o_error, "Number of elements", "Ex2 - linear GFEM = FEM", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_quad_p_error, h_GFEM_quad_o_error, "Number of elements", "Ex2 - quadratic GFEM", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_lin_p_error_suk, h_GFEM_lin_o_error_suk, "Number of elements", "Ex2 - linear GFEM with Sukumar", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_quad_p_error_suk, h_GFEM_quad_o_error_suk, "Number of elements", "Ex2 - quadratic GFEM with Sukumar", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_lin_p_error_moes, h_GFEM_lin_o_error_moes, "Number of elements", "Ex2 - linear GFEM with Moes", "./plots/convergence/");
-            plot_error(nelem_p_L, nelem_o_L, h_GFEM_quad_p_error_moes, h_GFEM_quad_o_error_moes, "Number of elements", "Ex2 - quadratic GFEM with Moes", "./plots/convergence/");
+            plot_error(h_FEM_lin_p_dofs, h_FEM_lin_o_dofs, h_FEM_lin_p_error, h_FEM_lin_o_error, "Degrees of freedom", "Ex2 - Standart linear FEM", "./plots/convergence/");
+            plot_error(h_FEM_quad_p_dofs, h_FEM_quad_o_dofs, h_FEM_quad_p_error, h_FEM_quad_o_error, "Degrees of freedom", "Ex2 - Standart quadratic FEM", "./plots/convergence/");
+            plot_error(h_GFEM_lin_p_dofs, h_GFEM_lin_o_dofs, h_GFEM_lin_p_error, h_GFEM_lin_o_error, "Degrees of freedom", "Ex2 - linear GFEM = FEM", "./plots/convergence/");
+            plot_error(h_GFEM_quad_p_dofs, h_GFEM_quad_o_dofs, h_GFEM_quad_p_error, h_GFEM_quad_o_error, "Degrees of freedom", "Ex2 - quadratic GFEM", "./plots/convergence/");
+            plot_error(h_GFEM_lin_p_dofs_suk, h_GFEM_lin_o_dofs_suk, h_GFEM_lin_p_error_suk, h_GFEM_lin_o_error_suk, "Degrees of freedom", "Ex2 - linear GFEM with Sukumar", "./plots/convergence/");
+            plot_error(h_GFEM_quad_p_dofs_suk, h_GFEM_quad_o_dofs_suk, h_GFEM_quad_p_error_suk, h_GFEM_quad_o_error_suk, "Degrees of freedom", "Ex2 - quadratic GFEM with Sukumar", "./plots/convergence/");
+            plot_error(h_GFEM_lin_p_dofs_moes, h_GFEM_lin_o_dofs_moes, h_GFEM_lin_p_error_moes, h_GFEM_lin_o_error_moes, "Degrees of freedom", "Ex2 - linear GFEM with Moes", "./plots/convergence/");
+            plot_error(h_GFEM_quad_p_dofs_moes, h_GFEM_quad_o_dofs_moes, h_GFEM_quad_p_error_moes, h_GFEM_quad_o_error_moes, "Degrees of freedom", "Ex2 - quadratic GFEM with Moes", "./plots/convergence/");
+        #endif
+        #ifdef P_VERSION
+        std::cout << "________________p-version FEM________________" << std::endl;
 
+        std::vector<int> pord_L{1, 2, 3, 4, 5};
+        double tol {std::pow(10, -18)};
+        std::cout << " \n -> 4 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({4}, p_FEM_p_error, p_FEM_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_FEM_pord_" + std::to_string(pord), pord, "lBar", tol);
+        }
+        std::cout << " \n -> 5 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({5}, p_FEM_o_error, p_FEM_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_FEM_pord_" + std::to_string(pord), pord, "lBar", tol);
+        }
+
+        std::cout << "________________p-version GFEM________________" << std::endl;
+        std::cout << " \n -> 4 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({4}, p_GFEM_p_error, p_GFEM_p_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_pord_" + std::to_string(pord), pord, "pGFEMBar", tol);
+        }
+        std::cout << " \n -> 5 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({5}, p_GFEM_o_error, p_GFEM_o_dofs,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_pord_" + std::to_string(pord), pord, "pGFEMBar", tol);
+        }
+
+        std::cout << "________________p-version GFEM Sukumar________________" << std::endl;
+        std::cout << " \n -> 4 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({4}, p_GFEM_p_error_suk, p_GFEM_p_dofs_suk,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_S_pord_" + std::to_string(pord), pord, "pGFEMBar_WD_S", tol);
+        }
+        std::cout << " \n -> 5 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({5}, p_GFEM_o_error_suk, p_GFEM_o_dofs_suk,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_S_pord_" + std::to_string(pord), pord, "pGFEMBar_WD_S", tol);
+        }
+
+        std::cout << "________________p-version GFEM Moes________________" << std::endl;
+        std::cout << " \n -> 4 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({4}, p_GFEM_p_error_moes, p_GFEM_p_dofs_moes,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_M_pord_" + std::to_string(pord), pord, "pGFEMBar_WD_M", tol);
+        }
+        std::cout << " \n -> 5 elementos" << std::endl;
+        for (int pord: pord_L)
+        {
+            simulation({5}, p_GFEM_o_error_moes, p_GFEM_o_dofs_moes,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "EX2_2_GFEM_M_pord_" + std::to_string(pord), pord, "pGFEMBar_WD_M", tol);
+        }
+
+        //plotagens
+        std::cout << "________________Plotagens (p-version)________________" << std::endl;
+            plot_error(p_FEM_p_dofs, p_FEM_o_dofs, p_FEM_p_error, p_FEM_o_error, "Degrees of freedom", "Ex2 - Standart FEM (p-version)", "./plots/convergence/");
+            plot_error(p_GFEM_p_dofs, p_GFEM_o_dofs, p_GFEM_p_error, p_GFEM_o_error, "Degrees of freedom", "Ex2 - p-GFEM (p-version)", "./plots/convergence/");
+            plot_error(p_GFEM_p_dofs_suk, p_GFEM_o_dofs_suk, p_GFEM_p_error_suk, p_GFEM_o_error_suk, "Degrees of freedom", "Ex2 - p-GFEM with Sukumar (p-version)", "./plots/convergence/");
+            plot_error(p_GFEM_p_dofs_moes, p_GFEM_o_dofs_moes, p_GFEM_p_error_moes, p_GFEM_o_error_moes, "Degrees of freedom", "Ex2 - p-GFEM with Moes (p-version)", "./plots/convergence/");
+        #endif
         return 0;
     }
     catch (const std::exception& e)
