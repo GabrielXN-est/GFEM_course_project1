@@ -42,7 +42,7 @@ class body_function3 : public body_functions
     double operator()(double x)
     {return x*x*x-6.*x*x-x+12;}
 };
-class body_function10 : public body_functions
+class body_function10 : public body_functions // ex1 do projeto 1
 {
     public:
 
@@ -61,7 +61,7 @@ class body_function10 : public body_functions
     }
 };
 
-class body_function12 : public body_functions
+class body_function12 : public body_functions // ex2 do projeto 1
 {
     public:
     body_function12() : body_functions(3) {}
@@ -69,5 +69,19 @@ class body_function12 : public body_functions
     body_function12* clone() const override {return new body_function12();}
     
     double operator()(double x){return 25.*x - 15.*x*x/2 + 1./2.*x*x*x;}
+};
+
+class body_function20 : public body_functions // ex2 do projeto 1
+{
+    public:
+    body_function20() : body_functions(10) {}
+
+    body_function20* clone() const override {return new body_function20();}
+    
+    double operator()(double x)
+    {
+        double pi = std::acos(-1.);
+        return 0.35*0.65*std::pow(x, -1.35)+
+        std::pow(3*pi/2, 2)*std::sin(3*pi*x/2);}
 };
 #endif

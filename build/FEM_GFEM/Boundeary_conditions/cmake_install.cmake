@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/Boundeary_conditions
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/FEM_GFEM/Boundeary_conditions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -17,6 +17,12 @@ Enrichment* Moes_enrichment_1D::create_copy(Node& node)
 Enrichment* Pair_enrichment_1D::create_copy(Node& node)
 {return (new Pair_enrichment_1D(enr1->create_copy(node), enr2->create_copy(node)));}
 
+Enrichment* Project2_enrichment::create_copy(Node& node)
+{return (new Project2_enrichment(id));}
+
+Enrichment* SGFEM_enrichment::create_copy(Node& node)
+{return (new SGFEM_enrichment(enr_or->create_copy(node), &node));}
+
 polinomial_enrichment_1D::polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node) :
  Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc}, node_ptr {node}
 {
@@ -45,7 +51,7 @@ double Moes_enrichment_1D::operator()(double x)
 
     for (Element* el : node_ptr->vicinal_elements)
     {
-        if ((el->Nod_list[0]->x < x && el->Nod_list[0]->x + el->el_size > x) || el->Nod_list[0]->x == x || el->Nod_list[0]->x + el->el_size == x)
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
         {
             shape_functions* sf {el->get_shape_func()};
             sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
@@ -71,7 +77,7 @@ double Moes_enrichment_1D::D(double x)
 
     for (Element* el : node_ptr->vicinal_elements)
     {
-        if ((el->Nod_list[0]->x < x && el->Nod_list[0]->x + el->el_size > x) || el->Nod_list[0]->x == x || el->Nod_list[0]->x + el->el_size == x)
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
         {
             shape_functions* sf {el->get_shape_func()};
             shape_functions* Dsf {el->get_D_shape_func()};
@@ -107,4 +113,46 @@ double Moes_enrichment_1D::D(double x)
     }
 }
 
+double SGFEM_enrichment::operator()(double x)
+{
+    double interpolant {0};
+    std::vector<double> val_node {};
 
+    for (Element* el : node_ptr->vicinal_elements)
+    {
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
+        {
+            shape_functions* sf {el->get_shape_func()};
+            sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            sf->mont_vector();
+            val_node.reserve(sf->size());
+            for (Node* node: el->Nod_list)
+                {val_node.push_back(enr_or->operator()(node->x));}
+            for (std::size_t i {0}; i < sf->size(); i++)
+                {interpolant += sf->vec[i]*val_node[i];}
+            return enr_or->operator()(x) - interpolant;
+        }
+    }
+}
+
+double SGFEM_enrichment::D(double x)
+{
+    double Dinterpolant {0};
+    std::vector<double> val_node {};
+
+    for (Element* el : node_ptr->vicinal_elements)
+    {
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
+        {
+            shape_functions* Dsf {el->get_D_shape_func()};
+            Dsf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            Dsf->mont_vector();
+            val_node.reserve(Dsf->size());
+            for (Node* node: el->Nod_list)
+                {val_node.push_back(enr_or->operator()(node->x));}
+            for (std::size_t i {0}; i < Dsf->size(); i++)
+                {Dinterpolant += Dsf->vec[i]*val_node[i];}
+            return enr_or->D(x) - Dinterpolant;
+        }
+    }
+}

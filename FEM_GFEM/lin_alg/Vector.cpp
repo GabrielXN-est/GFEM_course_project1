@@ -1,5 +1,5 @@
 #include "lin_alg.h"
-
+#include <cmath>
 // Funções auxiliares
 std::size_t Vector_aux_get_vec_size_f_Mat (const Matrix& m)
 {
@@ -63,6 +63,7 @@ Vector Vector::T() const
     return transposed;
 }
 
+//operadores algebricos
 void Vector::operator+= (const Vector& other)
 {
     if (vec.size() != other.vec.size())
@@ -110,4 +111,13 @@ Matrix Vector::operator* (const Matrix& v2)
 {
     Matrix m1 {*this};
     return m1.operator*(v2);
+}
+
+// norma do vetor
+double Vector::norm() const
+{
+    double norm {0};
+    for (double v : vec)
+        {norm += v*v;}
+    return std::pow(norm, 0.5);
 }

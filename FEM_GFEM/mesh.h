@@ -13,6 +13,7 @@ class Mesh
 {
     public:
     double Big_number {std::pow(10, 100)};
+    double scaled_condition_number {};
 
     std::vector<Node> nodes {};
     std::vector<Element*> c_bars {};
@@ -23,6 +24,9 @@ class Mesh
     // criar essas matrizes
     Matrix K_global;
     Matrix K_global_pos;
+
+    Matrix T; // scalling vector
+
     Vector F_global; 
     Vector F_global_pos; 
 
@@ -48,7 +52,13 @@ class Mesh
     // BC pelo método direto
     void assemble_direct();
 
-    void solve() {U = Gauss_elimination(K_global, F_global);}
+    // Scale the stiffnes matrix
+    void create_scaled_global_system(bool get_condition_number = false);
+
+    void solve() 
+    {
+        U = T * Gauss_elimination(K_global, F_global);
+    }
     void solve_dependent_system(double tol = std::pow(10, -12), int max_iter = 1000); // Babuska et al.
 
     // função para completar U com as condições de contorno se usado o método direto

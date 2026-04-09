@@ -90,8 +90,8 @@ void p_GFEM_bar::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Pr
     }
 }
 
-// p_GFEM_bar_weak_disc
-void p_GFEM_bar_weak_disc::set_enrichments_desc()
+// p_GFEM_bar_enr
+void p_GFEM_bar_enr::set_enrichments_desc()
 {
     set_enrichments();
     for (Node* node : Nod_list)
@@ -113,7 +113,7 @@ void p_GFEM_bar_weak_disc::set_enrichments_desc()
     }
 }
 
-void p_GFEM_bar_weak_disc::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)
+void p_GFEM_bar_enr::start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec)
 {
     get_nodes(node_vec);
     set_enrichments_desc();

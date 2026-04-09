@@ -7,7 +7,7 @@ events:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
       - "CMakeLists.txt:7 (project)"
     message: |
-      The system is: Linux - 6.17.0-19-generic - x86_64
+      The system is: Linux - 6.17.0-20-generic - x86_64
   -
     kind: "message-v1"
     backtrace:
@@ -28,7 +28,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
       The C compiler identification is GNU, found in:
-        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/3.28.3/CompilerIdC/a.out
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/3.28.3/CompilerIdC/a.out
       
   -
     kind: "message-v1"
@@ -50,7 +50,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is GNU, found in:
-        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/3.28.3/CompilerIdCXX/a.out
       
   -
     kind: "try_compile-v1"
@@ -61,18 +61,18 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-LY3xEQ"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-LY3xEQ"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qoAatb"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qoAatb"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-LY3xEQ'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qoAatb'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_726a7
-        [1/2] /usr/bin/gcc   -v -o CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/ninja -v cmTC_8d9ee
+        [1/2] /usr/bin/gcc   -v -o CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/gcc
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -82,8 +82,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_726a7.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc1cTIGi.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_8d9ee.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccI1JQq5.s
         GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -113,13 +113,13 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/'
-         as -v --64 -o CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o /tmp/cc1cTIGi.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/'
+         as -v --64 -o CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o /tmp/ccI1JQq5.s
         GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.'
-        [2/2] : && /usr/bin/gcc  -v  -rdynamic CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -o cmTC_726a7   && :
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.'
+        [2/2] : && /usr/bin/gcc  -v  -rdynamic CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -o cmTC_8d9ee   && :
         Using built-in specs.
         COLLECT_GCC=/usr/bin/gcc
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -132,9 +132,9 @@ events:
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_726a7' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_726a7.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccou7BEc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_726a7 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_726a7' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_726a7.'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8d9ee' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d9ee.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5NG9zW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8d9ee /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8d9ee' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d9ee.'
         
       exitCode: 0
   -
@@ -186,10 +186,10 @@ events:
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-LY3xEQ']
+        ignore line: [Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qoAatb']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_726a7]
-        ignore line: [[1/2] /usr/bin/gcc   -v -o CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_8d9ee]
+        ignore line: [[1/2] /usr/bin/gcc   -v -o CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/gcc]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -199,8 +199,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_726a7.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc1cTIGi.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_8d9ee.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccI1JQq5.s]
         ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -230,13 +230,13 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o /tmp/cc1cTIGi.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o /tmp/ccI1JQq5.s]
         ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.']
-        ignore line: [[2/2] : && /usr/bin/gcc  -v  -rdynamic CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -o cmTC_726a7   && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.']
+        ignore line: [[2/2] : && /usr/bin/gcc  -v  -rdynamic CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -o cmTC_8d9ee   && :]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/gcc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -249,13 +249,13 @@ events:
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_726a7' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_726a7.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccou7BEc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_726a7 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8d9ee' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8d9ee.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5NG9zW.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8d9ee /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccou7BEc.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc5NG9zW.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -274,7 +274,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_726a7] ==> ignore
+          arg [cmTC_8d9ee] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -308,7 +308,7 @@ events:
           arg [-L/opt/intel/oneapi/compiler/2025.3/lib] ==> dir [/opt/intel/oneapi/compiler/2025.3/lib]
           arg [-L/opt/intel/oneapi/ccl/2021.17/lib] ==> dir [/opt/intel/oneapi/ccl/2021.17/lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
-          arg [CMakeFiles/cmTC_726a7.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_8d9ee.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -370,18 +370,18 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-GVHxhX"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-GVHxhX"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-Bdjqwr"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-Bdjqwr"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-GVHxhX'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-Bdjqwr'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_4f5fb
-        [1/2] /usr/bin/g++   -v -o CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/ninja -v cmTC_3ccee
+        [1/2] /usr/bin/g++   -v -o CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/g++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -391,8 +391,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_4f5fb.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccBQLHPL.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_3ccee.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccpcIAOD.s
         GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -430,13 +430,13 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 7896445e4990772fdae9dc0659a99266
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/'
-         as -v --64 -o CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBQLHPL.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/'
+         as -v --64 -o CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccpcIAOD.s
         GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.'
-        [2/2] : && /usr/bin/g++  -v  -rdynamic CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_4f5fb   && :
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] : && /usr/bin/g++  -v  -rdynamic CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_3ccee   && :
         Using built-in specs.
         COLLECT_GCC=/usr/bin/g++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -449,9 +449,9 @@ events:
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4f5fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4f5fb.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccale2Np.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4f5fb /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4f5fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4f5fb.'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_3ccee' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3ccee.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cczyrfbZ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_3ccee /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_3ccee' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3ccee.'
         
       exitCode: 0
   -
@@ -517,10 +517,10 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-GVHxhX']
+        ignore line: [Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-Bdjqwr']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_4f5fb]
-        ignore line: [[1/2] /usr/bin/g++   -v -o CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_3ccee]
+        ignore line: [[1/2] /usr/bin/g++   -v -o CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/g++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -530,8 +530,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_4f5fb.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccBQLHPL.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_3ccee.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccpcIAOD.s]
         ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -569,13 +569,13 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 7896445e4990772fdae9dc0659a99266]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBQLHPL.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccpcIAOD.s]
         ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [[2/2] : && /usr/bin/g++  -v  -rdynamic CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_4f5fb   && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] : && /usr/bin/g++  -v  -rdynamic CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_3ccee   && :]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/g++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -588,13 +588,13 @@ events:
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/opt/intel/oneapi/tcm/1.4/lib/../lib/:/opt/intel/oneapi/umf/1.0/lib/../lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib/:/opt/intel/oneapi/mpi/2021.17/lib/../lib/:/opt/intel/oneapi/mkl/2025.3/lib/../lib/:/opt/intel/oneapi/ippcp/2025.3/lib/../lib/:/opt/intel/oneapi/ipp/2022.3/lib/../lib/:/opt/intel/oneapi/dnnl/2025.3/lib/../lib/:/opt/intel/oneapi/dal/2025.10/lib/../lib/:/opt/intel/oneapi/compiler/2025.3/lib/../lib/:/opt/intel/oneapi/ccl/2021.17/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/opt/intel/oneapi/tcm/1.4/lib/:/opt/intel/oneapi/umf/1.0/lib/:/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/:/opt/intel/oneapi/mpi/2021.17/lib/:/opt/intel/oneapi/mkl/2025.3/lib/:/opt/intel/oneapi/ippcp/2025.3/lib/:/opt/intel/oneapi/ipp/2022.3/lib/:/opt/intel/oneapi/dnnl/2025.3/lib/:/opt/intel/oneapi/dal/2025.10/lib/:/opt/intel/oneapi/compiler/2025.3/lib/:/opt/intel/oneapi/ccl/2021.17/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4f5fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4f5fb.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccale2Np.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4f5fb /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_3ccee' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3ccee.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cczyrfbZ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_3ccee /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/opt/intel/oneapi/tcm/1.4/lib/../lib -L/opt/intel/oneapi/umf/1.0/lib/../lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8/../lib -L/opt/intel/oneapi/mpi/2021.17/lib/../lib -L/opt/intel/oneapi/mkl/2025.3/lib/../lib -L/opt/intel/oneapi/ippcp/2025.3/lib/../lib -L/opt/intel/oneapi/ipp/2022.3/lib/../lib -L/opt/intel/oneapi/dnnl/2025.3/lib/../lib -L/opt/intel/oneapi/dal/2025.10/lib/../lib -L/opt/intel/oneapi/compiler/2025.3/lib/../lib -L/opt/intel/oneapi/ccl/2021.17/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/opt/intel/oneapi/tcm/1.4/lib -L/opt/intel/oneapi/umf/1.0/lib -L/opt/intel/oneapi/tbb/2022.3/env/../lib/intel64/gcc4.8 -L/opt/intel/oneapi/mpi/2021.17/lib -L/opt/intel/oneapi/mkl/2025.3/lib -L/opt/intel/oneapi/ippcp/2025.3/lib -L/opt/intel/oneapi/ipp/2022.3/lib -L/opt/intel/oneapi/dnnl/2025.3/lib -L/opt/intel/oneapi/dal/2025.10/lib -L/opt/intel/oneapi/compiler/2025.3/lib -L/opt/intel/oneapi/ccl/2021.17/lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccale2Np.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cczyrfbZ.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -613,7 +613,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_4f5fb] ==> ignore
+          arg [cmTC_3ccee] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -647,7 +647,7 @@ events:
           arg [-L/opt/intel/oneapi/compiler/2025.3/lib] ==> dir [/opt/intel/oneapi/compiler/2025.3/lib]
           arg [-L/opt/intel/oneapi/ccl/2021.17/lib] ==> dir [/opt/intel/oneapi/ccl/2021.17/lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
-          arg [CMakeFiles/cmTC_4f5fb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_3ccee.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -696,6 +696,10 @@ events:
         implicit fwks: []
       
       
+...
+
+---
+events:
   -
     kind: "try_compile-v1"
     backtrace:
@@ -708,25 +712,25 @@ events:
     checks:
       - "Looking for sgemm_"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-BlMVGG"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-BlMVGG"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-XfPBBY"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-XfPBBY"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "BLAS_WORKS"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-BlMVGG'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-XfPBBY'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_0323b
-        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_0323b.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-BlMVGG/CheckFunctionExists.c'
-        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_0323b.dir/CheckFunctionExists.c.o -o cmTC_0323b   && :
-        FAILED: cmTC_0323b 
-        : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_0323b.dir/CheckFunctionExists.c.o -o cmTC_0323b   && :
-        /usr/bin/ld: CMakeFiles/cmTC_0323b.dir/CheckFunctionExists.c.o: na função "main":
+        Run Build Command(s): /usr/bin/ninja -v cmTC_2d972
+        [1/2  50% :: 0.013] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_2d972.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-XfPBBY/CheckFunctionExists.c'
+        [2/2 100% :: 0.024] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_2d972.dir/CheckFunctionExists.c.o -o cmTC_2d972   && :
+        FAILED: cmTC_2d972 
+        : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_2d972.dir/CheckFunctionExists.c.o -o cmTC_2d972   && :
+        /usr/bin/ld: CMakeFiles/cmTC_2d972.dir/CheckFunctionExists.c.o: na função "main":
         CheckFunctionExists.c:(.text+0x14): undefined reference to `sgemm_'
         collect2: error: ld returned 1 exit status
         ninja: build stopped: subcommand failed.
@@ -746,22 +750,22 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-YjfjPc"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-YjfjPc"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-v30X5v"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-v30X5v"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-YjfjPc'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-v30X5v'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_2e3f8
-        [1/2] /usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_2e3f8.dir/src.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-YjfjPc/src.c'
-        [2/2] : && /usr/bin/gcc   CMakeFiles/cmTC_2e3f8.dir/src.c.o -o cmTC_2e3f8   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_1f2b5
+        [1/2  50% :: 0.018] /usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_1f2b5.dir/src.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-v30X5v/src.c'
+        [2/2 100% :: 0.029] : && /usr/bin/gcc   CMakeFiles/cmTC_1f2b5.dir/src.c.o -o cmTC_1f2b5   && :
         
       exitCode: 0
   -
@@ -776,22 +780,22 @@ events:
     checks:
       - "Looking for sgemm_"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-ujmbte"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-ujmbte"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qwH8ud"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qwH8ud"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "BLAS_mkl_intel_lp64_deps_mkl_intel_thread_deps_mkl_core_deps_iomp5_deps_WORKS"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-ujmbte'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qwH8ud'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_b954a
-        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_b954a.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-ujmbte/CheckFunctionExists.c'
-        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_b954a.dir/CheckFunctionExists.c.o -o cmTC_b954a  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_1f293
+        [1/2  50% :: 0.012] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -o CMakeFiles/cmTC_1f293.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-qwH8ud/CheckFunctionExists.c'
+        [2/2 100% :: 0.120] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=sgemm_  CMakeFiles/cmTC_1f293.dir/CheckFunctionExists.c.o -o cmTC_1f293  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl && :
         
       exitCode: 0
   -
@@ -804,22 +808,22 @@ events:
     checks:
       - "Looking for cheev_"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-5VE96P"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-5VE96P"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-TplhZo"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-TplhZo"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "LAPACK_WORKS"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-5VE96P'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-TplhZo'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_8f921
-        [1/2] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=cheev_ -o CMakeFiles/cmTC_8f921.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-5VE96P/CheckFunctionExists.c'
-        [2/2] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=cheev_  CMakeFiles/cmTC_8f921.dir/CheckFunctionExists.c.o -o cmTC_8f921  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl  -lm  -ldl && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_55373
+        [1/2  50% :: 0.012] /usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=cheev_ -o CMakeFiles/cmTC_55373.dir/CheckFunctionExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-TplhZo/CheckFunctionExists.c'
+        [2/2 100% :: 0.123] : && /usr/bin/gcc -DCHECK_FUNCTION_EXISTS=cheev_  CMakeFiles/cmTC_55373.dir/CheckFunctionExists.c.o -o cmTC_55373  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_lp64.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_intel_thread.so  /opt/intel/oneapi/mkl/2025.3/lib/libmkl_core.so  /opt/intel/oneapi/compiler/2025.3/lib/libiomp5.so  -lm  -ldl  -lm  -ldl && :
         
       exitCode: 0
   -
@@ -834,22 +838,22 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_HIDDEN_VISIBILITY"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-lb9ObZ"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-lb9ObZ"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-MA69IW"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-MA69IW"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "COMPILER_HAS_HIDDEN_VISIBILITY"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-lb9ObZ'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-MA69IW'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_7fe6a
-        [1/2] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -fvisibility=hidden -o CMakeFiles/cmTC_7fe6a.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-lb9ObZ/src.cxx'
-        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_7fe6a.dir/src.cxx.o -o cmTC_7fe6a   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_510b6
+        [1/2  50% :: 0.009] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -fvisibility=hidden -o CMakeFiles/cmTC_510b6.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-MA69IW/src.cxx'
+        [2/2 100% :: 0.027] : && /usr/bin/g++   CMakeFiles/cmTC_510b6.dir/src.cxx.o -o cmTC_510b6   && :
         
       exitCode: 0
   -
@@ -864,22 +868,22 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-6f2xuC"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-6f2xuC"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-AmGqAV"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-AmGqAV"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-6f2xuC'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-AmGqAV'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_d3a78
-        [1/2] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fvisibility-inlines-hidden -o CMakeFiles/cmTC_d3a78.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-6f2xuC/src.cxx'
-        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_d3a78.dir/src.cxx.o -o cmTC_d3a78   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_4e4cd
+        [1/2  50% :: 0.011] /usr/bin/g++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fvisibility-inlines-hidden -o CMakeFiles/cmTC_4e4cd.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-AmGqAV/src.cxx'
+        [2/2 100% :: 0.030] : && /usr/bin/g++   CMakeFiles/cmTC_4e4cd.dir/src.cxx.o -o cmTC_4e4cd   && :
         
       exitCode: 0
   -
@@ -894,29 +898,29 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_DEPRECATED_ATTR"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "COMPILER_HAS_DEPRECATED_ATTR"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_2e609
-        [1/2] /usr/bin/g++ -DCOMPILER_HAS_DEPRECATED_ATTR   -o CMakeFiles/cmTC_2e609.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3/src.cxx'
-        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3/src.cxx: In function ‘int main()’:
-        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
+        Run Build Command(s): /usr/bin/ninja -v cmTC_a2aa5
+        [1/2  50% :: 0.011] /usr/bin/g++ -DCOMPILER_HAS_DEPRECATED_ATTR   -o CMakeFiles/cmTC_a2aa5.dir/src.cxx.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470/src.cxx'
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470/src.cxx: In function ‘int main()’:
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
             2 |     int main() { return somefunc();}
               |                         ~~~~~~~~^~
-        /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-icsuN3/src.cxx:1:37: note: declared here
+        /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-xuV470/src.cxx:1:37: note: declared here
             1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
               |                                     ^~~~~~~~
-        [2/2] : && /usr/bin/g++   CMakeFiles/cmTC_2e609.dir/src.cxx.o -o cmTC_2e609   && :
+        [2/2 100% :: 0.027] : && /usr/bin/g++   CMakeFiles/cmTC_a2aa5.dir/src.cxx.o -o cmTC_a2aa5   && :
         
       exitCode: 0
   -
@@ -928,22 +932,22 @@ events:
     checks:
       - "Looking for __fbufsize"
     directories:
-      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-2XxpUr"
-      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-2XxpUr"
+      source: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-mwbUuh"
+      binary: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-mwbUuh"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/cmake"
+      CMAKE_MODULE_PATH: "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/cmake"
     buildResult:
       variable: "HAVE_FBUFSIZE"
       cached: true
       stdout: |
-        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-2XxpUr'
+        Change Dir: '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-mwbUuh'
         
-        Run Build Command(s): /usr/bin/ninja -v cmTC_8fa19
-        [1/2] /usr/bin/gcc    -o CMakeFiles/cmTC_8fa19.dir/CheckSymbolExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/CMakeFiles/CMakeScratch/TryCompile-2XxpUr/CheckSymbolExists.c'
-        [2/2] : && /usr/bin/gcc   CMakeFiles/cmTC_8fa19.dir/CheckSymbolExists.c.o -o cmTC_8fa19   && :
+        Run Build Command(s): /usr/bin/ninja -v cmTC_452a5
+        [1/2  50% :: 0.015] /usr/bin/gcc    -o CMakeFiles/cmTC_452a5.dir/CheckSymbolExists.c.o -c '/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/CMakeFiles/CMakeScratch/TryCompile-mwbUuh/CheckSymbolExists.c'
+        [2/2 100% :: 0.028] : && /usr/bin/gcc   CMakeFiles/cmTC_452a5.dir/CheckSymbolExists.c.o -o cmTC_452a5   && :
         
       exitCode: 0
 ...

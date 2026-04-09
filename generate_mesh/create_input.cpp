@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 // to apply a bc to more than one dof per node, repete the node in the _bcs and _bcs_pos
 // Exlim is the maximum x for which the respective E is valid
@@ -9,8 +10,12 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     const std::vector<double>& d_bcs, const std::vector<int>& d_bcs_pos, const std::vector<int>& d_bcs_dofs, // dirichilet boundary conditions
     const std::vector<double>& f_bcs, const std::vector<int>& f_bcs_pos, const std::vector<int>& f_bcs_dofs, // Neumann Boundary conditions
     int bf_func_id, double alpha=0.0, double xb=0.0, double xi = 0.0, 
-    double xgamma = 0.0, int porder_Enrichment = 1)
+    double xgamma = 0.0, int porder_Enrichment = 1, std::vector<double> geom_enr = {})
 {
+    // flags
+    bool enriched_interface {eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar_2Proj"|| eltype == "pSGFEMBar_2Proj"};
+    bool GFEM {enriched_interface || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc"};
+    
     // open file
     std::ofstream file(filename);
     if (!file.is_open())
@@ -25,7 +30,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     int nnodes {};
     int n_per_el {};
 
-    if (eltype == "lBar" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc"|| eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+    if (eltype == "lBar" || GFEM)
     {
         nnodes = nel*porder + 1;
         n_per_el = porder+1;
@@ -39,39 +44,77 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
         throw std::invalid_argument("Unexpected element type (" + eltype + ")");
 
     // nodes description
-    file << "nodes - nnodes ndim; nodeID x-coord\n";
-    file << nnodes << " 1\n";
-    for (int i {0}; i < nnodes; i++)
-    {
-        file << i+1 << " " << i * L / (nnodes-1) + xi << "\n";
-    }
+    double xi_el {0}, xf_el {0};
 
+    if (enriched_interface && geom_enr.size() != 0)
+    {
+        file << "nodes - nnodes ndim; nodeID x-coord enrID\n" << nnodes << " 1\n";
+        for (int i {0}; i < nnodes; i++)
+        {
+            xi_el = i * L / (nnodes-1) + xi;
+            if (xi_el >= geom_enr[0] && xi_el <= geom_enr[1])
+                file << i+1 << " " << xi_el << " 1\n";
+            else
+                file << i+1 << " " << xi_el << "\n";
+        }
+    }
+    else
+    {
+        file << "nodes - nnodes ndim; nodeID x-coord\n" << nnodes << " 1\n";
+        for (int i {0}; i < nnodes; i++)
+        {file << i+1 << " " << i * L / (nnodes-1) + xi << "\n";}
+    }
     // elements description
-    if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+    if (enriched_interface && geom_enr.size() == 0)
         file << "nelem; elemID Type propID x-Gamma nodes\n";
     else
         file << "nelem; elemID Type propID nodes\n";
     file << nel << "\n";
+
     for (int i {0}; i < nel; i++)
     {
-        //ID, tipo e ordem polinomial
-        if (((eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M") && 
-            (!(i*(n_per_el-1)*L / (nnodes-1) + xi < xgamma && (i+1)*(n_per_el-1)*L / (nnodes-1) + xi > xgamma))) 
-            || (eltype == "pGFEMBar_WD_S" && nel == 1)) // Só vai colocar elementos enriquecidos na inteface sem atrapalhar as condições de contorno
+        xi_el = i*(n_per_el-1)*L / (nnodes-1) + xi;
+        xf_el = (i+1)*(n_per_el-1)*L / (nnodes-1) + xi;
+        if (enriched_interface && (
+        (geom_enr.size() == 0 && (
+            (!(xi_el < xgamma && xf_el > xgamma))) || // verifica se a interface não pertence ao elemento
+            (eltype == "pGFEMBar_WD_S" && nel == 1))) ||// Só vai colocar elementos enriquecidos comj sukumar na inteface sem atrapalhar as condições de contorno
+        (geom_enr.size() != 0)) // if it have geometrical enrichment, non polinomial enrichments defined in the nodes 
             {file << i+1 << " " << "pGFEMBar" << porder+1;}
         else
             {file << i+1 << " " << eltype << porder+1;}
-        if (eltype == "pGFEMBar" || eltype == "pGFEMBar_sc" || eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+        if (GFEM)
             {file << "_" << porder_Enrichment;}
         //propriedades
         file << " " << 1 << " ";
         //xGamma
-        if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+        if (enriched_interface && geom_enr.size() == 0)
             {file << xgamma << " ";}
         //Nodes
         for (int j {0}; j < n_per_el; j++)
             {file << i*(n_per_el-1) + j + 1 << " ";}
         file << "\n";
+    }
+
+    // nodal defined enrichments description
+    if (enriched_interface && geom_enr.size() != 0)
+    {
+        if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M")
+            file << "nenrichments; enrID type xGamma\n";
+        else
+            file << "nenrichments; enrID type\n";
+
+        if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar_2Proj"|| eltype == "pSGFEMBar_2Proj")
+            file << 1 << "\n" << 1;
+
+        if (eltype == "pGFEMBar_WD_S")
+            file << " ESuk " << xgamma << "\n";
+        else if (eltype == "pGFEMBar_WD_M")
+            file << " EMoes " << xgamma << "\n";
+        else if (eltype == "pGFEMBar_2Proj")
+            file << " EProject2\n";
+        else if (eltype == "pSGFEMBar_2Proj")
+            file << " E_SGFEM_Project2\n";
     }
 
     // properties description

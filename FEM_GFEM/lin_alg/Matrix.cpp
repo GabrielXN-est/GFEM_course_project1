@@ -1,5 +1,5 @@
 #include "lin_alg.h"
-
+#include <Eigen/Dense>
 // Matrix
 Matrix::Matrix (Vector v) : mat {((!v.transposed)? 
     std::vector<std::vector<double>>(v.size(), std::vector<double>(1, 0.))
@@ -154,6 +154,59 @@ double Matrix::determinant()
     }
 }
 
+int sign(double x)
+{
+    if (x > 0)
+        return 1;
+    else if (x < 0)
+        return -1;
+    else
+        return 0;
+}
+
+double Matrix::condition_number()
+{
+    //pass matrix to Eigen for eigenvalue calculation
+    Eigen::MatrixXd A(mat.size(), mat.size());
+    for (int j {0}; j < mat.size(); j++)
+    {
+        for (int i {0}; i < mat[0].size(); i++)
+        {
+            A(i, j) = mat[i][j];
+        }
+    }
+
+    //eigenvalue calculation
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver(A);
+
+    if (solver.info() != Eigen::Success)
+        throw std::runtime_error("Failed to compute eigenvalues for condition number calculation");
+
+    //condition number calculation
+    double max {std::abs(solver.eigenvalues()[0])}, min {std::abs(solver.eigenvalues()[0])};
+
+    for (double eigen : solver.eigenvalues())
+    {
+        if (std::abs(eigen) > max)
+            max = std::abs(eigen);
+        if (std::abs(eigen) < min)
+            min = std::abs(eigen);
+    }
+    return max / min;
+}
+
+Matrix Matrix::T()
+{
+    std::vector<std::vector<double>> n (mat[0].size(), std::vector<double>(mat.size(), 0.0));
+    for (std::size_t i {0}; i < mat.size(); i++)
+    {
+        for (std::size_t j {0}; j < mat[0].size(); j++)
+        {
+            n[j][i] = mat[i][j];
+        }
+    }
+    return n;
+}
 Matrix operator* (double n, Matrix&& m)
 {
     return std::move(m*n);

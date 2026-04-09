@@ -23,6 +23,8 @@ body_functions* get_body_function(int id, double alpha = 0., double xb = 0.)
             return new body_function10(alpha, xb);
         case 12:
             return new body_function12();
+        case 20:
+            return new body_function20();
         default:
             throw std::invalid_argument("Invalid body function ID");
     }
@@ -374,9 +376,13 @@ void read_input (const std::string& filename, Mesh& mesh)
                 else if (type == "pGFEMBar_sc")
                     el_vec.push_back(new p_GFEM_bar(id, nodes, propID, shape_func_order, Eshape_func_order, true, true));
                 else if (type == "pGFEMBar_WD_S")
-                    el_vec.push_back(new p_GFEM_bar_weak_disc(id, nodes, propID, shape_func_order, Eshape_func_order, new Sukumar_enrichment_1D(0, xgamma)));
+                    el_vec.push_back(new p_GFEM_bar_enr(id, nodes, propID, shape_func_order, Eshape_func_order, new Sukumar_enrichment_1D(0, xgamma)));
                 else if (type == "pGFEMBar_WD_M")
-                    el_vec.push_back(new p_GFEM_bar_weak_disc(id, nodes, propID, shape_func_order, Eshape_func_order, new Moes_enrichment_1D(0, xgamma)));
+                    el_vec.push_back(new p_GFEM_bar_enr(id, nodes, propID, shape_func_order, Eshape_func_order, new Moes_enrichment_1D(0, xgamma)));
+                else if (type == "pGFEMBar_2Proj")
+                    el_vec.push_back(new p_GFEM_bar_enr(id, nodes, propID, shape_func_order, Eshape_func_order, new Project2_enrichment(0)));
+                else if (type == "pSGFEMBar_2Proj")
+                    el_vec.push_back(new p_GFEM_bar_enr(id, nodes, propID, shape_func_order, Eshape_func_order, new SGFEM_enrichment(new Project2_enrichment(0))));
                 else
                     throw std::invalid_argument("Unexpected element type (" + type + ")");
                 nodes.clear();
@@ -448,6 +454,12 @@ void read_input (const std::string& filename, Mesh& mesh)
                 // descrevendo elementos
                 if (type == "ESuk")
                     temp_enr_vec.push_back(new Sukumar_enrichment_1D(id, xGamma));
+                else if (type == "EMoes")
+                    temp_enr_vec.push_back(new Moes_enrichment_1D(id, xGamma));
+                else if (type == "EProject2")
+                    temp_enr_vec.push_back(new Project2_enrichment(id));
+                else if (type == "E_SGFEM_Project2")
+                    temp_enr_vec.push_back(new SGFEM_enrichment(new Project2_enrichment(id)));
                 else
                     throw std::invalid_argument("Unexpected enrichment type (" + type + ")");
             }

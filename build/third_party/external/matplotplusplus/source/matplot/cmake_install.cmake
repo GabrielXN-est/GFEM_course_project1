@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus/source/matplot
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus/source/matplot
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,6 +43,6 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/matplot/detail" TYPE FILE FILES "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/third_party/external/matplotplusplus/source/matplot/matplot/detail/exports.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/matplot/detail" TYPE FILE FILES "/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/third_party/external/matplotplusplus/source/matplot/matplot/detail/exports.h")
 endif()
 

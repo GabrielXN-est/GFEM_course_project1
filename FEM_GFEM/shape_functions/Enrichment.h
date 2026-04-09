@@ -113,6 +113,46 @@ class Pair_enrichment_1D : public Enrichment
     Enrichment* create_copy(Node& node);
 };
 
+class Project2_enrichment: public Enrichment //enriquecimento do projeto 2
+{
+    public:
+    Project2_enrichment(int index) : Enrichment{index, 10}{};
+
+    double operator()(double x)
+    {
+        double pi = std::acos(-1.);
+        return std::pow(x, 0.65)+ std::sin(3*pi*x/2);
+    }
+
+    double D(double x)
+    {
+        double pi = std::acos(-1.);
+        return 0.65*std::pow(x, -0.35)+ 3*pi/2*std::cos(3*pi*x/2);
+    }
+
+
+    Enrichment* create_copy(Node& node);
+};
+
+class SGFEM_enrichment: public Enrichment //stable GFEM enrichment from another
+{
+    public:
+    Enrichment* enr_or {nullptr};
+    Node* node_ptr {nullptr};
+
+    SGFEM_enrichment(Enrichment* enr) : Enrichment{enr->id, enr->grau}, enr_or{enr} {};
+    SGFEM_enrichment(Enrichment* enr, Node* node) : Enrichment{enr->id, enr->grau}, enr_or{enr}, node_ptr {node} {};
+
+    ~SGFEM_enrichment() {delete enr_or;};
+
+    double operator()(double x);
+
+    double D(double x);
+
+
+    Enrichment* create_copy(Node& node);
+};
+
 // Função para ordenar um vetor de nodes pela posição x
 inline void sort_Enr_by_id(std::vector<Enrichment*>& nodes)
 {

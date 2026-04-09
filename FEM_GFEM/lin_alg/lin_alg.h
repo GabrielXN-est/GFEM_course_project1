@@ -41,8 +41,13 @@ class Matrix
 
     Matrix operator*(double other) const;
     
+    // extract condition number
+    double condition_number();
+
     // extraí valor de matriz 1x1
     double determinant();
+
+    Matrix T();
 };
 
 class Vector
@@ -94,6 +99,8 @@ class Vector
 
     Matrix operator* (const double& v2);
     Matrix operator* (const Matrix& v2);
+
+    double norm() const;
 
     // multiplicação de vetores (classes filhas de Vector)
     template <typename T2>

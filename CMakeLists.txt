@@ -6,6 +6,15 @@ cmake_minimum_required(VERSION 3.0) # CMake minimum version required. It is alwa
 
 project (Project1) # name of your project
 
+find_package(Eigen3 3.3 NO_MODULE) # tries to automatic find Eigen
+
+#Catch the Eingen in the predefined path
+if(NOT TARGET Eigen3::Eigen)
+add_library(Eigen3::Eigen INTERFACE IMPORTED)
+target_include_directories(Eigen3::Eigen INTERFACE /usr/local/include/eigen3)
+endif()
+
+
 include_directories(
 	"${PROJECT_SOURCE_DIR}/FEM_GFEM"
     "${PROJECT_SOURCE_DIR}/FEM_GFEM/Inputs"

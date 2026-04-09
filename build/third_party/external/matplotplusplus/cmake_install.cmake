@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/third_party/external/matplotplusplus
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/third_party/external/matplotplusplus
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,6 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/build/third_party/external/matplotplusplus/source/cmake_install.cmake")
+  include("/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/build/third_party/external/matplotplusplus/source/cmake_install.cmake")
 endif()
 

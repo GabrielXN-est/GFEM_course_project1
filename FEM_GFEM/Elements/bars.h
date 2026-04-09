@@ -49,15 +49,15 @@ class p_GFEM_bar : public lagrangian_bar
     virtual void start_el(std::vector<Node>& node_vec, int& dof0, std::vector<Properties>& pr_vec) override;
 };
 
-class p_GFEM_bar_weak_disc : public p_GFEM_bar
+class p_GFEM_bar_enr : public p_GFEM_bar
 {
     public:
     Enrichment* enrichment {};
     
-    p_GFEM_bar_weak_disc (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, Enrichment* enr, bool shift= true, bool scal= false) : 
+    p_GFEM_bar_enr (int index, std::vector<int> nodeL, int prop, int PoU_sh_o, int E_sh_o, Enrichment* enr, bool shift= true, bool scal= false) : 
      p_GFEM_bar (index, nodeL, prop, PoU_sh_o, E_sh_o, 2*(E_sh_o + 1)*(PoU_sh_o + 1), shift, scal), enrichment {enr} {}
 
-    ~p_GFEM_bar_weak_disc() {delete enrichment;}
+    ~p_GFEM_bar_enr() {delete enrichment;}
 
     // definie enriquecimentos nos nós
     void set_enrichments_desc();

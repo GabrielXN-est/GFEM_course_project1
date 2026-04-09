@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lib
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/FEM_GFEM/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

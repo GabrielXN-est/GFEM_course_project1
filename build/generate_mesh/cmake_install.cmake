@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/generate_mesh
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/generate_mesh
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

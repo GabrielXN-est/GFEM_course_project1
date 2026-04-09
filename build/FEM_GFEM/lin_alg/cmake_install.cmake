@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 1/FEM_GFEM/lin_alg
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/FEM_GFEM/lin_alg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
