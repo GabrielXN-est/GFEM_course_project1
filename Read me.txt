@@ -1,0 +1,18 @@
+-> Para rodar
+Trocar o nome do main_ex1.cpp (exercício 1) ou main_ex2.cpp (exercício 2) para main.cpp e dar o build (pode requerer remove cache)
+Funcionou no computador do labmec com GCC 13.3.0
+. matplotplusplus requer gnuplot
+
+-> Estrutura do côdigo
+* generate_input em generate_mesh/ gera arquivo com a malha
+* FEM_GFEM/inputs/read_input tem a função que incializa todos os objetos e já cálcula as suas matrizes de rigidez
+* FEM_GFEM/mesh tem a classe mesh que salva os objetos e tem os métodos para assemblar, resolver o sistema de equações e fornecer quantidades de pos-processamento
+* FEM_GFEM/Post_processing ficou com uns objetos para falitar a plotagem
+* FEM_GFEM/lin_alg tem objetos e funções para facilitar os cálculos
+* FEM_GFEM/Integration_points tem os pontos de integração de euler
+* FEM_GFEM/Elements/node tem as definições para os nós
+* FEM_GFEM/Elements/element.h é o header das classes abstratas dos elementos, tendo as funções em element.cpp e bar.cpp
+* FEM_GFEM/Elements/bars define as classes dos elementos específicos
+* FEM_GFEM/Boundeary_conditions define as classes das condições de contorno
+* FEM_GFEM/shape_functions define as funções de forma e os enriquecimentos utilizados
+

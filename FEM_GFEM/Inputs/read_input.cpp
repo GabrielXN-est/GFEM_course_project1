@@ -679,6 +679,7 @@ void read_input (const std::string& filename, Mesh& mesh)
         }
     }
 
+    // define atribui propriedades aos elementos e computa as matrizes de rigidez locais e vetores de carga locais
     int dof0 {0};
     for (Element* el: el_vec)
         {el->start_el(node_vec, dof0, pr_vec);}

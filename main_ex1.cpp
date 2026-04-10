@@ -10,12 +10,14 @@
 #include "mesh.h"
 #include "plot_solution.h"
 
+// o erro do matplot indicado sera resolvido quando o nome deste arquivo for trocado para main.cpp
 #include <matplot/matplot.h>
 
 // Não chamar FEM p-hieraquico como PoU do GFEM, pois não é PoU e não foram implementado // Pode chama-lo se não se foi implementado nenhuma função de enriquecimento
 
 // dof order in the nodes (PoU dofs -> node aplyed enrichments ->
     // -> pGFEM generated polinomial enrichments -> pGFEM generated non-polinomial enrichments)
+
 void plot_series(const plotting_data& data, const std::string& title = "", const std::string& path = "./")
 {
     matplot::plot(data.x_values, data.u_values, data.label);
@@ -80,17 +82,23 @@ int main()
             {
                 std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_3_FEM_nel_" + std::to_string(nelem) + ".txt"};
 
+                // generate the input file to the current problem
                 generate_input(filename, nelem, 2, "lBar", L, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
                 std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
                 10, alpha, 0.2); // bf_func_id, alpha, xb
 
+                // initialize mesh by reading the input file, defining the nodes, elements, BCs and enrichments and computing local stiffness matrices and load vectors
                 Mesh mesh {};
                 read_input(filename, mesh);
 
+                // assenble global stiffness matrix and load vector, apply BCs
                 mesh.assemble_direct();
+
+                // solve the system of equations
                 mesh.solve();
 
+                // post processing
                 mesh.complete_U();
                 h_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 h_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
