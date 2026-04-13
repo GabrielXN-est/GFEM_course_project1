@@ -1,4 +1,4 @@
-/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX2_1_GFEM_M_pord_2_12.txt
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 1//input_files/EX2_1_GFEM_M_pord_2_12.txt
 nodes - nnodes ndim; nodeID x-coord
 13 1
 1 0

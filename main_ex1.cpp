@@ -20,10 +20,10 @@
 
 void plot_series(const plotting_data& data, const std::string& title = "", const std::string& path = "./")
 {
-    matplot::plot(data.x_values, data.u_values, data.label);
+    auto f = matplot::figure(true);
+    matplot::plot(data.x_values, data.u_values);
     matplot::xlabel("x");
     matplot::ylabel("u(x)");
-    matplot::legend();
     matplot::save(path + title + ".png");
 }
 template <typename T, typename G>
@@ -34,6 +34,7 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<G>& y1, std:
     matplot::loglog(x1, y1,"-o")->display_name("h-FEM");
     matplot::hold(matplot::on);
     matplot::loglog(x2, y2,"-o")->display_name("h-GFEM");
+    matplot::hold(matplot::off);
     matplot::legend();
     matplot::xlabel(x_label);
     matplot::ylabel("Relative error in energy norm");
@@ -53,6 +54,7 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3, std:
     matplot::loglog(x3, y3,"-o")->display_name("p-FEM");
     matplot::hold(matplot::on);
     matplot::loglog(x4, y4,"-o")->display_name("p-GFEM");
+    matplot::hold(matplot::off);
     matplot::legend();
     matplot::xlabel(x_label);
     matplot::ylabel("Relative error in energy norm");
@@ -64,6 +66,8 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3, std:
 int main()
 {
     try {
+        std::string path = "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/";
+
         std::vector<int> pord_L {1,2,3,4,5,6};
 
         double L {1};
@@ -80,7 +84,7 @@ int main()
             h_FEM_dofs.reserve(5);
             for (int nelem: nelem_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_3_FEM_nel_" + std::to_string(nelem) + ".txt"};
+                std::string filename {path + "input_files/EX1_3_FEM_nel_" + std::to_string(nelem) + ".txt"};
 
                 // generate the input file to the current problem
                 generate_input(filename, nelem, 2, "lBar", L, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
@@ -103,7 +107,7 @@ int main()
                 h_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 h_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << nelem << " elements: " << h_FEM_error.back() << std::endl;
-                plot_series(get_solution_plotable(mesh), "EX1_3_FEM_nel_" + std::to_string(nelem) + ".txt", "/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/plots/");
+                plot_series(get_solution_plotable(mesh), "EX1_3_FEM_nel_" + std::to_string(nelem), path + "/plots/");
             }
 
             std::cout << "________________h-version GFEM________________" << std::endl;
@@ -112,7 +116,7 @@ int main()
             h_GFEM_dofs.reserve(5);
             for (int nelem: nelem_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_3_GFEM_nel_" + std::to_string(nelem) + ".txt"};
+                std::string filename {path + "input_files/EX1_3_GFEM_nel_" + std::to_string(nelem) + ".txt"};
 
                 generate_input(filename, nelem, 1, "pGFEMBar", 1, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -129,6 +133,7 @@ int main()
                 h_GFEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 h_GFEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << nelem << " elements: " << h_GFEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_3_GFEM_nel_" + std::to_string(nelem), path + "/plots/");
             }
 
             std::cout << "________________p-version FEM________________" << std::endl;
@@ -137,7 +142,7 @@ int main()
             p_FEM_dofs.reserve(6);
             for (int pord: pord_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_4_FEM_pord_" + std::to_string(pord) + ".txt"};
+                std::string filename {path + "input_files/EX1_4_FEM_pord_" + std::to_string(pord) + ".txt"};
 
                 generate_input(filename, 2, pord, "lBar", L, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -154,6 +159,7 @@ int main()
                 p_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 p_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << pord << " polynomial order: " << p_FEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_4_FEM_pord_" + std::to_string(pord), path + "/plots/");
             }
 
             std::cout << "________________p-version GFEM________________" << std::endl;
@@ -162,7 +168,7 @@ int main()
             p_GFEM_dofs.reserve(6);
             for (int pord: pord_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_4_GFEM_pord_" + std::to_string(pord) + ".txt"};
+                std::string filename {path + "input_files/EX1_4_GFEM_pord_" + std::to_string(pord) + ".txt"};
 
                 generate_input(filename, 2, 1, "pGFEMBar", 1, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -179,17 +185,18 @@ int main()
                 p_GFEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 p_GFEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << pord << " polynomial order: " << p_GFEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_4_GFEM_pord_" + std::to_string(pord), path + "/plots/");
             }
 
             // taxas de convergência
             int size = nelem_L.size();
             std::cout << std::endl <<"Convergence rate for h-FEM in terms of h: " << (std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
             std::cout << "Convergence rate for h-GFEM in terms of h: " << (std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
-            std::cout << "Convergence rate for h-FEM in terms of dofs: " << (std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for h-GFEM in terms of dofs: " << (std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(h_GFEM_dofs[size-1])-std::log(h_GFEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for h-FEM in terms of dofs: " << -(std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for h-GFEM in terms of dofs: " << -(std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(h_GFEM_dofs[size-1])-std::log(h_GFEM_dofs[size-2])) << "\n";
             size = pord_L.size();
-            std::cout << "Convergence rate for p-FEM in terms of dofs: " << (std::log(p_FEM_error[size-1])-std::log(p_FEM_error[size-2]))/(std::log(p_FEM_dofs[size-1])-std::log(p_FEM_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for p-GFEM in terms of dofs: " << (std::log(p_GFEM_error[size-1])-std::log(p_GFEM_error[size-2]))/(std::log(p_GFEM_dofs[size-1])-std::log(p_GFEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for p-FEM in terms of dofs: " << -(std::log(p_FEM_error[size-1])-std::log(p_FEM_error[size-2]))/(std::log(p_FEM_dofs[size-1])-std::log(p_FEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for p-GFEM in terms of dofs: " << -(std::log(p_GFEM_error[size-1])-std::log(p_GFEM_error[size-2]))/(std::log(p_GFEM_dofs[size-1])-std::log(p_GFEM_dofs[size-2])) << "\n";
             //plotagens
             plot_error(nelem_L, nelem_L, h_FEM_error, h_GFEM_error, "Number of elements", "alpha = 0,5|h-version convergence");
             plot_error(h_FEM_dofs, h_GFEM_dofs, h_FEM_error, h_GFEM_error, "Number of dofs", "alpha = 0,5|h-version convergence");
@@ -208,7 +215,7 @@ int main()
             h_FEM_dofs.reserve(4);
             for (int nelem: nelem_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_5_FEM_nel_" + std::to_string(nelem) + ".txt"};
+                std::string filename {path + "input_files/EX1_5_FEM_nel_" + std::to_string(nelem) + ".txt"};
 
                 generate_input(filename, nelem, 2, "lBar", L, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -225,6 +232,7 @@ int main()
                 h_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 h_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << nelem << " elements: " << h_FEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_5_FEM_nel_" + std::to_string(nelem), path + "/plots/");
             }
 
             std::cout << "________________h-version GFEM________________" << std::endl;
@@ -233,7 +241,7 @@ int main()
             h_GFEM_dofs.reserve(4);
             for (int nelem: nelem_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_5_GFEM_nel_" + std::to_string(nelem) + ".txt"};
+                std::string filename {path + "input_files/EX1_5_GFEM_nel_" + std::to_string(nelem) + ".txt"};
 
                 generate_input(filename, nelem, 1, "pGFEMBar", 1, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -250,6 +258,7 @@ int main()
                 h_GFEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 h_GFEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << nelem << " elements: " << h_GFEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_5_GFEM_nel_" + std::to_string(nelem), path + "/plots/");
             }
 
             std::cout << "________________p-version FEM________________" << std::endl;
@@ -258,7 +267,7 @@ int main()
             p_FEM_dofs.reserve(6);
             for (int pord: pord_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_6_FEM_pord_" + std::to_string(pord) + ".txt"};
+                std::string filename {path + "input_files/EX1_6_FEM_pord_" + std::to_string(pord) + ".txt"};
 
                 generate_input(filename, 2, pord, "lBar", L, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -275,6 +284,7 @@ int main()
                 p_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 p_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << pord << " polynomial order: " << p_FEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_6_FEM_pord_" + std::to_string(pord), path + "/plots/");
             }
 
             std::cout << "________________p-version GFEM________________" << std::endl;
@@ -283,7 +293,7 @@ int main()
             p_GFEM_dofs.reserve(6);
             for (int pord: pord_L)
             {
-                std::string filename {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 1/input_files/EX1_6_GFEM_pord_" + std::to_string(pord) + ".txt"};
+                std::string filename {path + "input_files/EX1_6_GFEM_pord_" + std::to_string(pord) + ".txt"};
 
                 generate_input(filename, 2, 1, "pGFEMBar", 1, std::vector<double> {1}, std::vector<double> {}, 1, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
                 std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
@@ -300,17 +310,18 @@ int main()
                 p_GFEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
                 p_GFEM_dofs.push_back(mesh.K_global_pos.mat.size());
                 std::cout << "Relative error in energy norm for " << pord << " polynomial order: " << p_GFEM_error.back() << std::endl;
+                plot_series(get_solution_plotable(mesh), "EX1_6_GFEM_pord_" + std::to_string(pord), path + "/plots/");
             }
 
             // taxas de convergência
             int size = nelem_L.size();
             std::cout << std::endl <<"Convergence rate for h-FEM in terms of h: " << (std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
             std::cout << "Convergence rate for h-GFEM in terms of h: " << (std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
-            std::cout << "Convergence rate for h-FEM in terms of dofs: " << (std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for h-GFEM in terms of dofs: " << (std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(h_GFEM_dofs[size-1])-std::log(h_GFEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for h-FEM in terms of dofs: " << -(std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for h-GFEM in terms of dofs: " << -(std::log(h_GFEM_error[size-1])-std::log(h_GFEM_error[size-2]))/(std::log(h_GFEM_dofs[size-1])-std::log(h_GFEM_dofs[size-2])) << "\n";
             size = pord_L.size();
-            std::cout << "Convergence rate for p-FEM in terms of dofs: " << (std::log(p_FEM_error[size-1])-std::log(p_FEM_error[size-2]))/(std::log(p_FEM_dofs[size-1])-std::log(p_FEM_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for p-GFEM in terms of dofs: " << (std::log(p_GFEM_error[size-1])-std::log(p_GFEM_error[size-2]))/(std::log(p_GFEM_dofs[size-1])-std::log(p_GFEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for p-FEM in terms of dofs: " << -(std::log(p_FEM_error[size-1])-std::log(p_FEM_error[size-2]))/(std::log(p_FEM_dofs[size-1])-std::log(p_FEM_dofs[size-2])) << "\n";
+            std::cout << "Convergence rate for p-GFEM in terms of dofs: " << -(std::log(p_GFEM_error[size-1])-std::log(p_GFEM_error[size-2]))/(std::log(p_GFEM_dofs[size-1])-std::log(p_GFEM_dofs[size-2])) << "\n";
             //plotagens
             plot_error(nelem_L, nelem_L, h_FEM_error, h_GFEM_error, "Number of elements", "alpha = 50|h-version convergence");
             plot_error(h_FEM_dofs, h_GFEM_dofs, h_FEM_error, h_GFEM_error, "Number of dofs", "alpha = 50|h-version convergence");

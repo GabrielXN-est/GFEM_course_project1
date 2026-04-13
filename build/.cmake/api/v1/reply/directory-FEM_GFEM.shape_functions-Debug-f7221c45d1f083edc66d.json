@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "FEM_GFEM/shape_functions",
+		"source" : "FEM_GFEM/shape_functions"
+	}
+}
