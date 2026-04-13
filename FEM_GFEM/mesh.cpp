@@ -5,9 +5,6 @@ void Mesh::set_dofs(int dofs)
 {
     K_global = Matrix(dofs, dofs);
     F_global = Vector(dofs);
-    T = Matrix(dofs, dofs);
-    for (std::size_t i{0}; i< T.mat.size(); i++)
-        {T[i][i] = 1.;}
 }
 
 // Asseblagem
@@ -82,6 +79,7 @@ void Mesh::assemble_direct()
     int lin {0}, col {0};
     K_global = Matrix(K_global_pos.mat.size() - dof.size(), K_global_pos.mat.size() - dof.size());
     F_global = Vector(F_global_pos.size() - dof.size());
+    T = Matrix (F_global.size(), F_global.size());
 
     for (std::size_t i {0}; i < K_global_pos.mat.size(); i++)
     {
@@ -103,6 +101,9 @@ void Mesh::assemble_direct()
             lin++;
         }
     }
+
+    for (std::size_t i{0}; i< T.mat.size(); i++)
+        {T[i][i] = 1.;}
 }
 
 void Mesh::complete_U()
@@ -145,15 +146,15 @@ double stop_condition(Vector&U, Vector&e, Matrix& K)
 
 void Mesh::create_scaled_global_system(bool get_condition_number)
 {
-    T = Matrix (K_global.mat.size(), K_global[0].size());
+    Matrix K_old {K_global};
 
     for (std::size_t i {0}; i < K_global.mat.size(); i++)
     {
         for (std::size_t j {0}; j < K_global[0].size(); j++)
         {
-            K_global[i][j] = K_global[i][j]/std::sqrt(K_global[i][i] * K_global[j][j]);
+            K_global[i][j] = K_old[i][j]/std::sqrt(K_old[i][i] * K_old[j][j]);
             if (i == j)
-                T[i][j] = 1./std::sqrt(K_global[i][i]);
+                T[i][j] = 1./std::sqrt(K_old[i][i]);
             else
                 T[i][j] = 0.;
         }
@@ -167,8 +168,6 @@ void Mesh::create_scaled_global_system(bool get_condition_number)
 
 void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
 {
-    create_scaled_global_system();
- 
     Vector u (F_global.size()), e (F_global.size()), r (F_global.size());
 
     Matrix Ke {K_global + I(K_global.mat.size())};
@@ -186,7 +185,7 @@ void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
         n_iter++;
 
         if (n_iter > max_iter)
-            throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ")");
+            throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ") -- error of " + std::to_string(stop_condition(u, e, K_global)));
     } while (stop_condition(u, e, K_global)> tol);
 
     U = T * u;

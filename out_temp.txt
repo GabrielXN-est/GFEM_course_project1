@@ -1,0 +1,82 @@
+________________h-version FEM________________
+Relative error in energy norm for P2_FEM_pord_1 with 8 elements equals: 0.220773
+Conditioning number for P2_FEM_pord_1 with 8 elements equals: 25.2741
+
+Relative error in energy norm for P2_FEM_pord_1 with 16 elements equals: 0.15114
+Conditioning number for P2_FEM_pord_1 with 16 elements equals: 103.087
+
+Relative error in energy norm for P2_FEM_pord_1 with 32 elements equals: 0.11942
+Conditioning number for P2_FEM_pord_1 with 32 elements equals: 414.345
+
+Relative error in energy norm for P2_FEM_pord_1 with 64 elements equals: 0.102198
+Conditioning number for P2_FEM_pord_1 with 64 elements equals: 1659.38
+
+Relative error in energy norm for P2_FEM_pord_1 with 128 elements equals: 0.090301
+Conditioning number for P2_FEM_pord_1 with 128 elements equals: 6639.52
+
+________________h-version GFEM topological________________
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 8 elements equals: 0.182217
+Conditioning number for P2_GFEM_topo_pord_1 with 8 elements equals: 25.2742
+
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 16 elements equals: 0.114372
+Conditioning number for P2_GFEM_topo_pord_1 with 16 elements equals: 103.087
+
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 32 elements equals: 0.0812386
+Conditioning number for P2_GFEM_topo_pord_1 with 32 elements equals: 414.345
+
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 64 elements equals: 0.0642153
+Conditioning number for P2_GFEM_topo_pord_1 with 64 elements equals: 1659.38
+
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 128 elements equals: 0.0537571
+Conditioning number for P2_GFEM_topo_pord_1 with 128 elements equals: 6639.52
+
+________________h-version SGFEM topological________________
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 8 elements equals: 0.636657
+Conditioning number for P2_SGFEM_topo_pord_1 with 8 elements equals: 35.5453
+
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 16 elements equals: 0.531254
+Conditioning number for P2_SGFEM_topo_pord_1 with 16 elements equals: 123.608
+
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 32 elements equals: 0.398578
+Conditioning number for P2_SGFEM_topo_pord_1 with 32 elements equals: 451.955
+
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 64 elements equals: 0.288607
+Conditioning number for P2_SGFEM_topo_pord_1 with 64 elements equals: 1727.05
+
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 128 elements equals: 0.205756
+Conditioning number for P2_SGFEM_topo_pord_1 with 128 elements equals: 6761.23
+
+________________h-version GFEM geometrical________________
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 8 elements equals: 0.125996
+Conditioning number for P2_GFEM_geom_pord_1 with 8 elements equals: 973.003
+
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 16 elements equals: 0.0776908
+Conditioning number for P2_GFEM_geom_pord_1 with 16 elements equals: 5297.16
+
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 32 elements equals: 0.0461402
+Conditioning number for P2_GFEM_geom_pord_1 with 32 elements equals: 40576.2
+
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 64 elements equals: 0.0221646
+Conditioning number for P2_GFEM_geom_pord_1 with 64 elements equals: 393240
+
+        Warning: Maximum number of iterations reached without convergence. (10000001) -- error of 0.000000
+         Aumentando a tolerancia para 1e-20
+        Warning: Maximum number of iterations reached without convergence. (1000001) -- error of 0.000000
+         Aumentando a tolerancia para 1e-12
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 128 elements equals: 0.0711245
+Conditioning number for P2_GFEM_geom_pord_1 with 128 elements equals: 4.54271e+06
+
+________________h-version SGFEM geometrical________________
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 8 elements equals: 1.33294
+Conditioning number for P2_SGFEM_geom_pord_1 with 8 elements equals: 74.9846
+
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 16 elements equals: 1.60584
+Conditioning number for P2_SGFEM_geom_pord_1 with 16 elements equals: 318.467
+
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 32 elements equals: 1.93679
+Conditioning number for P2_SGFEM_geom_pord_1 with 32 elements equals: 1637.9
+
+        Warning: Maximum number of iterations reached without convergence. (10000001) -- error of 0.000000
+         Aumentando a tolerancia para 1e-20
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 64 elements equals: 2.59417
+Conditioning number for P2_SGFEM_geom_pord_1 with 64 elements equals: 14508.9

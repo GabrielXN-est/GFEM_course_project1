@@ -64,6 +64,7 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
         for (int i {0}; i < nnodes; i++)
         {file << i+1 << " " << i * L / (nnodes-1) + xi << "\n";}
     }
+
     // elements description
     if (enriched_interface && geom_enr.size() == 0)
         file << "nelem; elemID Type propID x-Gamma nodes\n";
@@ -75,11 +76,13 @@ void generate_input(std::string filename, int nel, int porder, std::string eltyp
     {
         xi_el = i*(n_per_el-1)*L / (nnodes-1) + xi;
         xf_el = (i+1)*(n_per_el-1)*L / (nnodes-1) + xi;
-        if (enriched_interface && (
-        (geom_enr.size() == 0 && (
-            (!(xi_el < xgamma && xf_el > xgamma))) || // verifica se a interface não pertence ao elemento
-            (eltype == "pGFEMBar_WD_S" && nel == 1))) ||// Só vai colocar elementos enriquecidos comj sukumar na inteface sem atrapalhar as condições de contorno
-        (geom_enr.size() != 0)) // if it have geometrical enrichment, non polinomial enrichments defined in the nodes 
+        // verifica se a interface não pertence ao elemento
+        // Enriquecimentos no projeto 2 validos para singularidades nos nós
+         // Só vai colocar elementos enriquecidos na inteface sem atrapalhar as condições de contorno
+         // if it have geometrical enrichment, non polinomial enrichments defined in the nodes 
+        if ((enriched_interface) && (((geom_enr.size() == 0) && (((eltype == "pGFEMBar_2Proj" || eltype == "pSGFEMBar_2Proj") && !(xi_el <= xgamma && xf_el >= xgamma)) ||
+                    ((eltype != "pGFEMBar_2Proj" && eltype != "pSGFEMBar_2Proj") && !(xi_el < xgamma && xf_el > xgamma)) ||
+                    (eltype == "pGFEMBar_WD_S" && nel == 1))) || (geom_enr.size() != 0)))
             {file << i+1 << " " << "pGFEMBar" << porder+1;}
         else
             {file << i+1 << " " << eltype << porder+1;}

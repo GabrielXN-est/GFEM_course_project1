@@ -319,8 +319,8 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 {
                                     temp2 += temp.back();
                                     temp.pop_back();
-                                    shape_func_order = std::stoi(temp2)-1;
                                 }
+                                shape_func_order = std::stoi(temp2)-1;
 
                                 if (temp.back() == '_')
                                 {   
@@ -329,17 +329,18 @@ void read_input (const std::string& filename, Mesh& mesh)
                                     {
                                         temp3 += temp.back();
                                         temp.pop_back();
-                                        shape_func_order = std::stoi(temp3)-1;
-                                        Eshape_func_order = std::stoi(temp2);
                                     }
+                                    shape_func_order = std::stoi(temp3)-1;
+                                    Eshape_func_order = std::stoi(temp2);
                                 }
-                                if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_sc" || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
+                                if (temp == "pBar" || temp == "lBar" || temp == "pGFEMBar" || temp == "pGFEMBar_sc" || temp == "pGFEMBar_WD_S" ||
+                                     temp == "pGFEMBar_WD_M" || temp == "pSGFEMBar_2Proj" || temp == "pGFEMBar_2Proj")
                                 {
                                     type = temp;
-                                    if (temp == "lBar"  || temp == "pGFEMBar" || temp == "pGFEMBar_sc"  || temp == "pGFEMBar_WD_S" || temp == "pGFEMBar_WD_M")
-                                        case_j = shape_func_order+1;
-                                    else
+                                    if (temp == "pBar")
                                         case_j = 3;
+                                    else
+                                        case_j = shape_func_order+1;
 
                                     case_i++;
                                 }
@@ -402,12 +403,12 @@ void read_input (const std::string& filename, Mesh& mesh)
             {
                 if (arg == "enrID")
                     order.push_back(0);
-                else if (arg == "Type")
+                else if (arg == "type")
                     order.push_back(1);
                 else if (arg == "xGamma")
                     order.push_back(2);
                 else
-                    throw std::invalid_argument("Unexpected legend argument for elements section");
+                    throw std::invalid_argument("Unexpected legend argument for enrichments section");
             }
 
             // criar padrões de enriquecimento

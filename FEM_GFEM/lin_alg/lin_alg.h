@@ -35,6 +35,8 @@ class Matrix
 
     Matrix operator+ (const Matrix& other) const;
 
+    Matrix operator- (const Matrix& other) const;
+
     Matrix operator*(const Matrix& other) const;
 
     Matrix operator*(const Vector& other) const;

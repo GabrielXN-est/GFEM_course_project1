@@ -38,7 +38,7 @@ double Sukumar_derivate(double x, double xGamma)
 {
     if (x < xGamma)
         return -1.;
-    else if (x >= xGamma)
+    else
         return 1.;
 }
 
@@ -67,6 +67,8 @@ double Moes_enrichment_1D::operator()(double x)
             return result;
         }
     }
+    
+    throw std::runtime_error("Error: point is not in any of the vicinal elements of the node."); return 1;
 }
 
 double Moes_enrichment_1D::D(double x)
@@ -111,6 +113,8 @@ double Moes_enrichment_1D::D(double x)
             return result;
         }
     }
+    
+    throw std::runtime_error("Error: point is not in any of the vicinal elements of the node."); return 1;
 }
 
 double SGFEM_enrichment::operator()(double x)
@@ -133,6 +137,8 @@ double SGFEM_enrichment::operator()(double x)
             return enr_or->operator()(x) - interpolant;
         }
     }
+
+    throw std::runtime_error("Error: point is not in any of the vicinal elements of the node."); return 1;
 }
 
 double SGFEM_enrichment::D(double x)
@@ -155,4 +161,6 @@ double SGFEM_enrichment::D(double x)
             return enr_or->D(x) - Dinterpolant;
         }
     }
+
+    throw std::runtime_error("Error: point is not in any of the vicinal elements of the node."); return 1;
 }
