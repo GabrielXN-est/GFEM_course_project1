@@ -185,7 +185,7 @@ void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
         n_iter++;
 
         if (n_iter > max_iter)
-            throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ") -- error of " + std::to_string(stop_condition(u, e, K_global)));
+            throw std::runtime_error("Warning: Maximum number of iterations reached without convergence. (" + std::to_string(n_iter) + ") -- error of 10^-" + std::to_string(std::log10(stop_condition(u, e, K_global))));
     } while (stop_condition(u, e, K_global)> tol);
 
     U = T * u;

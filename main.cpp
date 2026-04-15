@@ -91,7 +91,7 @@ void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elem
         {
             try
             {
-                mesh.solve_dependent_system(tol, 10000000);
+                mesh.solve_dependent_system(tol, 100000000);
             }
             catch(const std::exception& e)
             {

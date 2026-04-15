@@ -153,11 +153,12 @@ double SGFEM_enrichment::D(double x)
             shape_functions* Dsf {el->get_D_shape_func()};
             Dsf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
             Dsf->mont_vector();
+            double dxidx = 2/el->el_size;
             val_node.reserve(Dsf->size());
             for (Node* node: el->Nod_list)
                 {val_node.push_back(enr_or->operator()(node->x));}
             for (std::size_t i {0}; i < Dsf->size(); i++)
-                {Dinterpolant += Dsf->vec[i]*val_node[i];}
+                {Dinterpolant += Dsf->vec[i]*val_node[i]*dxidx;}
             return enr_or->D(x) - Dinterpolant;
         }
     }
