@@ -91,7 +91,7 @@ void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elem
         {
             try
             {
-                mesh.solve_dependent_system(tol, 10000000);
+                mesh.solve_dependent_system(tol, 100000000);
             }
             catch(const std::exception& e)
             {
@@ -128,7 +128,7 @@ void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elem
 int main()
 {
     try {
-        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 2"};
+        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/temp/"};
         
         // parameters for the problem
         double L {1};
@@ -138,35 +138,49 @@ int main()
         double A {1};
         int bf_func{20};
         double U_exact {6.425951283957258};
-    
-        std::string filename {path + "/input_files/P2_SGFEM_geom_pord_1_8.txt"};
+
+        // solution vectors
+        std::vector<double> h_FEM_error {};
+        std::vector<double> h_GFEM_topo_error {}, h_GFEM_geom_error {};
+        std::vector<double> h_SGFEM_topo_error {}, h_SGFEM_geom_error {};
+
+        // dofs vectors
+        std::vector<double> h_FEM_dofs {};
+        std::vector<double> h_GFEM_topo_dofs {}, h_GFEM_geom_dofs {};
+        std::vector<double> h_SGFEM_topo_dofs {}, h_SGFEM_geom_dofs {};
+
+        // conditioning vectors
+        std::vector<double> h_FEM_conditioning {};
+        std::vector<double> h_GFEM_topo_conditioning {}, h_GFEM_geom_conditioning {};
+        std::vector<double> h_SGFEM_topo_conditioning {}, h_SGFEM_geom_conditioning {};
         
-        // start mesh and compute local constants
-        Mesh mesh {};
-        read_input(filename, mesh);
+        // number of elements
+        std::vector<int> nelem_L{8,16, 32, 64, 128};
+    
+        std::cout << "________________h-version SGFEM geometrical________________" << std::endl;
+            simulation(path, nelem_L, h_SGFEM_geom_error, h_SGFEM_geom_dofs, h_SGFEM_geom_conditioning,
+            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
+            "P2_SGFEM_geom_pord_" + std::to_string(1), 1, "pSGFEMBar_2Proj", {0,1./4.});
 
-        filename = path + "/input_files/P2_GFEM_geom_pord_1_8.txt";
-        Mesh mesh2 {};
-        read_input(filename, mesh2);
+        std::cout << "________________Convergence Rates________________" << std::endl;
+            // taxas de convergência
+            int size {static_cast<int>(nelem_L.size())};
 
-        std::vector<double> x {}, sy {}, y {}, sD{}, D{};
-        for (double i {0}; i < 250; i++)
-        {
-            x.push_back(i/1000.);
-            y.push_back(mesh2.nodes[1].enr[0]->operator()(i/1000.));
-            sy.push_back(mesh.nodes[1].enr[0]->operator()(i/1000.));
-            sD.push_back(mesh.nodes[1].enr[0]->D(i/1000.));
-            D.push_back(mesh2.nodes[1].enr[0]->D(i/1000.));
-        }
+            std::cout << "Convergence rate for geometrical SGFEM in terms of h: " << (std::log(h_SGFEM_geom_error[size-1])-std::log(h_SGFEM_geom_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n\n";
 
+            std::cout << "\nIn respect to dofs:\n";
 
-        matplot::plot(x, sy);
-        matplot::hold(matplot::on);
-        matplot::plot(x, y);
-        matplot::plot(x, sD);
-        matplot::plot(x, D);
-        matplot::show();
+            std::cout << "Convergence rate for geometrical SGFEM in terms of dofs: " << -(std::log(h_SGFEM_geom_error[size-1])-std::log(h_SGFEM_geom_error[size-2]))/(std::log(h_SGFEM_geom_dofs[size-1])-std::log(h_SGFEM_geom_dofs[size-2])) << "\n\n";
+            std::cout << "\n";
 
+        std::cout << "________________Condition number growth rate________________" << std::endl;
+                    std::cout << "\nIn respect to dofs:\n";
+            std::cout << "Convergence rate for geometrical SGFEM in terms of dofs: " << (std::log(h_SGFEM_geom_conditioning[size-1])-std::log(h_SGFEM_geom_conditioning[size-2]))/(std::log(h_SGFEM_geom_dofs[size-1])-std::log(h_SGFEM_geom_dofs[size-2])) << "\n\n";
+            
+        std::cout << "________________Plotagem________________" << std::endl;
+            //plotagens
+            plot_error(h_FEM_dofs, h_GFEM_geom_dofs, h_SGFEM_geom_dofs, h_FEM_error, h_GFEM_geom_error, h_SGFEM_geom_error, "Degrees of freedom", "Geometrical enrichment error", path + "/plots/convergence/");
+            plot_error(h_FEM_dofs, h_GFEM_geom_dofs, h_SGFEM_geom_dofs, h_FEM_conditioning, h_GFEM_geom_conditioning, h_SGFEM_geom_conditioning, "Degrees of freedom", "Geometrical enrichment conditioning", path + "/plots/convergence/", true);
         return 0;
     }
     catch (const std::exception& e)

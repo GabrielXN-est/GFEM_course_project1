@@ -15,87 +15,87 @@ Relative error in energy norm for P2_FEM_pord_1 with 128 elements equals: 0.0903
 Conditioning number for P2_FEM_pord_1 with 128 elements equals: 6639.52
 
 ________________h-version GFEM topological________________
-Relative error in energy norm for P2_GFEM_topo_pord_1 with 8 elements equals: 0.182217
-Conditioning number for P2_GFEM_topo_pord_1 with 8 elements equals: 25.2742
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 8 elements equals: 0.179778
+Conditioning number for P2_GFEM_topo_pord_1 with 8 elements equals: 25.2741
 
-Relative error in energy norm for P2_GFEM_topo_pord_1 with 16 elements equals: 0.114372
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 16 elements equals: 0.111254
 Conditioning number for P2_GFEM_topo_pord_1 with 16 elements equals: 103.087
 
-Relative error in energy norm for P2_GFEM_topo_pord_1 with 32 elements equals: 0.0812386
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 32 elements equals: 0.0776047
 Conditioning number for P2_GFEM_topo_pord_1 with 32 elements equals: 414.345
 
-Relative error in energy norm for P2_GFEM_topo_pord_1 with 64 elements equals: 0.0642153
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 64 elements equals: 0.0603847
 Conditioning number for P2_GFEM_topo_pord_1 with 64 elements equals: 1659.38
 
-Relative error in energy norm for P2_GFEM_topo_pord_1 with 128 elements equals: 0.0537571
+Relative error in energy norm for P2_GFEM_topo_pord_1 with 128 elements equals: 0.0499575
 Conditioning number for P2_GFEM_topo_pord_1 with 128 elements equals: 6639.52
 
 ________________h-version SGFEM topological________________
-Relative error in energy norm for P2_SGFEM_topo_pord_1 with 8 elements equals: 0.163504
-Conditioning number for P2_SGFEM_topo_pord_1 with 8 elements equals: 25.275
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 8 elements equals: 0.167982
+Conditioning number for P2_SGFEM_topo_pord_1 with 8 elements equals: 25.2742
 
-Relative error in energy norm for P2_SGFEM_topo_pord_1 with 16 elements equals: 0.0823642
-Conditioning number for P2_SGFEM_topo_pord_1 with 16 elements equals: 103.089
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 16 elements equals: 0.0886798
+Conditioning number for P2_SGFEM_topo_pord_1 with 16 elements equals: 103.087
 
-Relative error in energy norm for P2_SGFEM_topo_pord_1 with 32 elements equals: 0.0413574
-Conditioning number for P2_SGFEM_topo_pord_1 with 32 elements equals: 414.349
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 32 elements equals: 0.0498909
+Conditioning number for P2_SGFEM_topo_pord_1 with 32 elements equals: 414.345
 
-Relative error in energy norm for P2_SGFEM_topo_pord_1 with 64 elements equals: 0.0217781
-Conditioning number for P2_SGFEM_topo_pord_1 with 64 elements equals: 1659.39
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 64 elements equals: 0.0322563
+Conditioning number for P2_SGFEM_topo_pord_1 with 64 elements equals: 1659.38
 
-Relative error in energy norm for P2_SGFEM_topo_pord_1 with 128 elements equals: 0.0135934
-Conditioning number for P2_SGFEM_topo_pord_1 with 128 elements equals: 6639.53
+Relative error in energy norm for P2_SGFEM_topo_pord_1 with 128 elements equals: 0.0245381
+Conditioning number for P2_SGFEM_topo_pord_1 with 128 elements equals: 6639.52
 
 ________________h-version GFEM geometrical________________
-Relative error in energy norm for P2_GFEM_geom_pord_1 with 8 elements equals: 0.125996
-Conditioning number for P2_GFEM_geom_pord_1 with 8 elements equals: 973.003
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 8 elements equals: 0.125776
+Conditioning number for P2_GFEM_geom_pord_1 with 8 elements equals: 925.93
 
-Relative error in energy norm for P2_GFEM_geom_pord_1 with 16 elements equals: 0.0776908
-Conditioning number for P2_GFEM_geom_pord_1 with 16 elements equals: 5297.16
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 16 elements equals: 0.0759967
+Conditioning number for P2_GFEM_geom_pord_1 with 16 elements equals: 4976.33
 
-Relative error in energy norm for P2_GFEM_geom_pord_1 with 32 elements equals: 0.0461402
-Conditioning number for P2_GFEM_geom_pord_1 with 32 elements equals: 40576.2
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 32 elements equals: 0.0454449
+Conditioning number for P2_GFEM_geom_pord_1 with 32 elements equals: 37393.9
 
-Relative error in energy norm for P2_GFEM_geom_pord_1 with 64 elements equals: 0.0221646
-Conditioning number for P2_GFEM_geom_pord_1 with 64 elements equals: 393240
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 64 elements equals: 0.026195
+Conditioning number for P2_GFEM_geom_pord_1 with 64 elements equals: 363524
 
-Relative error in energy norm for P2_GFEM_geom_pord_1 with 128 elements equals: 0.0115255
-Conditioning number for P2_GFEM_geom_pord_1 with 128 elements equals: 4.54271e+06
+Relative error in energy norm for P2_GFEM_geom_pord_1 with 128 elements equals: 0.0142571
+Conditioning number for P2_GFEM_geom_pord_1 with 128 elements equals: 4.31771e+06
 
 ________________h-version SGFEM geometrical________________
-Relative error in energy norm for P2_SGFEM_geom_pord_1 with 8 elements equals: 0.126386
-Conditioning number for P2_SGFEM_geom_pord_1 with 8 elements equals: 25.275
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 8 elements equals: 0.131038
+Conditioning number for P2_SGFEM_geom_pord_1 with 8 elements equals: 25.2742
 
-Relative error in energy norm for P2_SGFEM_geom_pord_1 with 16 elements equals: 0.0627602
-Conditioning number for P2_SGFEM_geom_pord_1 with 16 elements equals: 103.089
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 16 elements equals: 0.0696007
+Conditioning number for P2_SGFEM_geom_pord_1 with 16 elements equals: 103.087
 
-Relative error in energy norm for P2_SGFEM_geom_pord_1 with 32 elements equals: 0.0251601
-Conditioning number for P2_SGFEM_geom_pord_1 with 32 elements equals: 414.349
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 32 elements equals: 0.0358059
+Conditioning number for P2_SGFEM_geom_pord_1 with 32 elements equals: 414.345
 
-Relative error in energy norm for P2_SGFEM_geom_pord_1 with 64 elements equals: 0.0112491
-Conditioning number for P2_SGFEM_geom_pord_1 with 64 elements equals: 1659.39
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 64 elements equals: 0.0183934
+Conditioning number for P2_SGFEM_geom_pord_1 with 64 elements equals: 1659.38
 
-Relative error in energy norm for P2_SGFEM_geom_pord_1 with 128 elements equals: 0.0154805
-Conditioning number for P2_SGFEM_geom_pord_1 with 128 elements equals: 6639.53
+Relative error in energy norm for P2_SGFEM_geom_pord_1 with 128 elements equals: 0.00986718
+Conditioning number for P2_SGFEM_geom_pord_1 with 128 elements equals: 6639.52
 
 ________________Convergence Rates________________
 Convergence rate for FEM in terms of h: 0.178547
 
-Convergence rate for topological GFEM in terms of h: 0.256462
-Convergence rate for topological SGFEM in terms of h: 0.679971
+Convergence rate for topological GFEM in terms of h: 0.273482
+Convergence rate for topological SGFEM in terms of h: 0.394556
 
-Convergence rate for geometrical GFEM in terms of h: 0.943421
-Convergence rate for geometrical SGFEM in terms of h: -0.460641
+Convergence rate for geometrical GFEM in terms of h: 0.877607
+Convergence rate for geometrical SGFEM in terms of h: 0.898478
 
 
 In respect to dofs:
 Convergence rate for FEM in terms of dofs: 0.180558
 
-Convergence rate for topological GFEM in terms of dofs: 0.262239
-Convergence rate for topological SGFEM in terms of dofs: 0.695286
+Convergence rate for topological GFEM in terms of dofs: 0.279642
+Convergence rate for topological SGFEM in terms of dofs: 0.403443
 
-Convergence rate for geometrical GFEM in terms of dofs: 0.960423
-Convergence rate for geometrical SGFEM in terms of dofs: -0.468942
+Convergence rate for geometrical GFEM in terms of dofs: 0.893422
+Convergence rate for geometrical SGFEM in terms of dofs: 0.91467
 
 
 ________________Condition number growth rate________________
@@ -106,7 +106,7 @@ Convergence rate for FEM in terms of dofs: 2.02297
 Convergence rate for topological GFEM in terms of dofs: 2.04549
 Convergence rate for topological SGFEM in terms of dofs: 2.04549
 
-Convergence rate for geometrical GFEM in terms of dofs: 3.59369
+Convergence rate for geometrical GFEM in terms of dofs: 3.63448
 Convergence rate for geometrical SGFEM in terms of dofs: 2.03648
 
 ________________Plotagem________________

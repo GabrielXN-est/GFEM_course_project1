@@ -116,7 +116,7 @@ class Pair_enrichment_1D : public Enrichment
 class Project2_enrichment: public Enrichment //enriquecimento do projeto 2
 {
     public:
-    Project2_enrichment(int index) : Enrichment{index, 10}{};
+    Project2_enrichment(int index) : Enrichment{index, 70}{};
 
     double operator()(double x)
     {
