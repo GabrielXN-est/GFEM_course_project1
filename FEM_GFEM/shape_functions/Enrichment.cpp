@@ -23,6 +23,9 @@ Enrichment* Project2_enrichment::create_copy(Node& node)
 Enrichment* SGFEM_enrichment::create_copy(Node& node)
 {return (new SGFEM_enrichment(enr_or->create_copy(node), &node));}
 
+Enrichment* Global_local_enrichment::create_copy(Node& node)
+{return (new Global_local_enrichment(id, local_mesh_id, &node));}
+
 polinomial_enrichment_1D::polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node) :
  Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc}, node_ptr {node}
 {
@@ -33,6 +36,10 @@ polinomial_enrichment_1D::polinomial_enrichment_1D(int index, int g, bool sh, bo
                 max(node_ptr->biggest_vicinal_element_size, el->Nod_list[el->Nod_list.size()-1]->x - el->Nod_list[0]->x);}
     }
 }
+
+Global_local_enrichment::Global_local_enrichment(int index, int local_id, Node* node) : Enrichment{index, 
+    node->ptr_mesh->local_problems[local_id].porder+ node->ptr_mesh->local_problems[local_id].porder_Enrichment},
+    local_mesh_id{local_id}, local_mesh_ptr{&(node->ptr_mesh->local_problems[local_id])} {}
 
 double Sukumar_derivate(double x, double xGamma)
 {
@@ -165,3 +172,9 @@ double SGFEM_enrichment::D(double x)
 
     throw std::runtime_error("Error: point is not in any of the vicinal elements of the node."); return 1;
 }
+
+double Global_local_enrichment::operator()(double x)
+    {return local_mesh_ptr->interpolate_solution(x);}
+
+double Global_local_enrichment::D(double x)
+    {return local_mesh_ptr->interpolate_D_of_solution(x);}

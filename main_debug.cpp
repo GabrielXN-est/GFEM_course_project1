@@ -128,7 +128,7 @@ void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elem
 int main()
 {
     try {
-        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 2/temp/"};
+        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/temp/"};
         
         // parameters for the problem
         double L {1};

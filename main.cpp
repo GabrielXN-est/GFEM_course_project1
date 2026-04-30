@@ -17,110 +17,28 @@
 // dof order in the nodes (PoU dofs -> node aplyed enrichments ->
     // -> pGFEM generated polinomial enrichments -> pGFEM generated non-polinomial enrichments)
 
-void plot_series(const plotting_data& data, const std::string& title = "", const std::string& path = "./")
-{
-    matplot::plot(data.x_values, data.u_values);
-    matplot::xlabel("x");
-    matplot::ylabel("u(x)");;
-    matplot::save(path + title + ".png");
-}
-
 template <typename T, typename G>
-void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3,
-     std::vector<G>& y1, std::vector<G>& y2, std::vector<G>& y3,
+void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3, std::vector<T>& x4,
+     std::vector<G>& y1, std::vector<G>& y2, std::vector<G>& y3, std::vector<G>& y4,
      std::string_view x_label, std::string title,
-     std::string path = "./", bool cond_plot = false)
+     std::string path = "./")
 {
     //matplot::loglog(nelem_L, error_FEM, "-o");
     auto f = matplot::figure(true);
     matplot::loglog(x1, y1,"-o")->display_name("FEM");
     matplot::hold(matplot::on);
-    matplot::loglog(x2, y2,"-o")->display_name("GFEM");
+    matplot::loglog(x2, y2,"-o")->display_name("GFEM-GL - h = L/64");
     matplot::hold(matplot::on);
-    matplot::loglog(x3, y3,"-o")->display_name("S-GFEM");
+    matplot::loglog(x3, y3,"-o")->display_name("GFEM-GL - h = L/128");
+    matplot::hold(matplot::on);
+    matplot::loglog(x4, y4,"-o")->display_name("GFEM-GL - h = L/256");
     matplot::hold(matplot::off);
     auto lgd = matplot::legend();
     lgd->location(matplot::legend::general_alignment::bottomleft);
     matplot::xlabel(x_label);
-    if (cond_plot)
-        matplot::ylabel("Conditioning number");
-    else
-        matplot::ylabel("Relative error in energy norm");
+    matplot::ylabel("Relative error in energy norm");
     matplot::title(title);
     matplot::save(path + title + ".png");
-}
-
-void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elementos a iterar
-    std::vector<double>& error_reference, std::vector<double>& dofs_reference, std::vector<double>& conditioning_reference, // outputs
-    double L, double x_gamma,std::vector<double> E, double A, int bf_func, double U_exact, // parametros fixos
-    std::string title, int porder, std::string eltype, std::vector<double> geom_enr = {}, double tol = std::pow(10, -30))
-{
-    // rerve memory for outputs
-    error_reference.reserve(static_cast<int>(n_elem_L.size()));
-    dofs_reference.reserve(static_cast<int>(n_elem_L.size()));
-    conditioning_reference.reserve(static_cast<int>(n_elem_L.size()));
-
-    for (int nelem: n_elem_L)
-    {
-        std::string filename {path + "/input_files/" + title + "_" + std::to_string(nelem) + ".txt"};
-
-        // create input file
-        if (eltype == "lBar")
-            generate_input(filename, nelem, porder, eltype, L, E, {}, A, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
-            std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
-            std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
-            bf_func, 0, 0, 0, x_gamma); // bf_func_id, alpha, xb, xi, xgamma
-        else
-            generate_input(filename, nelem, 1, eltype, L, E, {}, A, 0, // filename, nel, porder, eltype, L, E, Exlim, A, C,
-            std::vector<double> {{0.,0.}}, std::vector<int> {0, 1}, std::vector<int> {1, 1}, // d_bcs, d_bcs_pos, d_bcs_dofs,
-            std::vector<double> {}, std::vector<int> {}, std::vector<int> {},// f_bcs, f_bcs_pos, f_bcs_dofs,
-            bf_func, 0, 0, 0, x_gamma, porder-1, geom_enr); // bf_func_id, alpha, xb, xi, xgamma
-        
-        // start mesh and compute local constants
-        Mesh mesh {};
-        read_input(filename, mesh);
-
-        // Assemble global system
-        mesh.assemble_direct();
-
-        // Scale the global matrixes and vectors to improve conditioning
-        mesh.create_scaled_global_system(true);
-
-        //Solve the system
-        if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc" || eltype == "pGFEMBar_2Proj" || eltype == "pSGFEMBar_2Proj")
-        {
-            try
-            {
-                mesh.solve_dependent_system(tol, 100000000);
-            }
-            catch(const std::exception& e)
-            {
-                std::cout << '\t' << e.what() << std::endl;
-                std::cout << "\t Aumentando a tolerancia para " << std::pow(10, -20) << std::endl;
-                try
-                {mesh.solve_dependent_system(std::pow(10, -20), 1000000);}
-                catch(const std::exception& e)
-                {
-                    std::cout << '\t' << e.what() << std::endl;
-                    std::cout << "\t Aumentando a tolerancia para " << std::pow(10, -12) << std::endl;
-                    mesh.solve_dependent_system(std::pow(10, -12), 1000000);
-                }
-            }
-        }
-        else
-            mesh.solve();
-
-        // post processing
-        mesh.complete_U();
-        error_reference.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
-        conditioning_reference.push_back(mesh.scaled_condition_number);
-        dofs_reference.push_back(mesh.K_global_pos.mat.size());
-
-        std::cout << "Relative error in energy norm for " << title << " with " << nelem << " elements equals: " << error_reference.back() << std::endl;
-        std::cout << "Conditioning number for " << title << " with " << nelem << " elements equals: " << conditioning_reference.back() << std::endl << std::endl;
-
-        plot_series(get_solution_plotable(mesh, L/100), title + "_" + std::to_string(nelem), path + "/plots/");
-    }
 }
 
 #define P_VERSION
@@ -128,100 +46,145 @@ void simulation(std::string path, const std::vector<int>& n_elem_L, // n de elem
 int main()
 {
     try {
-        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 2"};
+        std::string path {"/home/labmec/Downloads/GFEM Course/Projects/Projeto 3"};
         
         // parameters for the problem
-        double L {1};
-        double x_gamma {0};
-        std::vector<double> E {1.};
-        std::vector<double> E_xlim {};
-        double A {1};
-        int bf_func{20};
-        double U_exact {6.425951283957258};
+        double L {1.}, A {1.}, P {1.},E1 {1.}, E2 {40.};
+        double Eh {E1*E2/(E1*0.5+E2*0.5)};
+        int bf_func{0};
+
+        std::vector<double> d_bcs {0.}, f_bcs {P};
+        std::vector<int> d_bcs_pos {0}, f_bcs_pos {1};
+        std::vector<int> d_bcs_dofs {1}, f_bcs_dofs {1};
+
+        // E
+        std::vector<double> E {Eh};
+        std::vector<double> E_xlim {3.*L/8.};
+        double temp_x {3.*L/8.};
+        for (int i {0}; i < 32; i++)
+        {
+            temp_x += L/128.;
+            E_xlim.push_back(temp_x);
+            if (i % 2 == 0)
+                E.push_back(E1);
+            else
+                E.push_back(E2);
+        }
+        E.push_back(Eh);
+        E_xlim.push_back(L);
+
+        double U_exact {};
 
         // solution vectors
         std::vector<double> h_FEM_error {};
-        std::vector<double> h_GFEM_topo_error {}, h_GFEM_geom_error {};
-        std::vector<double> h_SGFEM_topo_error {}, h_SGFEM_geom_error {};
+        std::vector<double> h_GFEM_GL_h_L_64_error {}, h_GFEM_GL_h_L_128_error {}, h_GFEM_GL_h_L_256_error {};
+        std::vector<std::vector<double>*> h_GFEM_GL_err {&h_GFEM_GL_h_L_64_error, &h_GFEM_GL_h_L_128_error, &h_GFEM_GL_h_L_256_error};
 
         // dofs vectors
-        std::vector<double> h_FEM_dofs {};
-        std::vector<double> h_GFEM_topo_dofs {}, h_GFEM_geom_dofs {};
-        std::vector<double> h_SGFEM_topo_dofs {}, h_SGFEM_geom_dofs {};
+        std::vector<int> h_FEM_dofs{};
+        std::vector<int> h_GFEM_GL_h_L_64_dofs {}, h_GFEM_GL_h_L_128_dofs {}, h_GFEM_GL_h_L_256_dofs {};
+        std::vector<std::vector<int>*> h_GFEM_GL_dof {&h_GFEM_GL_h_L_64_dofs, &h_GFEM_GL_h_L_128_dofs, &h_GFEM_GL_h_L_256_dofs};
 
-        // conditioning vectors
-        std::vector<double> h_FEM_conditioning {};
-        std::vector<double> h_GFEM_topo_conditioning {}, h_GFEM_geom_conditioning {};
-        std::vector<double> h_SGFEM_topo_conditioning {}, h_SGFEM_geom_conditioning {};
         
         // number of elements
-        std::vector<int> nelem_L{8,16, 32, 64, 128};
-    
+        std::vector<int> nelem_L{8, 16, 32, 64, 128, 256};
+        std::vector<int> nelem_L_GL{16, 32, 64};
+
+        // element size
+        std::vector<double> H {}, h{};
+        H.reserve(nelem_L.size());
+        h.reserve(nelem_L_GL.size());
+
+        for (int nelem : nelem_L)
+            H.push_back(L/nelem);
+        for (int nelem : nelem_L_GL)
+            h.push_back(L/nelem);
+
+        // variables to save solutions plotable values for H =1/8
+        plotting_data plotable_FEM {};
+        std::vector<plotting_data> plotable_GFEM_GL(3);
+
         std::cout << "________________h-version FEM________________" << std::endl;
+            for (int nelem : nelem_L)
+            {
+                Mesh mesh {path, "3P_FEM_nelem_" + nelem, nelem,
+                    1, "lBar", L, E, E_xlim, A, 0,
+                    d_bcs,d_bcs_pos, d_bcs_dofs, // dirichilet boundary conditions
+                    f_bcs, f_bcs_pos, f_bcs_dofs, // Neumann Boundary conditions
+                    bf_func};
+                
+                mesh.run();
 
-            simulation(path, nelem_L, h_FEM_error, h_FEM_dofs, h_FEM_conditioning,
-            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-            "P2_FEM_pord_" + std::to_string(1), 1, "lBar");
+                h_FEM_error.push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
+                h_FEM_dofs.push_back(mesh.K_global_pos.mat.size());
 
-        std::cout << "________________h-version GFEM topological________________" << std::endl;
-            simulation(path, nelem_L, h_GFEM_topo_error, h_GFEM_topo_dofs, h_GFEM_topo_conditioning,
-            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-            "P2_GFEM_topo_pord_" + std::to_string(1), 1, "pGFEMBar_2Proj", {0,0});
+                std::cout << "Relative error in energy norm for FEM with " << nelem << " elements equals: " << h_FEM_error.back() << std::endl;
 
-        std::cout << "________________h-version SGFEM topological________________" << std::endl;
-            simulation(path, nelem_L, h_SGFEM_topo_error, h_SGFEM_topo_dofs, h_SGFEM_topo_conditioning,
-            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-            "P2_SGFEM_topo_pord_" + std::to_string(1), 1, "pSGFEMBar_2Proj", {0,0});
+                if (nelem == 8)
+                    plotable_FEM = get_solution_plotable(mesh, L/128);
+            }
 
-        std::cout << "________________h-version GFEM geometrical________________" << std::endl;
-            simulation(path, nelem_L, h_GFEM_geom_error, h_GFEM_geom_dofs, h_GFEM_geom_conditioning,
-            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-            "P2_GFEM_geom_pord_" + std::to_string(1), 1, "pGFEMBar_2Proj", {0,1./4.});
+        int nelem_GL {};
+        for (int i = 0; i < nelem_L_GL.size(); i++)
+        {
+            nelem_GL = nelem_L_GL[i];
+            std::cout << "________________h-version GL-GFEM with h = " << L/nelem_GL << "________________" << std::endl;
+            for (int nelem : nelem_L)
+            {
+                Mesh mesh {path, "3P_GFEM_nelem_" + std::to_string(nelem) + "_nelem_GL_" + std::to_string(nelem_GL), nelem,
+                    1, "lBar", L, E, E_xlim, A, 0,
+                    d_bcs,d_bcs_pos, d_bcs_dofs, // dirichilet boundary conditions
+                    f_bcs, f_bcs_pos, f_bcs_dofs, // Neumann Boundary conditions
+                    bf_func, 0.0, 0.0, 0.0, 0.0, 0,
+                    {3*L/8, 5*L/8}, 1};
+                
+                mesh.run();
 
-        std::cout << "________________h-version SGFEM geometrical________________" << std::endl;
-            simulation(path, nelem_L, h_SGFEM_geom_error, h_SGFEM_geom_dofs, h_SGFEM_geom_conditioning,
-            L, x_gamma, E, A, bf_func, U_exact, // parametros fixos
-            "P2_SGFEM_geom_pord_" + std::to_string(1), 1, "pSGFEMBar_2Proj", {0,1./4.});
+                mesh.create_local_problem(3*L/8, L/4, nelem_GL);
+                mesh.run_local_problems();
+
+                mesh.run();
+
+                h_GFEM_GL_err[i]->push_back(std::sqrt(std::abs(U_exact-mesh.strain_energy())/U_exact));
+                h_GFEM_GL_dof[i]->push_back(mesh.K_global_pos.mat.size());
+
+                std::cout << "Relative error in energy norm for GFEM with " << nelem << " elements and " << nelem_GL << " local elementos equals: " << h_GFEM_GL_err[i]->back() << std::endl;
+            
+                if (nelem == 8)
+                    plotable_GFEM_GL[i] = get_solution_plotable(mesh, L/128);
+            }
+        }
 
         std::cout << "________________Convergence Rates________________" << std::endl;
             // taxas de convergência
             int size {static_cast<int>(nelem_L.size())};
-            std::cout << "Convergence rate for FEM in terms of h: " << (std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n\n";
-
-            std::cout << "Convergence rate for topological GFEM in terms of h: " << (std::log(h_GFEM_topo_error[size-1])-std::log(h_GFEM_topo_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
-            std::cout << "Convergence rate for topological SGFEM in terms of h: " << (std::log(h_SGFEM_topo_error[size-1])-std::log(h_SGFEM_topo_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n\n";
-
-            std::cout << "Convergence rate for geometrical GFEM in terms of h: " << (std::log(h_GFEM_geom_error[size-1])-std::log(h_GFEM_geom_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n";
-            std::cout << "Convergence rate for geometrical SGFEM in terms of h: " << (std::log(h_SGFEM_geom_error[size-1])-std::log(h_SGFEM_geom_error[size-2]))/(std::log(L/nelem_L[size-1])-std::log(L/nelem_L[size-2])) << "\n\n";
-
-            std::cout << "\nIn respect to dofs:\n";
-
             std::cout << "Convergence rate for FEM in terms of dofs: " << -(std::log(h_FEM_error[size-1])-std::log(h_FEM_error[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n\n";
 
-            std::cout << "Convergence rate for topological GFEM in terms of dofs: " << -(std::log(h_GFEM_topo_error[size-1])-std::log(h_GFEM_topo_error[size-2]))/(std::log(h_GFEM_topo_dofs[size-1])-std::log(h_GFEM_topo_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for topological SGFEM in terms of dofs: " << -(std::log(h_SGFEM_topo_error[size-1])-std::log(h_SGFEM_topo_error[size-2]))/(std::log(h_SGFEM_topo_dofs[size-1])-std::log(h_SGFEM_topo_dofs[size-2])) << "\n\n";
-
-            std::cout << "Convergence rate for geometrical GFEM in terms of dofs: " << -(std::log(h_GFEM_geom_error[size-1])-std::log(h_GFEM_geom_error[size-2]))/(std::log(h_GFEM_geom_dofs[size-1])-std::log(h_GFEM_geom_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for geometrical SGFEM in terms of dofs: " << -(std::log(h_SGFEM_geom_error[size-1])-std::log(h_SGFEM_geom_error[size-2]))/(std::log(h_SGFEM_geom_dofs[size-1])-std::log(h_SGFEM_geom_dofs[size-2])) << "\n\n";
-            std::cout << "\n";
-
-        std::cout << "________________Condition number growth rate________________" << std::endl;
-                    std::cout << "\nIn respect to dofs:\n";
-
-            std::cout << "Convergence rate for FEM in terms of dofs: " << (std::log(h_FEM_conditioning[size-1])-std::log(h_FEM_conditioning[size-2]))/(std::log(h_FEM_dofs[size-1])-std::log(h_FEM_dofs[size-2])) << "\n\n";
-
-            std::cout << "Convergence rate for topological GFEM in terms of dofs: " << (std::log(h_GFEM_topo_conditioning[size-1])-std::log(h_GFEM_topo_conditioning[size-2]))/(std::log(h_GFEM_topo_dofs[size-1])-std::log(h_GFEM_topo_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for topological SGFEM in terms of dofs: " << (std::log(h_SGFEM_topo_conditioning[size-1])-std::log(h_SGFEM_topo_conditioning[size-2]))/(std::log(h_SGFEM_topo_dofs[size-1])-std::log(h_SGFEM_topo_dofs[size-2])) << "\n\n";
-
-            std::cout << "Convergence rate for geometrical GFEM in terms of dofs: " << (std::log(h_GFEM_geom_conditioning[size-1])-std::log(h_GFEM_geom_conditioning[size-2]))/(std::log(h_GFEM_geom_dofs[size-1])-std::log(h_GFEM_geom_dofs[size-2])) << "\n";
-            std::cout << "Convergence rate for geometrical SGFEM in terms of dofs: " << (std::log(h_SGFEM_geom_conditioning[size-1])-std::log(h_SGFEM_geom_conditioning[size-2]))/(std::log(h_SGFEM_geom_dofs[size-1])-std::log(h_SGFEM_geom_dofs[size-2])) << "\n\n";
-            
+            for (int i = 0; i < nelem_L_GL.size(); i++)
+            std::cout << "Convergence rate for topological GFEM with h = " << nelem_L_GL[i] << " in terms of dofs: " << 
+            (std::log(h_GFEM_GL_err[i]->operator[](size-1))-std::log(h_GFEM_GL_err[i]->operator[](size-2)))/
+            (std::log(h_GFEM_GL_dof[i]->operator[](size-1))-std::log(h_GFEM_GL_dof[i]->operator[](size-2))) << "\n";
+               
         std::cout << "________________Plotagem________________" << std::endl;
             //plotagens
-            plot_error(h_FEM_dofs, h_GFEM_topo_dofs, h_SGFEM_topo_dofs, h_FEM_error, h_GFEM_topo_error, h_SGFEM_topo_error, "Degrees of freedom", "Topological enrichment error", path + "/plots/convergence/");
-            plot_error(h_FEM_dofs, h_GFEM_geom_dofs, h_SGFEM_geom_dofs, h_FEM_error, h_GFEM_geom_error, h_SGFEM_geom_error, "Degrees of freedom", "Geometrical enrichment error", path + "/plots/convergence/");
-            plot_error(h_FEM_dofs, h_GFEM_topo_dofs, h_SGFEM_topo_dofs, h_FEM_conditioning, h_GFEM_topo_conditioning, h_SGFEM_topo_conditioning, "Degrees of freedom", "Topological enrichment conditioning", path + "/plots/convergence/", true);
-            plot_error(h_FEM_dofs, h_GFEM_geom_dofs, h_SGFEM_geom_dofs, h_FEM_conditioning, h_GFEM_geom_conditioning, h_SGFEM_geom_conditioning, "Degrees of freedom", "Geometrical enrichment conditioning", path + "/plots/convergence/", true);
+            plot_error(h_FEM_dofs, h_GFEM_GL_h_L_64_dofs, h_GFEM_GL_h_L_128_dofs, h_GFEM_GL_h_L_256_dofs,
+                       h_FEM_error, h_GFEM_GL_h_L_64_error, h_GFEM_GL_h_L_128_error, h_GFEM_GL_h_L_256_error,
+                       "Degrees of freedom", "Error in respectto degrees of freedom", path + "/plots/convergence/");
+            plot_error(nelem_L, nelem_L, nelem_L, nelem_L,
+                       h_FEM_error, h_GFEM_GL_h_L_64_error, h_GFEM_GL_h_L_128_error, h_GFEM_GL_h_L_256_error,
+                       "Global element size", "Error in respectto degrees of freedom", path + "/plots/convergence/");
+
+            auto f = matplot::figure(true);
+            matplot::hold(matplot::on);
+            matplot::plot(plotable_FEM.x_values, plotable_FEM.u_values)->display_name("FEM");
+            matplot::plot(plotable_GFEM_GL[0].x_values, plotable_GFEM_GL[0].u_values)->display_name("GFEM_GL_h=L/64");
+            matplot::plot(plotable_GFEM_GL[1].x_values, plotable_GFEM_GL[1].u_values)->display_name("GFEM_GL_h=L/128");
+            matplot::plot(plotable_GFEM_GL[2].x_values, plotable_GFEM_GL[2].u_values)->display_name("GFEM_GL_h=L/256");
+            matplot::hold(matplot::off);
+            matplot::xlabel("x");
+            matplot::ylabel("u(x)");
+            matplot::legend();
+            matplot::save(path + "/plots/solutions" + ".png");
         return 0;
     }
     catch (const std::exception& e)

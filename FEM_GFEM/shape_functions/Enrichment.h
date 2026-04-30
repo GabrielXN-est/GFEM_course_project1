@@ -27,7 +27,7 @@ class Sukumar_enrichment_1D : public Enrichment
     double xGamma {};
     int grau {1};
 
-    Sukumar_enrichment_1D(int index, double xg) : Enrichment{index, 1}, xGamma {xg} {};
+    Sukumar_enrichment_1D(int index, double xg) : Enrichment{index, 1}, xGamma {xg} {}
 
     double operator()(double x){return std::abs(x-xGamma);}
 
@@ -43,8 +43,8 @@ class Moes_enrichment_1D : public Enrichment
     int grau {1};
     Node* node_ptr {nullptr};
 
-    Moes_enrichment_1D(int index, double xg) : Enrichment{index, 1}, xGamma {xg} {};
-    Moes_enrichment_1D(int index, double xg, Node* node) : Enrichment{index, 1}, xGamma {xg}, node_ptr {node} {};
+    Moes_enrichment_1D(int index, double xg) : Enrichment{index, 1}, xGamma {xg} {}
+    Moes_enrichment_1D(int index, double xg, Node* node) : Enrichment{index, 1}, xGamma {xg}, node_ptr {node} {}
 
     double operator()(double x);
 
@@ -62,7 +62,7 @@ class polinomial_enrichment_1D : public Enrichment
     Node* node_ptr {nullptr};
 
     polinomial_enrichment_1D(int index, int g, bool sh = true, bool sc = false) :
-        Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc} {};
+        Enrichment{index, g}, grau {g}, shifted {sh}, scaled {sc} {}
     polinomial_enrichment_1D(int index, int g, bool sh, bool sc, Node* node);
 
     Enrichment* create_copy(Node& node);
@@ -99,7 +99,7 @@ class Pair_enrichment_1D : public Enrichment
     Enrichment* enr2 {nullptr};
 
     Pair_enrichment_1D(Enrichment* enr1, Enrichment* enr2) : enr1 {enr1}, enr2 {enr2},
-    Enrichment{0, enr1->grau+enr2->grau} {};
+    Enrichment{0, enr1->grau+enr2->grau} {}
     ~Pair_enrichment_1D() 
     {
         delete enr1;
@@ -116,7 +116,7 @@ class Pair_enrichment_1D : public Enrichment
 class Project2_enrichment: public Enrichment //enriquecimento do projeto 2
 {
     public:
-    Project2_enrichment(int index) : Enrichment{index, 70}{};
+    Project2_enrichment(int index) : Enrichment{index, 70}{}
 
     double operator()(double x)
     {
@@ -149,6 +149,23 @@ class SGFEM_enrichment: public Enrichment //stable GFEM enrichment from another
 
     double D(double x);
 
+
+    Enrichment* create_copy(Node& node);
+};
+
+class Global_local_enrichment: public Enrichment
+{
+    public:
+    Mesh* local_mesh_ptr {nullptr};
+    int local_mesh_id {};
+
+    //constructors
+    Global_local_enrichment(int index, int local_id) : Enrichment{index, 0}, local_mesh_id{local_id} {}
+    Global_local_enrichment(int index, int local_id, Node* node);
+
+    double operator()(double x);
+
+    double D(double x);
 
     Enrichment* create_copy(Node& node);
 };

@@ -83,6 +83,19 @@ void Bar::Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list
     }
 }
 
+void Bar::Mont_dNdx(Vector& dNdx, shape_functions* dNdxi_PoU, std::vector<Node*>& Nod_list, double x_real, double dxidx)
+{
+    int j {0};
+    for (std::size_t i {0}; i < Nod_list.size(); i++)
+    {
+        dNdx[j++] = dNdxi_PoU->operator[](i) * dxidx;
+        for (Enrichment* e : Nod_list[i]->enr)
+        {
+            dNdx[j++] = dNdxi_PoU->operator[](i)*e->D(x_real);
+        }
+    }
+}
+
 void Bar::integrate_B2_to_K()
 {
     // para o trecho C N Nt

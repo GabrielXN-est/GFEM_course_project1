@@ -52,6 +52,8 @@ class Element
             virtual shape_functions* get_shape_func()=0;
             virtual shape_functions* get_D_shape_func()=0;
             virtual void Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof) = 0;
+            virtual void Mont_dNdx(Vector& dNdx, shape_functions* dNdxi_PoU, std::vector<Node*>& Nod_list, double x_real, double dxidx)=0;
+
         // inicliaza os graus de liberdade dos nós do elemento
             virtual void assign_dofs(int& dof0)=0;
             
@@ -90,6 +92,7 @@ class Bar: public Element
 
     // Cria o vetor das funções de forma do GFEM
     void Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof);
+    void Mont_dNdx(Vector& dNdx, shape_functions* dNdxi_PoU, std::vector<Node*>& Nod_list, double x_real, double dxidx);
     
     // integra termo da mola distribuída
     void integrate_B2_to_K();

@@ -1,4 +1,4 @@
-# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 2/FEM_GFEM/shape_functions
+# Install script for directory: /home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/shape_functions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

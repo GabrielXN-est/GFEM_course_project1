@@ -190,3 +190,153 @@ void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
 
     U = T * u;
 }
+
+void Mesh::create_local_problem(double x0, double L, double nelem, std::string el_type, int pord, int E_pord, std::vector<double> geom_enr_r)
+{ 
+    //defaults
+    if(!(el_type==""))
+        el_type = eltype;
+    if(pord == -1)
+        pord = porder;
+    if(E_pord == -1)
+        E_pord = porder_Enrichment;
+    if(geom_enr_r.size() == 1)
+        geom_enr_r = geom_enr;
+
+    if (el_type == "pGFEMBar_WD_S" || el_type == "pGFEMBar_2Proj")
+        throw std::invalid_argument("Local problems not implemented for enrichments with non zero values on the nodes");
+
+    // boundary conditions
+    std::vector<double> new_f_bcs {}, new_d_bcs {};
+    std::vector<int> new_f_bcs_pos {}, new_f_bcs_dofs {}, new_d_bcs_pos {}, new_d_bcs_dofs {};
+    bool flag0 {false}, flagL {false};
+
+    // Neuman boundary conditions in the borders of the local problem
+    for (std::size_t i {0}; i < f_bcs_pos.size(); i++)
+    {
+        if ((f_bcs_pos[i] == 0) && (x0 == 0))
+        {
+            new_f_bcs.push_back(f_bcs[i]);
+            new_f_bcs_pos.push_back(0);
+            new_f_bcs_dofs.push_back(f_bcs_dofs[i]);
+            flag0 = true;
+        }
+        else if ((f_bcs_pos[i] == 1) && (x0 + L == Lm))
+        {
+            new_f_bcs.push_back(f_bcs[i]);
+            new_f_bcs_pos.push_back(1);
+            new_f_bcs_dofs.push_back(f_bcs_dofs[i]);
+            flagL = true;
+        }
+    }
+
+    // dirichilet boundary conditions in the borders of the local problem
+    for (std::size_t i {0}; i < d_bcs_pos.size(); i++)
+    {
+        if ((d_bcs_pos[i] == 0) && (x0 == 0))
+        {
+            new_d_bcs.push_back(d_bcs[i]);
+            new_d_bcs_pos.push_back(0);
+            new_d_bcs_dofs.push_back(d_bcs_dofs[i]);
+            flag0 = true;
+        }
+        else if ((d_bcs_pos[i] == 1) && (x0 + L == Lm))
+        {
+            new_d_bcs.push_back(d_bcs[i]);
+            new_d_bcs_pos.push_back(1);
+            new_d_bcs_dofs.push_back(d_bcs_dofs[i]);
+            flagL = true;
+        }
+    }
+
+    // approximate boundary conditions if not in the border of theoriginal problem
+    if (!flag0)
+    {
+        new_d_bcs.push_back(interpolate_solution(x0));
+        new_d_bcs_pos.push_back(0);
+        new_d_bcs_dofs.push_back(1);
+    }
+    if (!flagL)
+    {
+        new_d_bcs.push_back(interpolate_solution(x0+L));
+        new_d_bcs_pos.push_back(1);
+        new_d_bcs_dofs.push_back(1);
+    }
+
+    // name of the file to save
+    std::string new_filealias {filealias + "_local_" + std::to_string(local_problems.size())};
+
+    // create mesh and save in local problems vector
+    local_problems.emplace_back(path, new_filealias, nelem, pord, el_type,
+    L, E, Exlim, A, C,
+    d_bcs, d_bcs_pos, d_bcs_dofs, // dirichilet boundary conditions
+    f_bcs, f_bcs_pos, f_bcs_dofs, // Neumann Boundary conditions
+    bf_func_id, alpha, xb, xi, 
+    xgamma, E_pord, geom_enr_r);
+}
+
+double Mesh::interpolate_solution(double x)
+{
+    double u {0};
+    for (Element* el : c_bars)
+    {
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
+        {
+            shape_functions* sf {el->get_shape_func()};
+            sf->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            sf->mont_vector();
+            Vector N (el->Ndof);
+            el->Mont_N(N, sf, el->Nod_list, x, el->Ndof);
+            for (std::size_t i {0}; i < N.vec.size(); i++)
+                u += N.vec[i]*U[el->conectivity[i]];
+            return u;
+        }
+    }
+    throw std::out_of_range("Point x is out of the domain of the problem.");
+    return u;
+}
+
+double Mesh::interpolate_D_of_solution(double x)
+{
+    double dudx {0};
+    for (Element* el : c_bars)
+    {
+        if (el->Nod_list[0]->x <= x && el->Nod_list[0]->x + el->el_size >= x)
+        {
+            shape_functions* dsfdxiPoU {el->get_D_shape_func()};
+            dsfdxiPoU->operator()(el->mapping(x, el->Nod_list[0]->x, el->el_size));
+            dsfdxiPoU->mont_vector();
+            Vector dNdx (el->Ndof);
+            el->Mont_dNdx(dNdx, dsfdxiPoU, el->Nod_list, x, 2/el->el_size);
+
+            for (std::size_t i {0}; i < dNdx.vec.size(); i++)
+                dudx += dNdx.vec[i]*U[el->conectivity[i]];
+            return dudx;
+        }
+    }
+    throw std::out_of_range("Point x is out of the domain of the problem.");
+    return dudx;
+}
+
+void Mesh::run()
+{
+    create_mesh();
+    read_input(path+"/input_files/"+filealias+".txt", *this);
+    assemble_direct();
+    create_scaled_global_system(true);
+    if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc" || eltype == "pGFEMBar_2Proj" || eltype == "pSGFEMBar_2Proj")
+        solve_dependent_system(std::pow(10, -30), 100000000);
+    else
+        solve();
+    complete_U();
+    local_problems.clear(); // tem de ser recomputados
+}
+
+// run local problems
+void Mesh::run_local_problems()
+{
+    for (Mesh& local_mesh : local_problems)
+    {
+        local_mesh.run();
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "FEM_GFEM/generate_mesh",
+		"source" : "FEM_GFEM/generate_mesh"
+	}
+}

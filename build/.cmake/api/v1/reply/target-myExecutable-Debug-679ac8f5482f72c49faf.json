@@ -1,0 +1,308 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "myExecutable"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_link_libraries_system",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"third_party/external/matplotplusplus/source/3rd_party/CMakeLists.txt",
+			"third_party/external/matplotplusplus/cmake/functions/link_external_libraries.cmake",
+			"third_party/external/matplotplusplus/source/matplot/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 99,
+				"parent" : 4
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 115,
+				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 23,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "MATPLOT_BUILD_HIGH_RESOLUTION_WORLD_MAP"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "NOMINMAX"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/Inputs"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/Elements"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/lin_alg"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/Integration_points"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/Boundeary_conditions"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/shape_functions"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/generate_mesh"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/FEM_GFEM/Post_processing"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/third_party/external/matplotplusplus/source"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/build/third_party/external/matplotplusplus/source/matplot"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/eigen3"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "FEM_GFEM_library::@e9d6fab2e8836727cfe5"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "nodesoup::@f7142a74f06a27c93421"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "matplot::@2f8ac9fc0257ba2301eb"
+		}
+	],
+	"id" : "myExecutable::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-rdynamic",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "FEM_GFEM/lib/libFEM_GFEM_library.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "third_party/external/matplotplusplus/source/matplot/libmatplot.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ljpeg",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ltiff",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpng",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpng",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_intel_lp64",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_intel_thread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_core",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-liomp5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_intel_lp64",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_intel_thread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmkl_core",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-liomp5",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "third_party/external/matplotplusplus/source/3rd_party/libnodesoup.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "myExecutable",
+	"nameOnDisk" : "myExecutable",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

@@ -74,6 +74,21 @@ void pointer_vector_clear(std::vector<T*>& vec)
         delete obj;
 }
 
+std::string filename_without_extension(const std::string& filename)
+{
+    int last_dot {-1};
+    for (std::size_t i {filename.length()-1}; i >= 0; i--)
+    {
+        if (filename[i] == '.')
+            last_dot = static_cast<int>(i);
+            break;
+    }
+    if (last_dot == -1)
+        throw std::invalid_argument("No extension found"); 
+
+    return filename.substr(0, last_dot);
+}
+
 // input de dados
 void read_input (const std::string& filename, Mesh& mesh)
 {
@@ -84,6 +99,9 @@ void read_input (const std::string& filename, Mesh& mesh)
         // Print an error and exit
         throw std::runtime_error("input file could not be opened for reading!\n");
     }
+
+    // saving filename in mesh
+    mesh.filealias = filename_without_extension(filename);
 
     // extraindo cabeçalho
     std::getline(in_file, mesh.name);
@@ -249,7 +267,7 @@ void read_input (const std::string& filename, Mesh& mesh)
                         }
                     }
                 }
-                node_vec.emplace_back(id, x_coord, enr_ids);
+                node_vec.emplace_back(id, x_coord, enr_ids, &mesh);
                 enr_ids.clear();
             }
         }
@@ -407,6 +425,8 @@ void read_input (const std::string& filename, Mesh& mesh)
                     order.push_back(1);
                 else if (arg == "xGamma")
                     order.push_back(2);
+                else if (arg == "local_mesh_id")
+                    order.push_back(3);
                 else
                     throw std::invalid_argument("Unexpected legend argument for enrichments section");
             }
@@ -415,6 +435,7 @@ void read_input (const std::string& filename, Mesh& mesh)
             int id {};
             std::string type {};
             double xGamma {};
+            int local_mesh_id {};
 
             for (int k {0}; k < nenr; k++)
             {
@@ -447,6 +468,11 @@ void read_input (const std::string& filename, Mesh& mesh)
                                 xGamma = std::stod(temp);
                                 case_i++;
                             }
+                            else if (order[case_i] == 3)
+                            {
+                                local_mesh_id = std::stoi(temp);
+                                case_i++;
+                            }
                             temp = "";
                         }
                     }
@@ -461,6 +487,11 @@ void read_input (const std::string& filename, Mesh& mesh)
                     temp_enr_vec.push_back(new Project2_enrichment(id));
                 else if (type == "E_SGFEM_Project2")
                     temp_enr_vec.push_back(new SGFEM_enrichment(new Project2_enrichment(id)));
+                else if (type == "Global_local")
+                {
+                    if (mesh.local_problems.size() < local_mesh_id)
+                        temp_enr_vec.push_back(new Global_local_enrichment(id, local_mesh_id));
+                }
                 else
                     throw std::invalid_argument("Unexpected enrichment type (" + type + ")");
             }
