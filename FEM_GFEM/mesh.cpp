@@ -194,7 +194,7 @@ void Mesh::solve_dependent_system(double tol, int max_iter) // Babuska et al.
 void Mesh::create_local_problem(double x0, double L, double nelem, std::string el_type, int pord, int E_pord, std::vector<double> geom_enr_r)
 { 
     //defaults
-    if(!(el_type==""))
+    if(el_type=="")
         el_type = eltype;
     if(pord == -1)
         pord = porder;
@@ -271,7 +271,7 @@ void Mesh::create_local_problem(double x0, double L, double nelem, std::string e
     L, E, Exlim, A, C,
     d_bcs, d_bcs_pos, d_bcs_dofs, // dirichilet boundary conditions
     f_bcs, f_bcs_pos, f_bcs_dofs, // Neumann Boundary conditions
-    bf_func_id, alpha, xb, xi, 
+    bf_func_id, alpha, xb, x0, 
     xgamma, E_pord, geom_enr_r);
 }
 
@@ -318,8 +318,9 @@ double Mesh::interpolate_D_of_solution(double x)
     return dudx;
 }
 
-void Mesh::run()
+void Mesh::first_run()
 {
+    reset_mesh_elements();
     create_mesh();
     read_input(path+"/input_files/"+filealias+".txt", *this);
     assemble_direct();
@@ -329,7 +330,19 @@ void Mesh::run()
     else
         solve();
     complete_U();
-    local_problems.clear(); // tem de ser recomputados
+}
+
+void Mesh::run()
+{
+    reset_mesh_elements();
+    read_input(path+"/input_files/"+filealias+".txt", *this);
+    assemble_direct();
+    create_scaled_global_system(true);
+    if (eltype == "pGFEMBar_WD_S" || eltype == "pGFEMBar_WD_M" || eltype == "pGFEMBar" || eltype == "pGFEMBar_sc" || eltype == "pGFEMBar_2Proj" || eltype == "pSGFEMBar_2Proj")
+        solve_dependent_system(std::pow(10, -30), 100000000);
+    else
+        solve();
+    complete_U();
 }
 
 // run local problems
@@ -337,6 +350,15 @@ void Mesh::run_local_problems()
 {
     for (Mesh& local_mesh : local_problems)
     {
-        local_mesh.run();
+        local_mesh.first_run();
     }
+}
+
+// reset the mesh elements (to run it again with new local problem enrichments)
+void Mesh::reset_mesh_elements()
+{
+    nodes.clear();
+    c_bars.clear();
+    bc_ds.clear();
+    bc_l.clear();
 }

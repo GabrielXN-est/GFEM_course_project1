@@ -116,6 +116,9 @@ class Mesh
     void solve_dependent_system(double tol = std::pow(10, -12), int max_iter = 1000); // Babuska et al.
 
     // run the analysis
+    void first_run();
+
+    // run the analysis
     void run();
     
     // função para completar U com as condições de contorno se usado o método direto
@@ -130,8 +133,14 @@ class Mesh
     // cria um problema local ao repartir o domínio 
     void create_local_problem(double x0, double L, double nelem, std::string el_type="", int pord=-1, int E_pord=-1, std::vector<double> geom_enr_r = {1});
 
+    // clear local problems to recompute them
+    void clear_local_problems() {local_problems.clear();}
+
     // run local problems
     void run_local_problems();
+
+    // reset the mesh elements (to run it again with new local problem enrichments)
+    void reset_mesh_elements();
 };
 
 #endif

@@ -1,0 +1,143 @@
+/home/labmec/Downloads/GFEM Course/Projects/Projeto 3/input_files/3P_GFEM_nelem_64_nelem_GL_64_local_0.txt
+nodes - nnodes ndim; nodeID x-coord
+65 1
+1 0.25
+2 0.257812
+3 0.265625
+4 0.273438
+5 0.28125
+6 0.289062
+7 0.296875
+8 0.304688
+9 0.3125
+10 0.320312
+11 0.328125
+12 0.335938
+13 0.34375
+14 0.351562
+15 0.359375
+16 0.367188
+17 0.375
+18 0.382812
+19 0.390625
+20 0.398438
+21 0.40625
+22 0.414062
+23 0.421875
+24 0.429688
+25 0.4375
+26 0.445312
+27 0.453125
+28 0.460938
+29 0.46875
+30 0.476562
+31 0.484375
+32 0.492188
+33 0.5
+34 0.507812
+35 0.515625
+36 0.523438
+37 0.53125
+38 0.539062
+39 0.546875
+40 0.554688
+41 0.5625
+42 0.570312
+43 0.578125
+44 0.585938
+45 0.59375
+46 0.601562
+47 0.609375
+48 0.617188
+49 0.625
+50 0.632812
+51 0.640625
+52 0.648438
+53 0.65625
+54 0.664062
+55 0.671875
+56 0.679688
+57 0.6875
+58 0.695312
+59 0.703125
+60 0.710938
+61 0.71875
+62 0.726562
+63 0.734375
+64 0.742188
+65 0.75
+nelem; elemID Type propID nodes
+64
+1 lBar2 1 1 2 
+2 lBar2 1 2 3 
+3 lBar2 1 3 4 
+4 lBar2 1 4 5 
+5 lBar2 1 5 6 
+6 lBar2 1 6 7 
+7 lBar2 1 7 8 
+8 lBar2 1 8 9 
+9 lBar2 1 9 10 
+10 lBar2 1 10 11 
+11 lBar2 1 11 12 
+12 lBar2 1 12 13 
+13 lBar2 1 13 14 
+14 lBar2 1 14 15 
+15 lBar2 1 15 16 
+16 lBar2 1 16 17 
+17 lBar2 1 17 18 
+18 lBar2 1 18 19 
+19 lBar2 1 19 20 
+20 lBar2 1 20 21 
+21 lBar2 1 21 22 
+22 lBar2 1 22 23 
+23 lBar2 1 23 24 
+24 lBar2 1 24 25 
+25 lBar2 1 25 26 
+26 lBar2 1 26 27 
+27 lBar2 1 27 28 
+28 lBar2 1 28 29 
+29 lBar2 1 29 30 
+30 lBar2 1 30 31 
+31 lBar2 1 31 32 
+32 lBar2 1 32 33 
+33 lBar2 1 33 34 
+34 lBar2 1 34 35 
+35 lBar2 1 35 36 
+36 lBar2 1 36 37 
+37 lBar2 1 37 38 
+38 lBar2 1 38 39 
+39 lBar2 1 39 40 
+40 lBar2 1 40 41 
+41 lBar2 1 41 42 
+42 lBar2 1 42 43 
+43 lBar2 1 43 44 
+44 lBar2 1 44 45 
+45 lBar2 1 45 46 
+46 lBar2 1 46 47 
+47 lBar2 1 47 48 
+48 lBar2 1 48 49 
+49 lBar2 1 49 50 
+50 lBar2 1 50 51 
+51 lBar2 1 51 52 
+52 lBar2 1 52 53 
+53 lBar2 1 53 54 
+54 lBar2 1 54 55 
+55 lBar2 1 55 56 
+56 lBar2 1 56 57 
+57 lBar2 1 57 58 
+58 lBar2 1 58 59 
+59 lBar2 1 59 60 
+60 lBar2 1 60 61 
+61 lBar2 1 61 62 
+62 lBar2 1 62 63 
+63 lBar2 1 63 64 
+64 lBar2 1 64 65 
+properties - nprop; propID type E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E E Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim Exlim A C bf_fun
+1
+1 MatBar 1.95122 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1 40 1.95122 0.375 0.382812 0.390625 0.398438 0.40625 0.414062 0.421875 0.429688 0.4375 0.445312 0.453125 0.460938 0.46875 0.476562 0.484375 0.492188 0.5 0.507812 0.515625 0.523438 0.53125 0.539062 0.546875 0.554688 0.5625 0.570312 0.578125 0.585938 0.59375 0.601562 0.609375 0.617188 0.625 1 1 0 0 
+constraints - nconstr;constrID nodeID dof value
+1
+1 1 1 0
+loads - nload; loadID nodeID dof value
+1
+1 65 1 1

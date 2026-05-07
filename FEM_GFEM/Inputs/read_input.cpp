@@ -1,6 +1,8 @@
 // ajustar entrada de E
 
 #include <fstream>
+#include <iostream>
+#include <filesystem>
 #include "mesh.h"
 #include "read_input.h"
 #include "bars.h"
@@ -93,7 +95,7 @@ std::string filename_without_extension(const std::string& filename)
 void read_input (const std::string& filename, Mesh& mesh)
 {
     // get file
-    std::ifstream in_file(filename);
+    std::ifstream in_file{filename};
     if (!in_file)
     {
         // Print an error and exit
@@ -101,7 +103,7 @@ void read_input (const std::string& filename, Mesh& mesh)
     }
 
     // saving filename in mesh
-    mesh.filealias = filename_without_extension(filename);
+    // mesh.filealias = filename_without_extension(filename);
 
     // extraindo cabeçalho
     std::getline(in_file, mesh.name);
@@ -489,7 +491,7 @@ void read_input (const std::string& filename, Mesh& mesh)
                     temp_enr_vec.push_back(new SGFEM_enrichment(new Project2_enrichment(id)));
                 else if (type == "Global_local")
                 {
-                    if (mesh.local_problems.size() < local_mesh_id)
+                    if (mesh.local_problems.size() > local_mesh_id)
                         temp_enr_vec.push_back(new Global_local_enrichment(id, local_mesh_id));
                 }
                 else

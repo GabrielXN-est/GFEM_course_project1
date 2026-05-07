@@ -12,10 +12,29 @@
 
 #include <matplot/matplot.h>
 
+#define FEM
+#define GFEM
+
 // Não chamar FEM p-hieraquico como PoU do GFEM, pois não é PoU e não foram implementado // Pode chama-lo se não se foi implementado nenhuma função de enriquecimento
 
 // dof order in the nodes (PoU dofs -> node aplyed enrichments ->
     // -> pGFEM generated polinomial enrichments -> pGFEM generated non-polinomial enrichments)
+
+double u_exact(double x, double Eh, double E1, double E2)
+{
+    if (x <= 3./8.)
+        return x/(Eh);
+    else if (x >= 5./8.)
+        return 1/Eh*(3./8. + x - 5./8.) + (1./E1+1./E2)/8.;
+    else if (static_cast<int>((x-3./8.)*128.) % 2 == 0)
+        return 3./8./Eh + 
+            1./E1*(x-3./8.-static_cast<double>(static_cast<int>((x-3./8.)*64.))/128.)+
+            1./E2*(static_cast<double>(static_cast<int>((x-3./8.)*64.))/128.);
+    else
+        return 3./8./Eh + 
+            1./E2*(x-3./8.-1./128.-static_cast<double>(static_cast<int>((x-3./8.-1./128.)*64.))/128.)+
+            1./E1*(1./128.+static_cast<double>(static_cast<int>((x-3./8.-1./128.)*64.))/128.);
+}
 
 template <typename T, typename G>
 void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3, std::vector<T>& x4,
@@ -41,8 +60,6 @@ void plot_error(std::vector<T>& x1, std::vector<T>& x2, std::vector<T>& x3, std:
     matplot::save(path + title + ".png");
 }
 
-#define P_VERSION
-//#define H_VERSION
 int main()
 {
     try {
@@ -73,7 +90,7 @@ int main()
         E.push_back(Eh);
         E_xlim.push_back(L);
 
-        double U_exact {};
+        double U_exact {0.25625};
 
         // solution vectors
         std::vector<double> h_FEM_error {};
@@ -88,7 +105,7 @@ int main()
         
         // number of elements
         std::vector<int> nelem_L{8, 16, 32, 64, 128, 256};
-        std::vector<int> nelem_L_GL{16, 32, 64};
+        std::vector<int> nelem_L_GL{32, 64, 128};
 
         // element size
         std::vector<double> H {}, h{};
@@ -103,11 +120,11 @@ int main()
         // variables to save solutions plotable values for H =1/8
         plotting_data plotable_FEM {};
         std::vector<plotting_data> plotable_GFEM_GL(3);
-
+        # ifdef FEM
         std::cout << "________________h-version FEM________________" << std::endl;
             for (int nelem : nelem_L)
             {
-                Mesh mesh {path, "3P_FEM_nelem_" + nelem, nelem,
+                Mesh mesh {path, "3P_FEM_nelem_" + std::to_string(nelem), nelem,
                     1, "lBar", L, E, E_xlim, A, 0,
                     d_bcs,d_bcs_pos, d_bcs_dofs, // dirichilet boundary conditions
                     f_bcs, f_bcs_pos, f_bcs_dofs, // Neumann Boundary conditions
@@ -123,7 +140,8 @@ int main()
                 if (nelem == 8)
                     plotable_FEM = get_solution_plotable(mesh, L/128);
             }
-
+        # endif
+        # ifdef GFEM
         int nelem_GL {};
         for (int i = 0; i < nelem_L_GL.size(); i++)
         {
@@ -138,9 +156,9 @@ int main()
                     bf_func, 0.0, 0.0, 0.0, 0.0, 0,
                     {3*L/8, 5*L/8}, 1};
                 
-                mesh.run();
+                mesh.first_run();
 
-                mesh.create_local_problem(3*L/8, L/4, nelem_GL);
+                mesh.create_local_problem(L/4, L/2, nelem_GL);
                 mesh.run_local_problems();
 
                 mesh.run();
@@ -154,7 +172,7 @@ int main()
                     plotable_GFEM_GL[i] = get_solution_plotable(mesh, L/128);
             }
         }
-
+        # endif
         std::cout << "________________Convergence Rates________________" << std::endl;
             // taxas de convergência
             int size {static_cast<int>(nelem_L.size())};
@@ -166,20 +184,29 @@ int main()
             (std::log(h_GFEM_GL_dof[i]->operator[](size-1))-std::log(h_GFEM_GL_dof[i]->operator[](size-2))) << "\n";
                
         std::cout << "________________Plotagem________________" << std::endl;
+            // get exact solution plotable values
+            std::vector<double> x_values {}, u_ex_values {};
+            for (double x {0}; x <= L; x += L/1000.)
+            {
+                x_values.push_back(x);
+                u_ex_values.push_back(u_exact(x, Eh, E1, E2));
+            }
+
             //plotagens
             plot_error(h_FEM_dofs, h_GFEM_GL_h_L_64_dofs, h_GFEM_GL_h_L_128_dofs, h_GFEM_GL_h_L_256_dofs,
                        h_FEM_error, h_GFEM_GL_h_L_64_error, h_GFEM_GL_h_L_128_error, h_GFEM_GL_h_L_256_error,
-                       "Degrees of freedom", "Error in respectto degrees of freedom", path + "/plots/convergence/");
+                       "Degrees of freedom", "Error in respect to degrees of freedom", path + "/plots/convergence/");
             plot_error(nelem_L, nelem_L, nelem_L, nelem_L,
                        h_FEM_error, h_GFEM_GL_h_L_64_error, h_GFEM_GL_h_L_128_error, h_GFEM_GL_h_L_256_error,
-                       "Global element size", "Error in respectto degrees of freedom", path + "/plots/convergence/");
+                       "Global element size", "Error in respect to element size", path + "/plots/convergence/");
 
             auto f = matplot::figure(true);
             matplot::hold(matplot::on);
             matplot::plot(plotable_FEM.x_values, plotable_FEM.u_values)->display_name("FEM");
-            matplot::plot(plotable_GFEM_GL[0].x_values, plotable_GFEM_GL[0].u_values)->display_name("GFEM_GL_h=L/64");
-            matplot::plot(plotable_GFEM_GL[1].x_values, plotable_GFEM_GL[1].u_values)->display_name("GFEM_GL_h=L/128");
-            matplot::plot(plotable_GFEM_GL[2].x_values, plotable_GFEM_GL[2].u_values)->display_name("GFEM_GL_h=L/256");
+            matplot::plot(x_values, u_ex_values)->display_name("Exact solution");
+            matplot::plot(plotable_GFEM_GL[0].x_values, plotable_GFEM_GL[0].u_values)->display_name("GFEM GL h=L/64");
+            matplot::plot(plotable_GFEM_GL[1].x_values, plotable_GFEM_GL[1].u_values)->display_name("GFEM GL h=L/128");
+            matplot::plot(plotable_GFEM_GL[2].x_values, plotable_GFEM_GL[2].u_values)->display_name("GFEM GL h=L/256");
             matplot::hold(matplot::off);
             matplot::xlabel("x");
             matplot::ylabel("u(x)");
