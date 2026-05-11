@@ -40,21 +40,22 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
     shape_functions* dNdxiPoU {get_D_shape_func()};
     shape_functions* N_PoU {get_shape_func()};
 
-    double dxidx {2/L}; // considerando mapeamento linear para a célula de integração
+    double dxidx {2/L}; // considerando mapeamento linear para as funções de forma
     double x_real {};
 
     for (std::size_t pt_id {0}; pt_id < ip1.points.size(); pt_id++)
     {
         x_real = mapping_inv(ip1.points[pt_id], xi, Li);
-        // obter dNdx e dNdxt
-            // avaliando o ponto de integração no sistema de coordenadas mestres
-            // ao traduzir ele do sistema de cordenadas mestra da célula de integração para o físico e depois para o mestre do elemento
+
+        // obter dNdx e N da PoU no ponto de integração
         dNdxiPoU->operator()(mapping(x_real, Nod_list[0]->x, L));
         dNdxiPoU->mont_vector();
         N_PoU->operator()(mapping(x_real, Nod_list[0]->x, L));
         N_PoU->mont_vector();
 
-        // Consertar K
+        // obter dNdx
+            // avaliando o ponto de integração no sistema de coordenadas mestres
+            // ao traduzir ele do sistema de cordenadas mestra da célula de integração para o físico e depois para o mestre do elemento
         int j {0};
         Vector dNdx (Ndof);
         for (std::size_t i {0}; i < Nod_list.size(); i++)
@@ -68,6 +69,8 @@ void Bar::integrate_B1_to_K(double Ei, double Li, double xi)
         // montar matriz de rigidez local
         K_local += (dNdx*dNdx.T())*(Li/2*ip1.weights[pt_id]*A*Ei);
     }
+    delete dNdxiPoU;
+    delete N_PoU;
 }
 
 void Bar::Mont_N(Vector& N, shape_functions* N_PoU, std::vector<Node*>& Nod_list, double x_real, int Ndof)
@@ -118,6 +121,7 @@ void Bar::integrate_B2_to_K()
         // montar matriz de rigidez local
         K_local += (N*N.T())*(L/2*ip2.weights[pt_id]*C);
     }
+    delete N_PoU;
 }
 
 void Bar::integrate_BF_to_F()
@@ -138,6 +142,7 @@ void Bar::integrate_BF_to_F()
 
         F_local += N * static_cast<double>((*bf_func)(x_real)*ip.weights[i]*L/2.);
     }
+    delete N_PoU;
 }
 
 void Bar::get_K()
